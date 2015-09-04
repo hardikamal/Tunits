@@ -1,0 +1,20 @@
+PODS:
+  - Nimble (1.0.0)
+  - Quick (0.3.1)
+  - Tunits (0.1.0)
+
+DEPENDENCIES:
+  - Nimble
+  - Quick (~> 0.3.1)
+  - Tunits (from `../`)
+
+EXTERNAL SOURCES:
+  Tunits:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
+  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  Tunits: 2f57c37c2c794f3a0ed42061d3d4a7dc6db4e901
+
+COCOAPODS: 0.37.1
