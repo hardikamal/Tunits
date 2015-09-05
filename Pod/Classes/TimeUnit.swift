@@ -27,12 +27,26 @@ public class TimeUnit {
 // MARK: - Calculate beginning of time unit
     
     /**
+        Creates a new date at the first second of the same hour as the given date
+    
+        :param: date The new date for which to calculate the beginning of the hour
+    
+        :returns: The newly created date representing the first second of the hour
+    */
+    private func beginningOfHour(date:NSDate) -> NSDate {
+        let components = self.calendar.components(
+            (NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour), fromDate: date
+        )
+        
+        return self.calendar.dateFromComponents(components)!
+    }
+    
+    /**
         Creates a new date at the first second of the same day as the given date
     
         :param: date The date for which to calculate the beginning of the day
     
-        :returns: The newly created date representing the first second of the 
-            day
+        :returns: The newly created date representing the first second of the day
     */
     private func beginningOfDay(date:NSDate) -> NSDate {
         let components = self.calendar.components(
@@ -48,8 +62,7 @@ public class TimeUnit {
     
         :param: date The date for which to calculate the beginning of the month
     
-        :returns: The newly created date representing the first second of the 
-            month
+        :returns: The newly created date representing the first second of the month
     */
     private func beginningOfMonth(date:NSDate) -> NSDate {
         let components = self.calendar.components((NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth), fromDate: date)
@@ -59,6 +72,33 @@ public class TimeUnit {
     
     
 // MARK: - Build time units
+    
+    /**
+        Creates an array of dates at the first second of each minute of the hour 
+        of the given date.
+    
+        :param: date A date within the day for which to create dates.
+    
+        :returns: The newly created array of dates.
+    */
+    public func minutesOfHour(date:NSDate) -> [NSDate] {
+        var currentMinute = self.beginningOfHour(date)
+        var minutesOfHour : [NSDate] = []
+        
+        let firstMinuteOfNextHour = self.beginningOfHour(self.calendar.dateByAddingUnit(
+            NSCalendarUnit.CalendarUnitHour, value: 1, toDate: currentMinute, options: NSCalendarOptions.allZeros)!
+        )
+        
+        while currentMinute.compare(firstMinuteOfNextHour) == NSComparisonResult.OrderedAscending {
+            minutesOfHour.append(currentMinute.copy() as! NSDate)
+            
+            currentMinute = self.calendar.dateByAddingUnit(
+                NSCalendarUnit.CalendarUnitMinute, value: 1, toDate: currentMinute, options: NSCalendarOptions.allZeros
+            )!
+        }
+        
+        return minutesOfHour
+    }
     
     /**
         Creates an array of dates at the first second of each hour of the day of
