@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tunits View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="TunitsViewController" customModule="Tunits_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,81 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bo6-yF-kTv">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="216" id="Q6Q-xQ-xj7">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q6Q-xQ-xj7" id="m0b-dZ-Ody">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="NYY-PO-ixg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="216" id="gSH-Yw-mdl"/>
+                                                    </constraints>
+                                                    <date key="date" timeIntervalSinceReferenceDate="463171332.34792602">
+                                                        <!--2015-09-05 18:42:12 +0000-->
+                                                    </date>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="gSH-Yw-mdl"/>
+                                                        </mask>
+                                                    </variation>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NYY-PO-ixg" firstAttribute="leading" secondItem="m0b-dZ-Ody" secondAttribute="leading" id="7gq-bK-BhZ"/>
+                                                <constraint firstItem="NYY-PO-ixg" firstAttribute="top" secondItem="m0b-dZ-Ody" secondAttribute="top" constant="-18" id="ARb-ws-kCB"/>
+                                                <constraint firstAttribute="bottom" secondItem="NYY-PO-ixg" secondAttribute="bottom" id="Ube-d1-PoW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="NYY-PO-ixg" secondAttribute="bottom" constant="-8.5" id="X0s-cH-Gto"/>
+                                                <constraint firstItem="NYY-PO-ixg" firstAttribute="top" secondItem="m0b-dZ-Ody" secondAttribute="top" id="iYj-J8-GvM"/>
+                                                <constraint firstAttribute="trailing" secondItem="NYY-PO-ixg" secondAttribute="trailing" id="lMn-yZ-Dpk"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="ARb-ws-kCB"/>
+                                                    <exclude reference="Ube-d1-PoW"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeUnitCell" id="M1K-SQ-69L">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M1K-SQ-69L" id="KeK-5c-KuA">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bo6-yF-kTv" secondAttribute="trailing" id="CBZ-cR-IVM"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bo6-yF-kTv" secondAttribute="bottom" id="GZP-wR-3pX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bo6-yF-kTv" secondAttribute="trailing" constant="16" id="Lj8-ON-agE"/>
+                            <constraint firstItem="bo6-yF-kTv" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="fO0-DQ-4dC"/>
+                            <constraint firstItem="bo6-yF-kTv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="16" id="fqz-Bo-QqL"/>
+                            <constraint firstItem="bo6-yF-kTv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="lG5-t9-ZPE"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Lj8-ON-agE"/>
+                                <exclude reference="fqz-Bo-QqL"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="bo6-yF-kTv" id="Bh8-ds-atT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="389" y="423"/>
         </scene>
     </scenes>
 </document>
