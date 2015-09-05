@@ -35,7 +35,7 @@ public class TimeUnit {
     */
     private func beginningOfHour(date:NSDate) -> NSDate {
         let components = self.calendar.components(
-            (NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour), fromDate: date
+            (.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour), fromDate: date
         )
         
         return self.calendar.dateFromComponents(components)!
@@ -50,7 +50,7 @@ public class TimeUnit {
     */
     private func beginningOfDay(date:NSDate) -> NSDate {
         let components = self.calendar.components(
-            (NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay), fromDate: date
+            (.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay), fromDate: date
         )
         
         return self.calendar.dateFromComponents(components)!
@@ -65,13 +65,26 @@ public class TimeUnit {
         :returns: The newly created date representing the first second of the month
     */
     private func beginningOfMonth(date:NSDate) -> NSDate {
-        let components = self.calendar.components((NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth), fromDate: date)
+        let components = self.calendar.components((.CalendarUnitYear | .CalendarUnitMonth), fromDate: date)
         
         return self.calendar.dateFromComponents(components)!
     }
     
     
 // MARK: - Build time units
+    
+    private func timeUnits(timeUnit:NSCalendarUnit, fromDate:NSDate, toDate:NSDate) -> [NSDate] {
+        var currentDate = fromDate
+        var timeUnits : [NSDate] = []
+        
+        while currentDate.compare(toDate) == .OrderedAscending {
+            timeUnits.append(currentDate.copy() as! NSDate)
+            
+            currentDate = self.calendar.dateByAddingUnit(timeUnit, value: 1, toDate: currentDate, options: .allZeros)!
+        }
+        
+        return timeUnits
+    }
     
     /**
         Creates an array of dates at the first second of each minute of the hour 
@@ -82,22 +95,12 @@ public class TimeUnit {
         :returns: The newly created array of dates.
     */
     public func minutesOfHour(date:NSDate) -> [NSDate] {
-        var currentMinute = self.beginningOfHour(date)
-        var minutesOfHour : [NSDate] = []
-        
+        let firstMinuteOfHour = self.beginningOfHour(date)
         let firstMinuteOfNextHour = self.beginningOfHour(self.calendar.dateByAddingUnit(
-            NSCalendarUnit.CalendarUnitHour, value: 1, toDate: currentMinute, options: NSCalendarOptions.allZeros)!
+            .CalendarUnitHour, value: 1, toDate: firstMinuteOfHour, options: .allZeros)!
         )
         
-        while currentMinute.compare(firstMinuteOfNextHour) == NSComparisonResult.OrderedAscending {
-            minutesOfHour.append(currentMinute.copy() as! NSDate)
-            
-            currentMinute = self.calendar.dateByAddingUnit(
-                NSCalendarUnit.CalendarUnitMinute, value: 1, toDate: currentMinute, options: NSCalendarOptions.allZeros
-            )!
-        }
-        
-        return minutesOfHour
+        return self.timeUnits(.CalendarUnitMinute, fromDate: firstMinuteOfHour, toDate: firstMinuteOfNextHour)
     }
     
     /**
@@ -109,22 +112,12 @@ public class TimeUnit {
         :returns: The newly created array of dates.
     */
     public func hoursOfDay(date:NSDate) -> [NSDate] {
-        var currentHour = self.beginningOfDay(date)
-        var hoursOfDay : [NSDate] = []
-        
+        let firstHourOfDay = self.beginningOfDay(date)
         let firstHourOfNextDay = self.beginningOfDay(self.calendar.dateByAddingUnit(
-            NSCalendarUnit.CalendarUnitDay, value: 1, toDate: currentHour, options: NSCalendarOptions.allZeros)!
+            .CalendarUnitDay, value: 1, toDate: firstHourOfDay, options: .allZeros)!
         )
         
-        while currentHour.compare(firstHourOfNextDay) == NSComparisonResult.OrderedAscending {
-            hoursOfDay.append(currentHour.copy() as! NSDate)
-            
-            currentHour = self.calendar.dateByAddingUnit(
-                NSCalendarUnit.CalendarUnitHour, value: 1, toDate: currentHour, options: NSCalendarOptions.allZeros
-            )!
-        }
-        
-        return hoursOfDay
+        return self.timeUnits(.CalendarUnitHour, fromDate: firstHourOfDay, toDate: firstHourOfNextDay)
     }
     
     /**
@@ -136,22 +129,11 @@ public class TimeUnit {
         :returns: The newly created array of dates.
     */
     public func daysOfMonth(date:NSDate) -> [NSDate] {
-        var currentDay = self.beginningOfMonth(date)
-        var daysOfMonth : [NSDate] = []
-        
+        let firstDayOfMonth = self.beginningOfMonth(date)
         let firstDayOfNextMonth = self.beginningOfMonth(self.calendar.dateByAddingUnit(
-            NSCalendarUnit.CalendarUnitMonth, value: 1, toDate: currentDay, options: NSCalendarOptions.allZeros)!
+            .CalendarUnitMonth, value: 1, toDate: firstDayOfMonth, options: .allZeros)!
         )
         
-        while currentDay.compare(firstDayOfNextMonth) == NSComparisonResult.OrderedAscending {
-            daysOfMonth.append(currentDay.copy() as! NSDate)
-            
-            currentDay = self.calendar.dateByAddingUnit(
-                NSCalendarUnit.CalendarUnitDay, value:1, toDate:currentDay, options:NSCalendarOptions.allZeros
-            )!
-            
-        }
-        
-        return daysOfMonth
+        return self.timeUnits(.CalendarUnitDay, fromDate: firstDayOfMonth, toDate: firstDayOfNextMonth)
     }
 }
