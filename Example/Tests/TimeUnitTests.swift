@@ -25,6 +25,38 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
             
+            it ("can create the hours of March 8, 2015") {
+                dateFormatter.locale = NSLocale(localeIdentifier: "en_US") // March 8th was daylight savings change in the US
+                let hoursInMarch8_2015 = [
+                    dateFormatter.dateFromString("2015-03-08 00:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 01:00:00")!, // daylight savings change occurs at 2:00 AM in US
+                    dateFormatter.dateFromString("2015-03-08 03:00:00")!, // so hour skips from 1:00 to 3:00
+                    dateFormatter.dateFromString("2015-03-08 04:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 05:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 06:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 07:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 08:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 09:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 10:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 11:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 12:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 13:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 14:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 15:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 16:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 17:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 18:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 19:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 20:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 21:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 22:00:00")!,
+                    dateFormatter.dateFromString("2015-03-08 23:00:00")!,
+                ]
+                
+                let dateInMarch8_2015 = dateFormatter.dateFromString("2015-03-08 15:07:00")!
+                expect(TimeUnit().hoursOfDay(dateInMarch8_2015)).to(equal(hoursInMarch8_2015))
+            }
+            
             it ("can create the hours of September 5, 2015") {
                 let hoursInSeptember5_2015 = [
                     dateFormatter.dateFromString("2015-09-05 00:00:00")!,
