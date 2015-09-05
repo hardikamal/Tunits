@@ -158,7 +158,7 @@ class TimeUnitTests: QuickSpec {
             }
             
             it ("can create days of February 2015") {
-                let daysInFebruary15 = [
+                let daysInFebruary_2015 = [
                     dateFormatter.dateFromString("2015-02-01 00:00:00")!,
                     dateFormatter.dateFromString("2015-02-02 00:00:00")!,
                     dateFormatter.dateFromString("2015-02-03 00:00:00")!,
@@ -190,11 +190,11 @@ class TimeUnitTests: QuickSpec {
                 ]
                 
                 let dateInFebruary = dateFormatter.dateFromString("2015-02-03 11:24:57")!
-                expect(TimeUnit().daysOfMonth(dateInFebruary)).to(equal(daysInFebruary15))
+                expect(TimeUnit().daysOfMonth(dateInFebruary)).to(equal(daysInFebruary_2015))
             }
             
-            it ("can create days of February 2012") { // test leap year
-                let daysInFebruary12 = [
+            it ("can create days of February 2012") { // February 2012 was a leap month
+                let daysInFebruary_2012 = [
                     dateFormatter.dateFromString("2012-02-01 00:00:00")!,
                     dateFormatter.dateFromString("2012-02-02 00:00:00")!,
                     dateFormatter.dateFromString("2012-02-03 00:00:00")!,
@@ -227,7 +227,27 @@ class TimeUnitTests: QuickSpec {
                 ]
                 
                 let dateInFebruary = dateFormatter.dateFromString("2012-02-27 09:17:03")!
-                expect(TimeUnit().daysOfMonth(dateInFebruary)).to(equal(daysInFebruary12))
+                expect(TimeUnit().daysOfMonth(dateInFebruary)).to(equal(daysInFebruary_2012))
+            }
+            
+            it ("can create the months of 2015") {
+                let monthsIn_2015 = [
+                    dateFormatter.dateFromString("2015-01-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-02-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-03-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-04-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-05-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-06-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-07-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-08-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-09-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-11-01 00:00:00")!,
+                    dateFormatter.dateFromString("2015-12-01 00:00:00")!,
+                ]
+                
+                let dateIn_2015 = dateFormatter.dateFromString("2015-09-05 13:29:18")!
+                expect(TimeUnit().monthsOfYear(dateIn_2015)).to(equal(monthsIn_2015))
             }
         }
     }
