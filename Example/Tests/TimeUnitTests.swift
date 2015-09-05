@@ -25,6 +25,74 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
             
+            it ("can create the minutes of 7:00AM September 5, 2015") {
+                let minutesIn7AM_September5_2015 = [
+                    dateFormatter.dateFromString("2015-09-05 7:00:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:01:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:02:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:03:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:04:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:05:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:06:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:07:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:08:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:09:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:10:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:11:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:12:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:13:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:14:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:15:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:16:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:17:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:18:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:19:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:20:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:21:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:22:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:23:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:24:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:25:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:26:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:27:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:28:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:29:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:30:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:31:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:32:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:33:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:34:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:35:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:36:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:37:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:38:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:39:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:40:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:41:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:42:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:43:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:44:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:45:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:46:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:47:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:48:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:49:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:50:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:51:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:52:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:53:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:54:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:55:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:56:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:57:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:58:00")!,
+                    dateFormatter.dateFromString("2015-09-05 7:59:00")!,
+                ]
+                
+                let minuteIn7AM_September5_2015 = dateFormatter.dateFromString("2015-09-05 7:32:12")!
+                expect(TimeUnit().minutesOfHour(minuteIn7AM_September5_2015)).to(equal(minutesIn7AM_September5_2015))
+            }
+            
             it ("can create the hours of March 8, 2015") {
                 dateFormatter.locale = NSLocale(localeIdentifier: "en_US") // March 8th was daylight savings change in the US
                 let hoursInMarch8_2015 = [
