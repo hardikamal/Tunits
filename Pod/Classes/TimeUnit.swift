@@ -70,6 +70,19 @@ public class TimeUnit {
         return self.calendar.dateFromComponents(components)!
     }
     
+    /**
+        Creates a new date at the first second of the same year as the given date
+    
+        :param: date The date for which to calculate the beginning of the year
+    
+        :returns: The newly created date representing the first second of the year
+    */
+    private func beginningOfYear(date:NSDate) -> NSDate {
+        let components = self.calendar.components(.CalendarUnitYear, fromDate: date)
+        
+        return self.calendar.dateFromComponents(components)!
+    }
+    
     
 // MARK: - Build time units
     
@@ -135,5 +148,22 @@ public class TimeUnit {
         )
         
         return self.timeUnits(.CalendarUnitDay, fromDate: firstDayOfMonth, toDate: firstDayOfNextMonth)
+    }
+    
+    /**
+        Creates an array of dates at midnight of the first day of each month of 
+        the year of the given date.
+    
+        :param: date A date within the month for which to create dates.
+    
+        :returns: The newly created array of dates.
+    */
+    public func monthsOfYear(date:NSDate) -> [NSDate] {
+        let firstMonthOfYear = self.beginningOfYear(date)
+        let firstMonthOfNextYear = self.beginningOfYear(self.calendar.dateByAddingUnit(
+            .CalendarUnitYear, value: 1, toDate: firstMonthOfYear, options: .allZeros)!
+        )
+        
+        return self.timeUnits(.CalendarUnitMonth, fromDate: firstMonthOfYear, toDate: firstMonthOfNextYear)
     }
 }
