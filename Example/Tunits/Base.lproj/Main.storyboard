@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="216" id="Q6Q-xQ-xj7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="216" id="Q6Q-xQ-xj7" customClass="TunitsDatePickerCell" customModule="Tunits_Example" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q6Q-xQ-xj7" id="m0b-dZ-Ody">
@@ -30,6 +30,7 @@
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="NYY-PO-ixg">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="216" id="82h-zb-HBV"/>
                                                         <constraint firstAttribute="height" constant="216" id="gSH-Yw-mdl"/>
                                                     </constraints>
                                                     <date key="date" timeIntervalSinceReferenceDate="463171332.34792602">
@@ -57,6 +58,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="datePicker" destination="NYY-PO-ixg" id="HCn-Ck-YUY"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeUnitCell" id="M1K-SQ-69L">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
