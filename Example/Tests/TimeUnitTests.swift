@@ -6,4 +6,12 @@
 //  Copyright (c) 2015 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import XCTest
+import Quick
+import Nimble
+import Tunits
+
+
+class TimeUnitTests: XCTestCase {
+    
+}

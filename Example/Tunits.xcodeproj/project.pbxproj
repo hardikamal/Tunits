@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		84405DA61B9A7C8300784C9A /* TimeUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */; };
 		900FA18D9C6446285D785EF4 /* Pods_Tunits_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DA2E2398F180DB081CDE5C /* Pods_Tunits_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		689F53B6F5054CCC462E550F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitTests.swift; sourceTree = "<group>"; };
 		9304536384EED94A9F3650AB /* Pods-Tunits_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tunits_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tunits_Tests/Pods-Tunits_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		97DA2E2398F180DB081CDE5C /* Pods_Tunits_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tunits_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9797C220BE545BC81D5C0D /* Pods-Tunits_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tunits_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tunits_Example/Pods-Tunits_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -367,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84405DA61B9A7C8300784C9A /* TimeUnitTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +491,7 @@
 			baseConfigurationReference = AC9797C220BE545BC81D5C0D /* Pods-Tunits_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Tunits/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -499,6 +504,7 @@
 			baseConfigurationReference = CB4FFD59C6DDF0CD48A59D0A /* Pods-Tunits_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Tunits/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
