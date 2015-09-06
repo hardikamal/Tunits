@@ -1,30 +1,15 @@
-#
-# Be sure to run `pod lib lint Tunits.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "Tunits"
   s.version          = "0.1.0"
-  s.summary          = "A short description of Tunits."
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
+  s.summary          = "A date modification library"
   s.description      = <<-DESC
+		       Tunits is a simple library of convenience functions for creating groups of NSDates
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/Tunits"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/spitzgoby/Tunits"
   s.license          = 'MIT'
   s.author           = { "Thomas Leu" => "tomleu@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/Tunits.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/spitzgoby/Tunits.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
@@ -34,7 +19,4 @@ Pod::Spec.new do |s|
     'Tunits' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
