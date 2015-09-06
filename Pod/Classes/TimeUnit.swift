@@ -20,7 +20,7 @@ public class TimeUnit : NSObject {
     
         :returns: The newly intialized TimeUnit
     */
-    public init() {
+    override init() {
         self.calendar = NSCalendar.autoupdatingCurrentCalendar()
     }
     
