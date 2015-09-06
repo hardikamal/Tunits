@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TimeUnit {
+public class TimeUnit : NSObject {
     
 // MARK: - Properties and Lifecycle
     
