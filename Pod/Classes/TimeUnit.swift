@@ -13,16 +13,9 @@ public class TimeUnit : NSObject {
 // MARK: - Properties and Lifecycle
     
     /// The calendar to be used for date calculations
-    private let calendar : NSCalendar
-    
-    /**
-        Initializes a new TImeUnit
-    
-        :returns: The newly intialized TimeUnit
-    */
-    override init() {
-        self.calendar = NSCalendar.autoupdatingCurrentCalendar()
-    }
+    lazy var calendar : NSCalendar = {
+       return NSCalendar.autoupdatingCurrentCalendar()
+    }()
     
 // MARK: - Calculate beginning of time unit
     
