@@ -124,6 +124,70 @@ class TimeUnitTests: QuickSpec {
                 let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
                 expect(TimeUnit().endOfHour(endOf5PM)).to(equal(endOf5PM))
             }
+            
+            it ("can calculate the end of an hour for date in the middle of the hour") {
+                let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
+                let middleOf5PM = dateFormatter.dateFromString("2015-09-08 17:30:00")!
+                expect(TimeUnit().endOfHour(middleOf5PM)).to(equal(endOf5PM))
+            }
+            
+            it ("can calculate the end of an hour for date at random time within the hour") {
+                let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
+                let randomTimeIn5PM = dateFormatter.dateFromString("2015-09-08 17:46:12")!
+                expect(TimeUnit().endOfHour(randomTimeIn5PM)).to(equal(endOf5PM))
+            }
+            
+            it ("can calculate the end of a day for date at the end of the day") {
+                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
+                expect(TimeUnit().endOfDay(endOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
+            }
+            
+            it ("can calculate the end of a day for date in the middle of the day") {
+                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
+                let middleOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 12:00:00")!
+                expect(TimeUnit().endOfDay(middleOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
+            }
+            
+            it ("can calculate the end of a day for date at random time within the day") {
+                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
+                let randomTimeInSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 17:49:32")!
+                expect(TimeUnit().endOfDay(randomTimeInSeptember8_2015)).to(equal(endOfSeptember8_2015))
+            }
+            
+            it ("can calculate the end of a month for date at the end of the month") {
+                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                expect(TimeUnit().endOfMonth(endOfSeptember_2015)).to(equal(endOfSeptember_2015))
+            }
+            
+            it ("can calculate the end of a month for date in the middle of the month") {
+                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                let middleOfSeptember_2105 = dateFormatter.dateFromString("2015-09-15 00:00:00")!
+                expect(TimeUnit().endOfMonth(middleOfSeptember_2105)).to(equal(endOfSeptember_2015))
+            }
+            
+            it ("can calculate the end of a month for date in the middle of the month") {
+                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                let randomDateInSeptember_2015 = dateFormatter.dateFromString("2015-09-08 17:51:01")!
+                expect(TimeUnit().endOfMonth(randomDateInSeptember_2015)).to(equal(endOfSeptember8_2015))
+            }
+            
+            it ("can calculate the end of a year for date at the end of the year") {
+                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
+                expect(TimeUnit().endOfYear(endOf2015)).to(equal(endOf2015))
+            }
+            
+            it ("can calculate the end of a year for date in the middle of the year") {
+                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
+                let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
+                expect(TimeUnit().endOfYear(middleOf2015)).to(equal(endOf2015))
+            }
+            
+            it ("can calculate the end of a year for random date within the year") {
+                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
+                let randomDateIn2015 = dateFormatter.dateFromString("2015-09-08 17:54:35")!
+                expect(TimeUnit().endOfYear(randomDateIn2015)).to(equal(endOf2015))
+            }
+            
         }
         
         describe("Creating time units") {
