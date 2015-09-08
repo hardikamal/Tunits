@@ -107,9 +107,11 @@ public class TimeUnit : NSObject {
         :returns: The newly created date representing the last second of the hour.
     */
     public func endOfHour(date:NSDate) -> NSDate {
-        let firstSecondOfNextHour = self.calendar.dateByAddingUnit(.CalendarUnitHour, value: 1, toDate: date, options: .allZeros)
+        let firstSecondOfNextHour = self.beginningOfHour(
+            self.calendar.dateByAddingUnit(.CalendarUnitHour, value: 1, toDate: date, options: .allZeros)!
+        )
         
-        return firstSecondOfNextHour!.dateByAddingTimeInterval(-1)
+        return firstSecondOfNextHour.dateByAddingTimeInterval(-1)
     }
     
     /**
@@ -120,9 +122,11 @@ public class TimeUnit : NSObject {
         :returns: The newly created date representing the last second of the day.
     */
     public func endOfDay(date:NSDate) -> NSDate {
-        let firstSecondOfNextDay = self.calendar.dateByAddingUnit(.CalendarUnitDay, value: 1, toDate: date, options: .allZeros)
+        let firstSecondOfNextDay = self.beginningOfDay(
+            self.calendar.dateByAddingUnit(.CalendarUnitDay, value: 1, toDate: date, options: .allZeros)!
+        )
         
-        return firstSecondOfNextDay!.dateByAddingTimeInterval(-1)
+        return firstSecondOfNextDay.dateByAddingTimeInterval(-1)
     }
     
     /**
@@ -133,9 +137,11 @@ public class TimeUnit : NSObject {
         :returns: The newly created date representing the last second of the month
     */
     public func endOfMonth(date:NSDate) -> NSDate {
-        let firstSecondOfNextMonth = self.calendar.dateByAddingUnit(.CalendarUnitMonth, value: 1, toDate: date, options: .allZeros)
+        let firstSecondOfNextMonth = self.beginningOfMonth(
+            self.calendar.dateByAddingUnit(.CalendarUnitMonth, value: 1, toDate: date, options: .allZeros)!
+        )
         
-        return firstSecondOfNextMonth!.dateByAddingTimeInterval(-1)
+        return firstSecondOfNextMonth.dateByAddingTimeInterval(-1)
     }
     
     /**
@@ -146,9 +152,11 @@ public class TimeUnit : NSObject {
         :returns: The newly created date representing the last second of the year.
     */
     public func endOfYear(date:NSDate) -> NSDate {
-        let firstSecondOfNextYear = self.calendar.dateByAddingUnit(.CalendarUnitYear, value: 1, toDate: date, options: .allZeros)
+        let firstSecondOfNextYear = self.beginningOfYear(
+            self.calendar.dateByAddingUnit(.CalendarUnitYear, value: 1, toDate: date, options: .allZeros)!
+        )
         
-        return firstSecondOfNextYear!.dateByAddingTimeInterval(-1)
+        return firstSecondOfNextYear.dateByAddingTimeInterval(-1)
     }
     
     
