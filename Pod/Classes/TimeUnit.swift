@@ -26,7 +26,7 @@ public class TimeUnit : NSObject {
     
         :returns: The newly created date representing the first second of the hour
     */
-    private func beginningOfHour(date:NSDate) -> NSDate {
+    public func beginningOfHour(date:NSDate) -> NSDate {
         let components = self.calendar.components(
             (.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour), fromDate: date
         )
@@ -41,7 +41,7 @@ public class TimeUnit : NSObject {
     
         :returns: The newly created date representing the first second of the day
     */
-    private func beginningOfDay(date:NSDate) -> NSDate {
+    public func beginningOfDay(date:NSDate) -> NSDate {
         let components = self.calendar.components(
             (.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay), fromDate: date
         )
@@ -57,7 +57,7 @@ public class TimeUnit : NSObject {
     
         :returns: The newly created date representing the first second of the month
     */
-    private func beginningOfMonth(date:NSDate) -> NSDate {
+    public func beginningOfMonth(date:NSDate) -> NSDate {
         let components = self.calendar.components((.CalendarUnitYear | .CalendarUnitMonth), fromDate: date)
         
         return self.calendar.dateFromComponents(components)!
@@ -70,7 +70,7 @@ public class TimeUnit : NSObject {
     
         :returns: The newly created date representing the first second of the year
     */
-    private func beginningOfYear(date:NSDate) -> NSDate {
+    public func beginningOfYear(date:NSDate) -> NSDate {
         let components = self.calendar.components(.CalendarUnitYear, fromDate: date)
         
         return self.calendar.dateFromComponents(components)!
