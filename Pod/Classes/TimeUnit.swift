@@ -4,6 +4,26 @@
 //
 //  Created by Tom on 9/4/15.
 //
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+// Large portions of this code were influenced by Matt Thompson (http://mattt.me).
+// The original code can be found at https://github.com/mattt/CupertinoYankee
 //
 
 import Foundation
@@ -74,6 +94,61 @@ public class TimeUnit : NSObject {
         let components = self.calendar.components(.CalendarUnitYear, fromDate: date)
         
         return self.calendar.dateFromComponents(components)!
+    }
+    
+    
+// MARK: - Calculate end of time unit
+    
+    /**
+        Creates a new date at the last second of the same hour as the given date.
+    
+        :param: date The date for which to calculate the end of the month
+    
+        :returns: The newly created date representing the last second of the hour.
+    */
+    public func endOfHour(date:NSDate) -> NSDate {
+        let firstSecondOfNextHour = self.calendar.dateByAddingUnit(.CalendarUnitHour, value: 1, toDate: date, options: .allZeros)
+        
+        return firstSecondOfNextHour!.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same day as the given date.
+    
+        :param: date The date for which to calculate the end of the hour.
+    
+        :returns: The newly created date representing the last second of the day.
+    */
+    public func endOfDay(date:NSDate) -> NSDate {
+        let firstSecondOfNextDay = self.calendar.dateByAddingUnit(.CalendarUnitDay, value: 1, toDate: date, options: .allZeros)
+        
+        return firstSecondOfNextDay!.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same month as the given date
+    
+        :param: date The date for which to calculate the end of the month
+    
+        :returns: The newly created date representing the last second of the month
+    */
+    public func endOfMonth(date:NSDate) -> NSDate {
+        let firstSecondOfNextMonth = self.calendar.dateByAddingUnit(.CalendarUnitMonth, value: 1, toDate: date, options: .allZeros)
+        
+        return firstSecondOfNextMonth!.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same year as the given date.
+    
+        :param: date The date for which to calculate the end of the year.
+    
+        :returns: The newly created date representing the last second of the year.
+    */
+    public func endOfYear(date:NSDate) -> NSDate {
+        let firstSecondOfNextYear = self.calendar.dateByAddingUnit(.CalendarUnitYear, value: 1, toDate: date, options: .allZeros)
+        
+        return firstSecondOfNextYear!.dateByAddingTimeInterval(-1)
     }
     
     
@@ -159,4 +234,6 @@ public class TimeUnit : NSObject {
         
         return self.timeUnits(.CalendarUnitMonth, fromDate: firstMonthOfYear, toDate: firstMonthOfNextYear)
     }
+    
+    
 }
