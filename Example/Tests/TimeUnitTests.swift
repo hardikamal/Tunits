@@ -422,5 +422,42 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit().monthsOfYear(dateIn_2015)).to(equal(monthsIn_2015))
             }
         }
+        
+        describe("determining whether date falls within a given time unit") {
+            var dateFormatter : NSDateFormatter!
+            beforeEach {
+                dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            }
+            
+            it("returns true for first second of month") {
+                let september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")! // beginning of September
+                expect(TimeUnit().monthContainsDate(september_2015, month:september_2015)).to(beTrue())
+            }
+            
+            it("returns true for last second of month") {
+                let september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")! // beginning of September
+                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                expect(TimeUnit().monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
+            }
+            
+            it("returns true for date in the middle of month") {
+                let september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")! // beginning of September
+                let middleOfSeptember_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")!
+                expect(TimeUnit().monthContainsDate(middleOfSeptember_2015, month: september_2015)).to(beTrue())
+            }
+            
+            it ("returns true when month date is not beginning of month") {
+                let september_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")! // middle of September
+                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                expect(TimeUnit().monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
+            }
+            
+            it("returns false for date in next month") {
+                let september_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")! // middle of September
+                let beginningOfOctober_2015 = dateFormatter.dateFromString("2015-10-01 00:00:00")!
+                expect(TimeUnit().monthContainsDate(beginningOfOctober_2015, month: september_2015)).to(beFalse())
+            }
+        }
     }
 }
