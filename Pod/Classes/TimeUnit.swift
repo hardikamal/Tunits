@@ -243,5 +243,17 @@ public class TimeUnit : NSObject {
         return self.timeUnits(.CalendarUnitMonth, fromDate: firstMonthOfYear, toDate: firstMonthOfNextYear)
     }
     
+// MARK: - Determining whether date falls within time unit
+    
+    public func monthContainsDate(date:NSDate, month:NSDate) -> Bool {
+        let beginningOfMonth = self.beginningOfMonth(month)
+        let endOfMonth = self.endOfMonth(month)
+        
+        let beforeMonth = beginningOfMonth.compare(date) == NSComparisonResult.OrderedDescending
+        let afterMonth = endOfMonth.compare(date) == NSComparisonResult.OrderedAscending
+        
+        return !beforeMonth && !afterMonth
+    }
+    
     
 }
