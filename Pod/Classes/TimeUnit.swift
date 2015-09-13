@@ -243,7 +243,19 @@ public class TimeUnit : NSObject {
         return self.timeUnits(.CalendarUnitMonth, fromDate: firstMonthOfYear, toDate: firstMonthOfNextYear)
     }
     
+    
 // MARK: - Determining whether date falls within time unit
+    /**
+        Returns true if the given date falls on or before the start date and on 
+        or before the end date and false otherwise.
+    
+        :param: date      The date to be tested
+        :param: startDate The beginning of the time range
+        :param: endDate   The end of the time range
+    
+        :returns: true if the date falls on or within the given start and end date,
+            false otherwise
+    */
     private func dateIsBetween(date:NSDate, startDate:NSDate, endDate:NSDate) -> Bool {
         let beforeStartDate = startDate.compare(date) == .OrderedDescending
         let afterEndDate = endDate.compare(date) == .OrderedAscending
@@ -251,6 +263,15 @@ public class TimeUnit : NSObject {
         return !beforeStartDate && !afterEndDate
     }
     
+    /**
+        Returns true if the given date falls within the hour of the given hour
+        or false otherwise.
+    
+        :param: date The date being tested
+        :param: hour Any date within the hour of the test range
+    
+        :returns: True if the given date falls within the hour or false otherwise
+    */
     public func hourContainsDate(date:NSDate, hour:NSDate) -> Bool {
         let beginningOfHour = self.beginningOfHour(hour)
         let endOfHour = self.endOfHour(hour)
@@ -258,6 +279,16 @@ public class TimeUnit : NSObject {
         return self.dateIsBetween(date, startDate: beginningOfHour, endDate: endOfHour)
     }
     
+    /**
+        Returns true if the given date falls within the day of the given day or
+        false otherwise. See also NSCalendar.isDate:inSameDayAsDate method for 
+        similar functionality.
+    
+        :param: date The date being tested.
+        :param: day  Any date within the day of the test range.
+    
+        :returns: True if the given date falls wtihin the day or false otherwise.
+    */
     public func dayContainsDate(date:NSDate, day:NSDate) -> Bool {
         let beginningOfDay = self.beginningOfDay(day)
         let endOfDay = self.endOfDay(day)
@@ -265,6 +296,15 @@ public class TimeUnit : NSObject {
         return self.dateIsBetween(date, startDate: beginningOfDay, endDate: endOfDay)
     }
     
+    /**
+        Returns true if the given date falls within the day of the given month 
+        or false otherwise.
+    
+        :param: date  The date being tested.
+        :param: month Any date within the month of the test range.
+    
+        :returns: True if the given date falls within the month or false otherwise.
+    */
     public func monthContainsDate(date:NSDate, month:NSDate) -> Bool {
         let beginningOfMonth = self.beginningOfMonth(month)
         let endOfMonth = self.endOfMonth(month)
@@ -272,6 +312,15 @@ public class TimeUnit : NSObject {
         return self.dateIsBetween(date, startDate: beginningOfMonth, endDate: endOfMonth)
     }
     
+    /**
+        Returns true if the given date falls within the year of the given year 
+        or false otherwise.
+    
+        :param: date The date being tested.
+        :param: year Any date within the year of the test range.
+    
+        :returns: True if the given date falls wtihin the year or false otherwise.
+    */
     public func yearContainsDate(date:NSDate, year:NSDate) -> Bool {
         let beginningOfYear = self.beginningOfYear(year)
         let endOfYear = self.endOfYear(year)
