@@ -244,16 +244,38 @@ public class TimeUnit : NSObject {
     }
     
 // MARK: - Determining whether date falls within time unit
+    private func dateIsBetween(date:NSDate, startDate:NSDate, endDate:NSDate) -> Bool {
+        let beforeStartDate = startDate.compare(date) == .OrderedDescending
+        let afterEndDate = endDate.compare(date) == .OrderedAscending
+        
+        return !beforeStartDate && !afterEndDate
+    }
+    
+    public func hourContainsDate(date:NSDate, hour:NSDate) -> Bool {
+        let beginningOfHour = self.beginningOfHour(hour)
+        let endOfHour = self.endOfHour(hour)
+        
+        return self.dateIsBetween(date, startDate: beginningOfHour, endDate: endOfHour)
+    }
+    
+    public func dayContainsDate(date:NSDate, day:NSDate) -> Bool {
+        let beginningOfDay = self.beginningOfDay(day)
+        let endOfDay = self.endOfDay(day)
+        
+        return self.dateIsBetween(date, startDate: beginningOfDay, endDate: endOfDay)
+    }
     
     public func monthContainsDate(date:NSDate, month:NSDate) -> Bool {
         let beginningOfMonth = self.beginningOfMonth(month)
         let endOfMonth = self.endOfMonth(month)
         
-        let beforeMonth = beginningOfMonth.compare(date) == NSComparisonResult.OrderedDescending
-        let afterMonth = endOfMonth.compare(date) == NSComparisonResult.OrderedAscending
-        
-        return !beforeMonth && !afterMonth
+        return self.dateIsBetween(date, startDate: beginningOfMonth, endDate: endOfMonth)
     }
     
-    
+    public func yearContainsDate(date:NSDate, year:NSDate) -> Bool {
+        let beginningOfYear = self.beginningOfYear(year)
+        let endOfYear = self.endOfYear(year)
+        
+        return self.dateIsBetween(date, startDate: beginningOfYear, endDate: endOfYear)
+    }
 }
