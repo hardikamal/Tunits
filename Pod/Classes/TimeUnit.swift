@@ -32,6 +32,9 @@ public class TimeUnit : NSObject {
     
 // MARK: - Properties and Lifecycle
     
+    // Private static instance for static methods
+    private static let sharedInstance = TimeUnit()
+    
     /// The calendar to be used for date calculations
     lazy var calendar : NSCalendar = {
        return NSCalendar.autoupdatingCurrentCalendar()
@@ -55,6 +58,17 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the same hour as the given date
+    
+        - parameter date: The new date for which to calculate the beginning of the hour
+    
+        - returns: The newly created date representing the first second of the hour
+    */
+    static public func beginningOfHour(date:NSDate) -> NSDate {
+        return sharedInstance.beginningOfHour(date)
+    }
+    
+    /**
         Creates a new date at the first second of the same day as the given date
     
         - parameter date: The date for which to calculate the beginning of the day
@@ -67,6 +81,17 @@ public class TimeUnit : NSObject {
         )
         
         return self.calendar.dateFromComponents(components)!
+    }
+    
+    /**
+        Creates a new date at the first second of the same day as the given date
+    
+        - parameter date: The date for which to calculate the beginning of the day
+    
+        - returns: The newly created date representing the first second of the day
+    */
+    static public func beginningOfDay(date:NSDate) -> NSDate {
+        return sharedInstance.beginningOfDay(date)
     }
     
     /**
@@ -84,6 +109,18 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the same month as the given 
+        date
+    
+        - parameter date: The date for which to calculate the beginning of the month
+    
+        - returns: The newly created date representing the first second of the month
+    */
+    static public func beginningOfMonth(date:NSDate) -> NSDate {
+        return sharedInstance.beginningOfMonth(date)
+    }
+    
+    /**
         Creates a new date at the first second of the same year as the given date
     
         - parameter date: The date for which to calculate the beginning of the year
@@ -96,6 +133,16 @@ public class TimeUnit : NSObject {
         return self.calendar.dateFromComponents(components)!
     }
     
+    /**
+        Creates a new date at the first second of the same year as the given date
+    
+        - parameter date: The date for which to calculate the beginning of the year
+    
+        - returns: The newly created date representing the first second of the year
+    */
+    static public func beginningOfYear(date:NSDate) -> NSDate {
+        return sharedInstance.beginningOfYear(date)
+    }
     
 // MARK: - Calculate end of time unit
     
@@ -115,6 +162,17 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the last second of the same hour as the given date.
+    
+        - parameter date: The date for which to calculate the end of the month
+    
+        - returns: The newly created date representing the last second of the hour.
+    */
+    static public func endOfHour(date:NSDate) -> NSDate {
+        return sharedInstance.endOfHour(date)
+    }
+    
+    /**
         Creates a new date at the last second of the same day as the given date.
     
         - parameter date: The date for which to calculate the end of the hour.
@@ -127,6 +185,17 @@ public class TimeUnit : NSObject {
         )
         
         return firstSecondOfNextDay.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same day as the given date.
+    
+        - parameter date: The date for which to calculate the end of the hour.
+    
+        - returns: The newly created date representing the last second of the day.
+    */
+    static public func endOfDay(date:NSDate) -> NSDate {
+        return sharedInstance.endOfDay(date)
     }
     
     /**
@@ -145,6 +214,17 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the last second of the same month as the given date
+    
+        - parameter date: The date for which to calculate the end of the month
+    
+        - returns: The newly created date representing the last second of the month
+    */
+    static public func endOfMonth(date:NSDate) -> NSDate {
+        return sharedInstance.endOfMonth(date)
+    }
+    
+    /**
         Creates a new date at the last second of the same year as the given date.
     
         - parameter date: The date for which to calculate the end of the year.
@@ -157,6 +237,17 @@ public class TimeUnit : NSObject {
         )
         
         return firstSecondOfNextYear.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same year as the given date.
+    
+        - parameter date: The date for which to calculate the end of the year.
+    
+        - returns: The newly created date representing the last second of the year.
+    */
+    static public func endOfYear(date:NSDate) -> NSDate {
+        return sharedInstance.endOfYear(date)
     }
     
     
@@ -193,6 +284,18 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates an array of dates at the first second of each minute of the hour 
+        of the given date.
+    
+        - parameter date: A date within the day for which to create dates.
+    
+        - returns: The newly created array of dates.
+    */
+    static public func minutesOfHour(date:NSDate) -> [NSDate] {
+        return sharedInstance.minutesOfHour(date)
+    }
+    
+    /**
         Creates an array of dates at the first second of each hour of the day of
         the given date.
     
@@ -207,6 +310,18 @@ public class TimeUnit : NSObject {
         )
         
         return self.timeUnits(.Hour, fromDate: firstHourOfDay, toDate: firstHourOfNextDay)
+    }
+    
+    /**
+        Creates an array of dates at the first second of each hour of the day of
+        the given date.
+    
+        - parameter date: A date within the day for which to create dates.
+    
+        - returns: The newly created array of dates.
+    */
+    static public func hoursOfDay(date:NSDate) -> [NSDate] {
+        return sharedInstance.hoursOfDay(date)
     }
     
     /**
@@ -227,6 +342,18 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates an array of dates at midnight on each day of the month of the 
+        given date. 
+    
+        - parameter date: A date within the month for which to create dates.
+    
+        - returns: The newly created array of dates.
+    */
+    static public func daysOfMonth(date:NSDate) -> [NSDate] {
+        return sharedInstance.daysOfMonth(date)
+    }
+    
+    /**
         Creates an array of dates at midnight of the first day of each month of 
         the year of the given date.
     
@@ -241,6 +368,18 @@ public class TimeUnit : NSObject {
         )
         
         return self.timeUnits(.Month, fromDate: firstMonthOfYear, toDate: firstMonthOfNextYear)
+    }
+    
+    /**
+        Creates an array of dates at midnight of the first day of each month of 
+        the year of the given date.
+    
+        - parameter date: A date within the month for which to create dates.
+    
+        - returns: The newly created array of dates.
+    */
+    static public func monthsOfYear(date:NSDate) -> [NSDate] {
+        return sharedInstance.monthsOfYear(date)
     }
     
     
@@ -280,6 +419,19 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Returns true if the given date falls within the hour of the given hour
+        or false otherwise.
+    
+        - parameter date: The date being tested
+        - parameter hour: Any date within the hour of the test range
+    
+        - returns: True if the given date falls within the hour or false otherwise
+    */
+    static public func hourContainsDate(date:NSDate, hour:NSDate) -> Bool {
+        return sharedInstance.hourContainsDate(date, hour: hour)
+    }
+    
+    /**
         Returns true if the given date falls within the day of the given day or
         false otherwise. See also NSCalendar.isDate:inSameDayAsDate method for 
         similar functionality.
@@ -294,6 +446,20 @@ public class TimeUnit : NSObject {
         let endOfDay = self.endOfDay(day)
         
         return self.dateIsBetween(date, startDate: beginningOfDay, endDate: endOfDay)
+    }
+    
+    /**
+        Returns true if the given date falls within the day of the given day or
+        false otherwise. See also NSCalendar.isDate:inSameDayAsDate method for 
+        similar functionality.
+    
+        - parameter date: The date being tested.
+        - parameter day:  Any date within the day of the test range.
+    
+        - returns: True if the given date falls wtihin the day or false otherwise.
+    */
+    static public func dayContainsDate(date:NSDate, day:NSDate) -> Bool {
+        return sharedInstance.dayContainsDate(date, day: day)
     }
     
     /**
@@ -313,6 +479,19 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Returns true if the given date falls within the day of the given month 
+        or false otherwise.
+    
+        - parameter date:  The date being tested.
+        - parameter month: Any date within the month of the test range.
+    
+        - returns: True if the given date falls within the month or false otherwise.
+    */
+    static public func monthContainsDate(date:NSDate, month:NSDate) -> Bool {
+        return sharedInstance.monthContainsDate(date, month: month)
+    }
+    
+    /**
         Returns true if the given date falls within the year of the given year 
         or false otherwise.
     
@@ -326,5 +505,18 @@ public class TimeUnit : NSObject {
         let endOfYear = self.endOfYear(year)
         
         return self.dateIsBetween(date, startDate: beginningOfYear, endDate: endOfYear)
+    }
+    
+    /**
+        Returns true if the given date falls within the year of the given year 
+        or false otherwise.
+    
+        - parameter date: The date being tested.
+        - parameter year: Any date within the year of the test range.
+    
+        - returns: True if the given date falls wtihin the year or false otherwise.
+    */
+    static public func yearContainsDate(date:NSDate, year:NSDate) -> Bool {
+        return sharedInstance.yearContainsDate(date, year: year)
     }
 }
