@@ -36,7 +36,8 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit()).toNot(beNil())
             }
         }
-        
+
+// MARK: - Beginning of Time Units
         describe("Calculating beginning of time units") {
             var dateFormatter : NSDateFormatter!
             beforeEach {
@@ -44,6 +45,7 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
             
+// MARK: Beginning of hour
             it ("can calculate the beginning of an hour for date at the beginning of the hour") {
                 let beginningOf7AM = dateFormatter.dateFromString("2015-09-08 7:00:00")!
                 expect(TimeUnit().beginningOfHour(beginningOf7AM)).to(equal(beginningOf7AM))
@@ -64,6 +66,7 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.beginningOfHour(randomTimeIn7AM)).to(equal(beginningOf7AM))
             }
             
+// MARK: Beginning of day
             it ("can calculate the beginning of a day for date at the beginning of the day") {
                 let beginningOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 00:00:00")!
                 expect(TimeUnit().beginningOfDay(beginningOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
@@ -84,6 +87,9 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.beginningOfDay(randomTimeInSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
             }
             
+// MARK: Beginning of week
+            
+// MARK: Beginning of month
             it ("can calculate the beginning of a month for date at the beginning of the month") {
                 let beginningOfSeptember_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
                 expect(TimeUnit().beginningOfMonth(beginningOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
@@ -104,6 +110,7 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.beginningOfMonth(randomDateInSeptember_2015)).to(equal(beginningOfSeptember_2015))
             }
             
+// MARK: Beginning of year
             it ("can calculate the beginning of a year for date at the beginning of the year") {
                 let beginningOf2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
                 expect(TimeUnit().beginningOfYear(beginningOf2015)).to(equal(beginningOf2015))
@@ -125,13 +132,14 @@ class TimeUnitTests: QuickSpec {
             }
         }
         
+// MARK: - End of time units
         describe("Calculating the end of time units") {
             var dateFormatter : NSDateFormatter!
             beforeEach {
                 dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
-            
+// MARK: End of hour
             it ("can calculate the end of an hour for date at the end of the hour") {
                 let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
                 expect(TimeUnit().endOfHour(endOf5PM)).to(equal(endOf5PM))
@@ -152,6 +160,7 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.endOfHour(randomTimeIn5PM)).to(equal(endOf5PM))
             }
             
+// MARK: End of day
             it ("can calculate the end of a day for date at the end of the day") {
                 let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
                 expect(TimeUnit().endOfDay(endOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
@@ -172,6 +181,9 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.endOfDay(randomTimeInSeptember8_2015)).to(equal(endOfSeptember8_2015))
             }
             
+// MARK: End of week
+            
+// MARK: End of month
             it ("can calculate the end of a month for date at the end of the month") {
                 let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
                 expect(TimeUnit().endOfMonth(endOfSeptember_2015)).to(equal(endOfSeptember_2015))
@@ -192,6 +204,7 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.endOfMonth(randomDateInSeptember_2015)).to(equal(endOfSeptember8_2015))
             }
             
+// MARK: End of year
             it ("can calculate the end of a year for date at the end of the year") {
                 let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
                 expect(TimeUnit().endOfYear(endOf2015)).to(equal(endOf2015))
@@ -358,6 +371,7 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit.hoursOfDay(dateInSeptember5_2015)).to(equal(hoursInSeptember5_2015))
             }
             
+// MARK: daysOfWeek
             
 // MARK: daysOfMonth
             it ("can create days of February 2015") {
@@ -552,6 +566,8 @@ class TimeUnitTests: QuickSpec {
                 expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beFalse())
                 expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beFalse())
             }
+            
+// MARK: weekContainsDate
             
 // MARK: monthContainsDate
             it("returns true for first second of month") {
