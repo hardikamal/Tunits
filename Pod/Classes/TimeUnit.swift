@@ -95,6 +95,33 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the same week as the given date
+    
+        - parameter date: The date for which to calculate the beginning of the week
+    
+        - returns: The newly created date representing the first second of the week
+    */
+    public func beginningOfWeek(date:NSDate) -> NSDate {
+        let components = self.calendar.components([.Year, .Month, .Day, .Weekday], fromDate: date)
+        
+        let weekdayOffset = components.weekday - self.calendar.firstWeekday
+        components.day -= weekdayOffset;
+        
+        return self.calendar.dateFromComponents(components)!
+    }
+    
+    /**
+        Creates a new date at the first second of the same week as the given date
+    
+        - parameter date: The date for which to calculate the beginning of the week
+    
+        - returns: The newly created date representing the first second of the week
+    */
+    static public func beginningOfWeek(date:NSDate) -> NSDate {
+        return sharedInstance.beginningOfWeek(date)
+    }
+    
+    /**
         Creates a new date at the first second of the same month as the given 
         date
     
@@ -196,6 +223,32 @@ public class TimeUnit : NSObject {
     */
     static public func endOfDay(date:NSDate) -> NSDate {
         return sharedInstance.endOfDay(date)
+    }
+    
+    /**
+        Creates a new date at the last second of the same week as the given date.
+    
+        - parameter date: The date for which to calculate the end of the week.
+    
+        - returns: The newly created date representing the last second of the week.
+    */
+    public func endOfWeek(date:NSDate) -> NSDate {
+        let firstSecondOfNextWeek = self.beginningOfWeek(
+            self.calendar.dateByAddingUnit(.WeekOfYear, value: 1, toDate: date, options: [])!
+        )
+        
+        return firstSecondOfNextWeek.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same week as the given date.
+    
+        - parameter date: The date for which to calculate the end of the week.
+    
+        - returns: The newly created date representing the last second of the week.
+    */
+    static public func endOfWeek(date:NSDate) -> NSDate {
+        return sharedInstance.endOfWeek(date)
     }
     
     /**
@@ -322,6 +375,35 @@ public class TimeUnit : NSObject {
     */
     static public func hoursOfDay(date:NSDate) -> [NSDate] {
         return sharedInstance.hoursOfDay(date)
+    }
+    
+    /**
+        Creates an array of dates at the first second of each day of the week of
+        the given date.
+    
+        - parameter date: A date within the week for which to create dates.
+    
+        - returns: The newly created array of dates.
+    */
+    public func daysOfWeek(date:NSDate) -> [NSDate] {
+        let firstDayOfWeek = self.beginningOfWeek(date)
+        let firstDayOfNextWeek = self.beginningOfWeek(
+            self.calendar.dateByAddingUnit(.WeekOfYear, value: 1, toDate: date, options: [])!
+        )
+        
+        return self.timeUnits(.Day, fromDate: firstDayOfWeek, toDate: firstDayOfNextWeek)
+    }
+    
+    /**
+        Creates an array of dates at the first second of each day of the week of
+        the given date.
+    
+        - parameter date: A date within the week for which to create dates.
+    
+        - returns: The newly created array of dates.
+    */
+    static public func daysOfWeek(date:NSDate) -> [NSDate] {
+        return sharedInstance.daysOfWeek(date)
     }
     
     /**
@@ -460,6 +542,35 @@ public class TimeUnit : NSObject {
     */
     static public func dayContainsDate(date:NSDate, day:NSDate) -> Bool {
         return sharedInstance.dayContainsDate(date, day: day)
+    }
+    
+    /**
+        Returns true if the given date falls within the week of the given week or
+        false otherwise.
+    
+        - parameter date: The date being tested.
+        - parameter week: Any date within the week of the test range.
+    
+        - returns: True if the given date falls within the week or false otherwise.
+    */
+    public func weekContainsDate(date:NSDate, week:NSDate) -> Bool {
+        let beginningOfWeek = self.beginningOfWeek(week)
+        let endOfWeek = self.endOfWeek(week)
+        
+        return self.dateIsBetween(date, startDate: beginningOfWeek, endDate: endOfWeek)
+    }
+    
+    /**
+        Returns true if the given date falls within the week of the given week or
+        false otherwise.
+    
+        - parameter date: The date being tested.
+        - parameter week: Any date within the week of the test range.
+    
+        - returns: True if the given date falls within the week or false otherwise.
+    */
+    static public func weekContainsDate(date:NSDate, week:NSDate) -> Bool {
+        return sharedInstance.weekContainsDate(date, week: week)
     }
     
     /**
