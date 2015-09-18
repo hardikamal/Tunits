@@ -47,7 +47,7 @@ class TunitsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
-        self.tableView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
     }
     
 // MARK: - UI Events
@@ -140,7 +140,7 @@ class TunitsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func timeUnitCell(indexPath:NSIndexPath) -> UITableViewCell {
-        let timeUnitCell = self.tableView!.dequeueReusableCellWithIdentifier(kTimeUnitCellIdentifier) as! UITableViewCell
+        let timeUnitCell = self.tableView!.dequeueReusableCellWithIdentifier(kTimeUnitCellIdentifier)!
         
         timeUnitCell.textLabel!.text = self.titleForTimeUnitCell(indexPath)
         

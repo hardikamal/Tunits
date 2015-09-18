@@ -1,16 +1,16 @@
 {
   "name": "Tunits",
-  "version": "0.1.0",
-  "summary": "A short description of Tunits.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/Tunits",
+  "version": "0.3.0",
+  "summary": "A date modification library",
+  "description": "Tunits is a simple library of convenience functions for creating groups of NSDates",
+  "homepage": "https://github.com/spitzgoby/Tunits",
   "license": "MIT",
   "authors": {
     "Thomas Leu": "tomleu@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/Tunits.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/spitzgoby/Tunits.git",
+    "tag": "0.3.0"
   },
   "platforms": {
     "ios": "8.0"
