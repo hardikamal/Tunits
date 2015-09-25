@@ -46,108 +46,127 @@ class TimeUnitTests: QuickSpec {
             }
             
 // MARK: Beginning of hour
-            it ("can calculate the beginning of an hour for date at the beginning of the hour") {
-                let beginningOf7AM = dateFormatter.dateFromString("2015-09-08 7:00:00")!
-                expect(TimeUnit().beginningOfHour(beginningOf7AM)).to(equal(beginningOf7AM))
-                expect(TimeUnit.beginningOfHour(beginningOf7AM)).to(equal(beginningOf7AM))
-            }
-            
-            it ("can calculate the beginning of an hour for date in the middle of the hour") {
-                let beginningOf7AM = dateFormatter.dateFromString("2015-09-08 7:00:00")!
-                let middleOf7AM = dateFormatter.dateFromString("2015-09-08 7:30:00")!
-                expect(TimeUnit().beginningOfHour(middleOf7AM)).to(equal(beginningOf7AM))
-                expect(TimeUnit.beginningOfHour(middleOf7AM)).to(equal(beginningOf7AM))
-            }
-            
-            it ("can calculate the beginning of an hour for random date within the hour") {
-                let beginningOf7AM = dateFormatter.dateFromString("2015-09-08 7:00:00")!
-                let randomTimeIn7AM = dateFormatter.dateFromString("2015-09-08 7:17:52")!
-                expect(TimeUnit().beginningOfHour(randomTimeIn7AM)).to(equal(beginningOf7AM))
-                expect(TimeUnit.beginningOfHour(randomTimeIn7AM)).to(equal(beginningOf7AM))
+            describe("calculating the beginning of an hour") {
+                var beginningOf7AM : NSDate!
+                beforeEach {
+                    beginningOf7AM = dateFormatter.dateFromString("2015-09-08 7:00:00")!
+                }
+                it ("can calculate the beginning of an hour for date at the beginning of the hour") {
+                    expect(TimeUnit().beginningOfHour(beginningOf7AM)).to(equal(beginningOf7AM))
+                    expect(TimeUnit.beginningOfHour(beginningOf7AM)).to(equal(beginningOf7AM))
+                }
+                
+                it ("can calculate the beginning of an hour for date in the middle of the hour") {
+                    let middleOf7AM = dateFormatter.dateFromString("2015-09-08 7:30:00")!
+                    expect(TimeUnit().beginningOfHour(middleOf7AM)).to(equal(beginningOf7AM))
+                    expect(TimeUnit.beginningOfHour(middleOf7AM)).to(equal(beginningOf7AM))
+                }
+                
+                it ("can calculate the beginning of an hour for random date within the hour") {
+                    let randomTimeIn7AM = dateFormatter.dateFromString("2015-09-08 7:17:52")!
+                    expect(TimeUnit().beginningOfHour(randomTimeIn7AM)).to(equal(beginningOf7AM))
+                    expect(TimeUnit.beginningOfHour(randomTimeIn7AM)).to(equal(beginningOf7AM))
+                }
             }
             
 // MARK: Beginning of day
-            it ("can calculate the beginning of a day for date at the beginning of the day") {
-                let beginningOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 00:00:00")!
-                expect(TimeUnit().beginningOfDay(beginningOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
-                expect(TimeUnit.beginningOfDay(beginningOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
-            }
-            
-            it ("can calculate the beginning of a day for date in the middle of the day") {
-                let beginningOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 00:00:00")!
-                let middleOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 12:00:00")!
-                expect(TimeUnit().beginningOfDay(middleOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
-                expect(TimeUnit.beginningOfDay(middleOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
-            }
-            
-            it ("can calculate the beginning of a day for a random date within the day") {
-                let beginningOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 00:00:00")!
-                let randomTimeInSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 17:30:27")!
-                expect(TimeUnit().beginningOfDay(randomTimeInSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
-                expect(TimeUnit.beginningOfDay(randomTimeInSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+            describe("calculating the beginning of a day") {
+                var beginningOfSeptember8_2015 : NSDate!
+                beforeEach {
+                    beginningOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 00:00:00")!
+                }
+                
+                it ("can calculate the beginning of a day for date at the beginning of the day") {
+                    expect(TimeUnit().beginningOfDay(beginningOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+                    expect(TimeUnit.beginningOfDay(beginningOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+                }
+                
+                it ("can calculate the beginning of a day for date in the middle of the day") {
+                    let middleOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 12:00:00")!
+                    expect(TimeUnit().beginningOfDay(middleOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+                    expect(TimeUnit.beginningOfDay(middleOfSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+                }
+                
+                it ("can calculate the beginning of a day for a random date within the day") {
+                    let randomTimeInSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 17:30:27")!
+                    expect(TimeUnit().beginningOfDay(randomTimeInSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+                    expect(TimeUnit.beginningOfDay(randomTimeInSeptember8_2015)).to(equal(beginningOfSeptember8_2015))
+                }
             }
             
 // MARK: Beginning of week
-            it ("can calculate the beginning of a week for date at the beginning of the week") {
-                let beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
-                expect(TimeUnit().beginningOfWeek(beginningOfSeptember20_2015)).to(equal(beginningOfSeptember20_2015))
-                expect(TimeUnit.beginningOfWeek(beginningOfSeptember20_2015)).to(equal(beginningOfSeptember20_2015))
-            }
-            
-            it ("can calculate the beginning of a week for date in the middle of the week") {
-                let beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
-                let middleOfSeptember23_2015 = dateFormatter.dateFromString("2015-09-23 12:00:00")!
-                expect(TimeUnit().beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
-                expect(TimeUnit.beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
-            }
-            
-            it ("can calculate the beginning of a day for a random date within the day") {
-                let beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
-                let randomTimeInSeptember25_2015 = dateFormatter.dateFromString("2015-09-25 10:43:27")!
-                expect(TimeUnit().beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
-                expect(TimeUnit.beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
+            describe("calculating the beginning of a week") {
+                var beginningOfSeptember20_2015 : NSDate!
+                beforeEach {
+                    beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
+                }
+                
+                it ("can calculate the beginning of a week for date at the beginning of the week") {
+                    expect(TimeUnit().beginningOfWeek(beginningOfSeptember20_2015)).to(equal(beginningOfSeptember20_2015))
+                    expect(TimeUnit.beginningOfWeek(beginningOfSeptember20_2015)).to(equal(beginningOfSeptember20_2015))
+                }
+                
+                it ("can calculate the beginning of a week for date in the middle of the week") {
+                    let middleOfSeptember23_2015 = dateFormatter.dateFromString("2015-09-23 12:00:00")!
+                    expect(TimeUnit().beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
+                    expect(TimeUnit.beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
+                }
+                
+                it ("can calculate the beginning of a day for a random date within the day") {
+                    let randomTimeInSeptember25_2015 = dateFormatter.dateFromString("2015-09-25 10:43:27")!
+                    expect(TimeUnit().beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
+                    expect(TimeUnit.beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
+                }
             }
             
 // MARK: Beginning of month
-            it ("can calculate the beginning of a month for date at the beginning of the month") {
-                let beginningOfSeptember_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
-                expect(TimeUnit().beginningOfMonth(beginningOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
-                expect(TimeUnit.beginningOfMonth(beginningOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
-            }
-            
-            it ("can calculate the beginning of a month for date in the middle of the month") {
-                let beginningOfSeptember_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
-                let middleOfSeptember_2015 = dateFormatter.dateFromString("2015-09-15 12:00:00")!
-                expect(TimeUnit().beginningOfMonth(middleOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
-                expect(TimeUnit.beginningOfMonth(middleOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
-            }
-            
-            it ("can calculate the beginning of a month for random date within the month") {
-                let beginningOfSeptember_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
-                let randomDateInSeptember_2015 = dateFormatter.dateFromString("2015-09-08 17:34:49")!
-                expect(TimeUnit().beginningOfMonth(randomDateInSeptember_2015)).to(equal(beginningOfSeptember_2015))
-                expect(TimeUnit.beginningOfMonth(randomDateInSeptember_2015)).to(equal(beginningOfSeptember_2015))
+            describe("calculating the beginning of a month") {
+                var beginningOfSeptember_2015 : NSDate!
+                beforeEach {
+                    beginningOfSeptember_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
+                }
+                
+                it ("can calculate the beginning of a month for date at the beginning of the month") {
+                    expect(TimeUnit().beginningOfMonth(beginningOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
+                    expect(TimeUnit.beginningOfMonth(beginningOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
+                }
+                
+                it ("can calculate the beginning of a month for date in the middle of the month") {
+                    let middleOfSeptember_2015 = dateFormatter.dateFromString("2015-09-15 12:00:00")!
+                    expect(TimeUnit().beginningOfMonth(middleOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
+                    expect(TimeUnit.beginningOfMonth(middleOfSeptember_2015)).to(equal(beginningOfSeptember_2015))
+                }
+                
+                it ("can calculate the beginning of a month for random date within the month") {
+                    let randomDateInSeptember_2015 = dateFormatter.dateFromString("2015-09-08 17:34:49")!
+                    expect(TimeUnit().beginningOfMonth(randomDateInSeptember_2015)).to(equal(beginningOfSeptember_2015))
+                    expect(TimeUnit.beginningOfMonth(randomDateInSeptember_2015)).to(equal(beginningOfSeptember_2015))
+                }
             }
             
 // MARK: Beginning of year
-            it ("can calculate the beginning of a year for date at the beginning of the year") {
-                let beginningOf2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
-                expect(TimeUnit().beginningOfYear(beginningOf2015)).to(equal(beginningOf2015))
-                expect(TimeUnit.beginningOfYear(beginningOf2015)).to(equal(beginningOf2015))
-            }
-            
-            it ("can calculate the beginning of a year for date in the middle of the year") {
-                let beginningOf2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
-                let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
-                expect(TimeUnit().beginningOfYear(middleOf2015)).to(equal(beginningOf2015))
-                expect(TimeUnit.beginningOfYear(middleOf2015)).to(equal(beginningOf2015))
-            }
-            
-            it ("can calculate the beginning of a year from a random date within the year") {
-                let beginningOf2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
-                let randomDateIn2015 = dateFormatter.dateFromString("2015-09-08 17:38:12")!
-                expect(TimeUnit().beginningOfYear(randomDateIn2015)).to(equal(beginningOf2015))
-                expect(TimeUnit.beginningOfYear(randomDateIn2015)).to(equal(beginningOf2015))
+            describe("calculating the beginning of a year") {
+                var beginningOf2015 : NSDate!
+                beforeEach {
+                    beginningOf2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
+                }
+                
+                it ("can calculate the beginning of a year for date at the beginning of the year") {
+                    expect(TimeUnit().beginningOfYear(beginningOf2015)).to(equal(beginningOf2015))
+                    expect(TimeUnit.beginningOfYear(beginningOf2015)).to(equal(beginningOf2015))
+                }
+                
+                it ("can calculate the beginning of a year for date in the middle of the year") {
+                    let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
+                    expect(TimeUnit().beginningOfYear(middleOf2015)).to(equal(beginningOf2015))
+                    expect(TimeUnit.beginningOfYear(middleOf2015)).to(equal(beginningOf2015))
+                }
+                
+                it ("can calculate the beginning of a year from a random date within the year") {
+                    let randomDateIn2015 = dateFormatter.dateFromString("2015-09-08 17:38:12")!
+                    expect(TimeUnit().beginningOfYear(randomDateIn2015)).to(equal(beginningOf2015))
+                    expect(TimeUnit.beginningOfYear(randomDateIn2015)).to(equal(beginningOf2015))
+                }
             }
         }
         
