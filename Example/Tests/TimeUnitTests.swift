@@ -88,6 +88,25 @@ class TimeUnitTests: QuickSpec {
             }
             
 // MARK: Beginning of week
+            it ("can calculate the beginning of a week for date at the beginning of the week") {
+                let beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
+                expect(TimeUnit().beginningOfWeek(beginningOfSeptember20_2015)).to(equal(beginningOfSeptember20_2015))
+                expect(TimeUnit.beginningOfWeek(beginningOfSeptember20_2015)).to(equal(beginningOfSeptember20_2015))
+            }
+            
+            it ("can calculate the beginning of a week for date in the middle of the week") {
+                let beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
+                let middleOfSeptember23_2015 = dateFormatter.dateFromString("2015-09-23 12:00:00")!
+                expect(TimeUnit().beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
+                expect(TimeUnit.beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
+            }
+            
+            it ("can calculate the beginning of a day for a random date within the day") {
+                let beginningOfSeptember20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
+                let randomTimeInSeptember25_2015 = dateFormatter.dateFromString("2015-09-25 10:43:27")!
+                expect(TimeUnit().beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
+                expect(TimeUnit.beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
+            }
             
 // MARK: Beginning of month
             it ("can calculate the beginning of a month for date at the beginning of the month") {
@@ -182,6 +201,25 @@ class TimeUnitTests: QuickSpec {
             }
             
 // MARK: End of week
+            it ("can calculate the end of a week for date at the end of the week") {
+                let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
+                expect(TimeUnit().endOfWeek(endOfSeptember26_2015)).to(equal(endOfSeptember26_2015))
+                expect(TimeUnit.endOfWeek(endOfSeptember26_2015)).to(equal(endOfSeptember26_2015))
+            }
+            
+            it ("can calculate the end of a week for date in the middle of the week") {
+                let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
+                let middleOfSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-23 12:00:00")!
+                expect(TimeUnit().endOfWeek(middleOfSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                expect(TimeUnit.endOfWeek(middleOfSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+            }
+            
+            it ("can calculate the end of a week for date at random time within the week") {
+                let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
+                let randomTimeInSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-22 17:49:32")!
+                expect(TimeUnit().endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                expect(TimeUnit.endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+            }
             
 // MARK: End of month
             it ("can calculate the end of a month for date at the end of the month") {
