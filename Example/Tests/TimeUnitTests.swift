@@ -44,7 +44,7 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
-            
+
 // MARK: Beginning of hour
             describe("calculating the beginning of an hour") {
                 var beginningOf7AM : NSDate!
@@ -178,108 +178,128 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
 // MARK: End of hour
-            it ("can calculate the end of an hour for date at the end of the hour") {
-                let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
-                expect(TimeUnit().endOfHour(endOf5PM)).to(equal(endOf5PM))
-                expect(TimeUnit.endOfHour(endOf5PM)).to(equal(endOf5PM))
+            describe("calculating the end of an hour") {
+                var endOf5PM : NSDate!
+                beforeEach {
+                    endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
+                }
+                
+                it ("can calculate the end of an hour for date at the end of the hour") {
+                    expect(TimeUnit().endOfHour(endOf5PM)).to(equal(endOf5PM))
+                    expect(TimeUnit.endOfHour(endOf5PM)).to(equal(endOf5PM))
+                }
+                
+                it ("can calculate the end of an hour for date in the middle of the hour") {
+                    let middleOf5PM = dateFormatter.dateFromString("2015-09-08 17:30:00")!
+                    expect(TimeUnit().endOfHour(middleOf5PM)).to(equal(endOf5PM))
+                    expect(TimeUnit.endOfHour(middleOf5PM)).to(equal(endOf5PM))
+                }
+                
+                it ("can calculate the end of an hour for date at random time within the hour") {
+                    let randomTimeIn5PM = dateFormatter.dateFromString("2015-09-08 17:46:12")!
+                    expect(TimeUnit().endOfHour(randomTimeIn5PM)).to(equal(endOf5PM))
+                    expect(TimeUnit.endOfHour(randomTimeIn5PM)).to(equal(endOf5PM))
+                }
             }
-            
-            it ("can calculate the end of an hour for date in the middle of the hour") {
-                let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
-                let middleOf5PM = dateFormatter.dateFromString("2015-09-08 17:30:00")!
-                expect(TimeUnit().endOfHour(middleOf5PM)).to(equal(endOf5PM))
-                expect(TimeUnit.endOfHour(middleOf5PM)).to(equal(endOf5PM))
-            }
-            
-            it ("can calculate the end of an hour for date at random time within the hour") {
-                let endOf5PM = dateFormatter.dateFromString("2015-09-08 17:59:59")!
-                let randomTimeIn5PM = dateFormatter.dateFromString("2015-09-08 17:46:12")!
-                expect(TimeUnit().endOfHour(randomTimeIn5PM)).to(equal(endOf5PM))
-                expect(TimeUnit.endOfHour(randomTimeIn5PM)).to(equal(endOf5PM))
-            }
-            
+
 // MARK: End of day
-            it ("can calculate the end of a day for date at the end of the day") {
-                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
-                expect(TimeUnit().endOfDay(endOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
-                expect(TimeUnit.endOfDay(endOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
-            }
-            
-            it ("can calculate the end of a day for date in the middle of the day") {
-                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
-                let middleOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 12:00:00")!
-                expect(TimeUnit().endOfDay(middleOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
-                expect(TimeUnit.endOfDay(middleOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
-            }
-            
-            it ("can calculate the end of a day for date at random time within the day") {
-                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
-                let randomTimeInSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 17:49:32")!
-                expect(TimeUnit().endOfDay(randomTimeInSeptember8_2015)).to(equal(endOfSeptember8_2015))
-                expect(TimeUnit.endOfDay(randomTimeInSeptember8_2015)).to(equal(endOfSeptember8_2015))
+            describe("calculating the end of a day") {
+                var endOfSeptember8_2015 : NSDate!
+                beforeEach {
+                    endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 23:59:59")!
+                }
+                
+                it ("can calculate the end of a day for date at the end of the day") {
+                    expect(TimeUnit().endOfDay(endOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
+                    expect(TimeUnit.endOfDay(endOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
+                }
+                
+                it ("can calculate the end of a day for date in the middle of the day") {
+                    let middleOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 12:00:00")!
+                    expect(TimeUnit().endOfDay(middleOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
+                    expect(TimeUnit.endOfDay(middleOfSeptember8_2015)).to(equal(endOfSeptember8_2015))
+                }
+                
+                it ("can calculate the end of a day for date at random time within the day") {
+                    let randomTimeInSeptember8_2015 = dateFormatter.dateFromString("2015-09-08 17:49:32")!
+                    expect(TimeUnit().endOfDay(randomTimeInSeptember8_2015)).to(equal(endOfSeptember8_2015))
+                    expect(TimeUnit.endOfDay(randomTimeInSeptember8_2015)).to(equal(endOfSeptember8_2015))
+                }
             }
             
 // MARK: End of week
-            it ("can calculate the end of a week for date at the end of the week") {
-                let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
-                expect(TimeUnit().endOfWeek(endOfSeptember26_2015)).to(equal(endOfSeptember26_2015))
-                expect(TimeUnit.endOfWeek(endOfSeptember26_2015)).to(equal(endOfSeptember26_2015))
-            }
-            
-            it ("can calculate the end of a week for date in the middle of the week") {
-                let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
-                let middleOfSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-23 12:00:00")!
-                expect(TimeUnit().endOfWeek(middleOfSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
-                expect(TimeUnit.endOfWeek(middleOfSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
-            }
-            
-            it ("can calculate the end of a week for date at random time within the week") {
-                let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
-                let randomTimeInSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-22 17:49:32")!
-                expect(TimeUnit().endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
-                expect(TimeUnit.endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+            describe("calculating the end of a week") {
+                var endOfSeptember26_2015 : NSDate!
+                beforeEach {
+                    endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
+                }
+                
+                it ("can calculate the end of a week for date at the end of the week") {
+                    expect(TimeUnit().endOfWeek(endOfSeptember26_2015)).to(equal(endOfSeptember26_2015))
+                    expect(TimeUnit.endOfWeek(endOfSeptember26_2015)).to(equal(endOfSeptember26_2015))
+                }
+                
+                it ("can calculate the end of a week for date in the middle of the week") {
+                    let middleOfSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-23 12:00:00")!
+                    expect(TimeUnit().endOfWeek(middleOfSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                    expect(TimeUnit.endOfWeek(middleOfSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                }
+                
+                it ("can calculate the end of a week for date at random time within the week") {
+                    let randomTimeInSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-22 17:49:32")!
+                    expect(TimeUnit().endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                    expect(TimeUnit.endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                }
             }
             
 // MARK: End of month
-            it ("can calculate the end of a month for date at the end of the month") {
-                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
-                expect(TimeUnit().endOfMonth(endOfSeptember_2015)).to(equal(endOfSeptember_2015))
-                expect(TimeUnit.endOfMonth(endOfSeptember_2015)).to(equal(endOfSeptember_2015))
-            }
-            
-            it ("can calculate the end of a month for date in the middle of the month") {
-                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
-                let middleOfSeptember_2105 = dateFormatter.dateFromString("2015-09-15 00:00:00")!
-                expect(TimeUnit().endOfMonth(middleOfSeptember_2105)).to(equal(endOfSeptember_2015))
-                expect(TimeUnit.endOfMonth(middleOfSeptember_2105)).to(equal(endOfSeptember_2015))
-            }
-            
-            it ("can calculate the end of a month for date in the middle of the month") {
-                let endOfSeptember8_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
-                let randomDateInSeptember_2015 = dateFormatter.dateFromString("2015-09-08 17:51:01")!
-                expect(TimeUnit().endOfMonth(randomDateInSeptember_2015)).to(equal(endOfSeptember8_2015))
-                expect(TimeUnit.endOfMonth(randomDateInSeptember_2015)).to(equal(endOfSeptember8_2015))
+            describe("calculating the end of a month") {
+                var endOfSeptember_2015 : NSDate!
+                beforeEach {
+                    endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                }
+                
+                it ("can calculate the end of a month for date at the end of the month") {
+                    expect(TimeUnit().endOfMonth(endOfSeptember_2015)).to(equal(endOfSeptember_2015))
+                    expect(TimeUnit.endOfMonth(endOfSeptember_2015)).to(equal(endOfSeptember_2015))
+                }
+                
+                it ("can calculate the end of a month for date in the middle of the month") {
+                    let middleOfSeptember_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")!
+                    expect(TimeUnit().endOfMonth(middleOfSeptember_2015)).to(equal(endOfSeptember_2015))
+                    expect(TimeUnit.endOfMonth(middleOfSeptember_2015)).to(equal(endOfSeptember_2015))
+                }
+                
+                it ("can calculate the end of a month for date in the middle of the month") {
+                    let randomDateInSeptember_2015 = dateFormatter.dateFromString("2015-09-08 17:51:01")!
+                    expect(TimeUnit().endOfMonth(randomDateInSeptember_2015)).to(equal(endOfSeptember_2015))
+                    expect(TimeUnit.endOfMonth(randomDateInSeptember_2015)).to(equal(endOfSeptember_2015))
+                }
             }
             
 // MARK: End of year
-            it ("can calculate the end of a year for date at the end of the year") {
-                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
-                expect(TimeUnit().endOfYear(endOf2015)).to(equal(endOf2015))
-                expect(TimeUnit.endOfYear(endOf2015)).to(equal(endOf2015))
-            }
-            
-            it ("can calculate the end of a year for date in the middle of the year") {
-                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
-                let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
-                expect(TimeUnit().endOfYear(middleOf2015)).to(equal(endOf2015))
-                expect(TimeUnit.endOfYear(middleOf2015)).to(equal(endOf2015))
-            }
-            
-            it ("can calculate the end of a year for random date within the year") {
-                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
-                let randomDateIn2015 = dateFormatter.dateFromString("2015-09-08 17:54:35")!
-                expect(TimeUnit().endOfYear(randomDateIn2015)).to(equal(endOf2015))
-                expect(TimeUnit.endOfYear(randomDateIn2015)).to(equal(endOf2015))
+            describe("calculating the end of a year") {
+                var endOf2015 : NSDate!
+                beforeEach {
+                    endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
+                }
+                
+                it ("can calculate the end of a year for date at the end of the year") {
+                    expect(TimeUnit().endOfYear(endOf2015)).to(equal(endOf2015))
+                    expect(TimeUnit.endOfYear(endOf2015)).to(equal(endOf2015))
+                }
+                
+                it ("can calculate the end of a year for date in the middle of the year") {
+                    let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
+                    expect(TimeUnit().endOfYear(middleOf2015)).to(equal(endOf2015))
+                    expect(TimeUnit.endOfYear(middleOf2015)).to(equal(endOf2015))
+                }
+                
+                it ("can calculate the end of a year for random date within the year") {
+                    let randomDateIn2015 = dateFormatter.dateFromString("2015-09-08 17:54:35")!
+                    expect(TimeUnit().endOfYear(randomDateIn2015)).to(equal(endOf2015))
+                    expect(TimeUnit.endOfYear(randomDateIn2015)).to(equal(endOf2015))
+                }
             }
         }
         
@@ -540,175 +560,183 @@ class TimeUnitTests: QuickSpec {
             }
             
 // MARK: hourContainsDate
-            it("returns true for first second of hour") {
-                let september13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:00:00")! // beginning of 11:00AM September 13th
-                expect(TimeUnit().hourContainsDate(september13_11AM_2015, hour:september13_11AM_2015)).to(beTrue())
-                expect(TimeUnit.hourContainsDate(september13_11AM_2015, hour:september13_11AM_2015)).to(beTrue())
-            }
-            
-            it("returns true for last second of hour") {
-                let september13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:00:00")! // beginning of 11:00AM September 13th
-                let endOfSeptember13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:59:59")!
-                expect(TimeUnit().hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
-                expect(TimeUnit.hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
-            }
-            
-            it("returns true for date in the middle of hour") {
-                let september13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:00:00")! // beginning of 11:00AM September 13th
-                let middleOfSeptember13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:30:00")!
-                expect(TimeUnit().hourContainsDate(middleOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
-                expect(TimeUnit.hourContainsDate(middleOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
-            }
-            
-            it ("returns true when month date is not beginning of hour") {
-                let september13_1130AM_2015 = dateFormatter.dateFromString("2015-09-13 11:30:00")! // 11:30AM September 13th
-                let endOfSeptember13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:59:59")!
-                expect(TimeUnit().hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_1130AM_2015)).to(beTrue())
-                expect(TimeUnit.hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_1130AM_2015)).to(beTrue())
-            }
-            
-            it("returns false for date in next hour") {
-                let september13_1130AM_2015 = dateFormatter.dateFromString("2015-09-13 11:30:00")! // 11:30AM September 13th
-                let beginningOfSeptember13_12PM_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")!
-                expect(TimeUnit().hourContainsDate(beginningOfSeptember13_12PM_2015, hour: september13_1130AM_2015)).to(beFalse())
-                expect(TimeUnit.hourContainsDate(beginningOfSeptember13_12PM_2015, hour: september13_1130AM_2015)).to(beFalse())
-            }
-            
-            it("returns false for date in previous hour") {
-                let september13_1130AM_2015 = dateFormatter.dateFromString("2015-09-13 11:30:00")! // 11:30AM September 13th
-                let endOfSeptember13_10AM_2015 = dateFormatter.dateFromString("2015-09-13 10:59:59")!
-                expect(TimeUnit().hourContainsDate(endOfSeptember13_10AM_2015, hour: september13_1130AM_2015)).to(beFalse())
-                expect(TimeUnit.hourContainsDate(endOfSeptember13_10AM_2015, hour: september13_1130AM_2015)).to(beFalse())
+            describe("determining whether a date falls within an hour") {
+                var september13_11AM_2015 : NSDate!
+                var september13_1130AM_2015 : NSDate!
+                beforeEach {
+                    september13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:00:00")!
+                    september13_1130AM_2015 = dateFormatter.dateFromString("2015-09-13 11:30:00")!
+                }
                 
+                it("returns true for first second of hour") {
+                    expect(TimeUnit().hourContainsDate(september13_11AM_2015, hour:september13_11AM_2015)).to(beTrue())
+                    expect(TimeUnit.hourContainsDate(september13_11AM_2015, hour:september13_11AM_2015)).to(beTrue())
+                }
+                
+                it("returns true for last second of hour") {
+                    let endOfSeptember13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:59:59")!
+                    expect(TimeUnit().hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
+                    expect(TimeUnit.hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
+                }
+                
+                it("returns true for date in the middle of hour") {
+                    let middleOfSeptember13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:30:00")!
+                    expect(TimeUnit().hourContainsDate(middleOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
+                    expect(TimeUnit.hourContainsDate(middleOfSeptember13_11AM_2015, hour: september13_11AM_2015)).to(beTrue())
+                }
+                
+                it ("returns true when month date is not beginning of hour") {
+                    let endOfSeptember13_11AM_2015 = dateFormatter.dateFromString("2015-09-13 11:59:59")!
+                    expect(TimeUnit().hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_1130AM_2015)).to(beTrue())
+                    expect(TimeUnit.hourContainsDate(endOfSeptember13_11AM_2015, hour: september13_1130AM_2015)).to(beTrue())
+                }
+                
+                it("returns false for date in next hour") {
+                    let beginningOfSeptember13_12PM_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")!
+                    expect(TimeUnit().hourContainsDate(beginningOfSeptember13_12PM_2015, hour: september13_1130AM_2015)).to(beFalse())
+                    expect(TimeUnit.hourContainsDate(beginningOfSeptember13_12PM_2015, hour: september13_1130AM_2015)).to(beFalse())
+                }
+                
+                it("returns false for date in previous hour") {
+                    let endOfSeptember13_10AM_2015 = dateFormatter.dateFromString("2015-09-13 10:59:59")!
+                    expect(TimeUnit().hourContainsDate(endOfSeptember13_10AM_2015, hour: september13_1130AM_2015)).to(beFalse())
+                    expect(TimeUnit.hourContainsDate(endOfSeptember13_10AM_2015, hour: september13_1130AM_2015)).to(beFalse())
+                    
+                }
             }
-            
+
 // MARK: dayContainsDate
-            it("returns true for first second of day") {
-                let september13_2015 = dateFormatter.dateFromString("2015-09-13 00:00:00")! // beginning of September 13
-                expect(TimeUnit().dayContainsDate(september13_2015, day:september13_2015)).to(beTrue())
-                expect(TimeUnit.dayContainsDate(september13_2015, day:september13_2015)).to(beTrue())
-            }
-            
-            it("returns true for last second of day") {
-                let september13_2015 = dateFormatter.dateFromString("2015-09-13 00:00:00")! // beginning of September 13
-                let endOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-13 23:59:59")!
-                expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
-                expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
-            }
-            
-            it("returns true for date in the middle of day") {
-                let september13_2015 = dateFormatter.dateFromString("2015-09-13 00:00:00")! // beginning of September 13
-                let middleOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")!
-                expect(TimeUnit().dayContainsDate(middleOfSeptember13_2015, day: september13_2015)).to(beTrue())
-                expect(TimeUnit.dayContainsDate(middleOfSeptember13_2015, day: september13_2015)).to(beTrue())
-            }
-            
-            it ("returns true when month date is not beginning of day") {
-                let september13_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")! // middle of September 13
-                let endOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-13 23:59:59")!
-                expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
-                expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
-            }
-            
-            it("returns false for date in next day") {
-                let september13_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")! // middle of September 13
-                let beginningOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-14 00:00:00")!
-                expect(TimeUnit().dayContainsDate(beginningOfSeptember13_2015, day: september13_2015)).to(beFalse())
-                expect(TimeUnit.dayContainsDate(beginningOfSeptember13_2015, day: september13_2015)).to(beFalse())
-            }
-            
-            it("returns false for date in previous day") {
-                let september13_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")! // middle of September 13
-                let endOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-12 23:59:59")!
-                expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beFalse())
-                expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beFalse())
+            describe("determining if a date falls within a day") {
+                var september13_2015 : NSDate!
+                beforeEach {
+                    september13_2015 = dateFormatter.dateFromString("2015-09-13 00:00:00")!
+                }
+
+                it("returns true for first second of day") {
+                    expect(TimeUnit().dayContainsDate(september13_2015, day:september13_2015)).to(beTrue())
+                    expect(TimeUnit.dayContainsDate(september13_2015, day:september13_2015)).to(beTrue())
+                }
+                
+                it("returns true for last second of day") {
+                    let endOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-13 23:59:59")!
+                    expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
+                    expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
+                }
+                
+                it("returns true for date in the middle of day") {
+                    let middleOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-13 12:00:00")!
+                    expect(TimeUnit().dayContainsDate(middleOfSeptember13_2015, day: september13_2015)).to(beTrue())
+                    expect(TimeUnit.dayContainsDate(middleOfSeptember13_2015, day: september13_2015)).to(beTrue())
+                }
+                
+                it ("returns true when month date is not beginning of day") {
+                    let endOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-13 23:59:59")!
+                    expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
+                    expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beTrue())
+                }
+                
+                it("returns false for date in next day") {
+                    let beginningOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-14 00:00:00")!
+                    expect(TimeUnit().dayContainsDate(beginningOfSeptember13_2015, day: september13_2015)).to(beFalse())
+                    expect(TimeUnit.dayContainsDate(beginningOfSeptember13_2015, day: september13_2015)).to(beFalse())
+                }
+                
+                it("returns false for date in previous day") {
+                    let endOfSeptember13_2015 = dateFormatter.dateFromString("2015-09-12 23:59:59")!
+                    expect(TimeUnit().dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beFalse())
+                    expect(TimeUnit.dayContainsDate(endOfSeptember13_2015, day: september13_2015)).to(beFalse())
+                }
             }
             
 // MARK: weekContainsDate
             
 // MARK: monthContainsDate
-            it("returns true for first second of month") {
-                let september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")! // beginning of September
-                expect(TimeUnit().monthContainsDate(september_2015, month:september_2015)).to(beTrue())
-                expect(TimeUnit.monthContainsDate(september_2015, month:september_2015)).to(beTrue())
-            }
-            
-            it("returns true for last second of month") {
-                let september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")! // beginning of September
-                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
-                expect(TimeUnit().monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
-                expect(TimeUnit.monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
-            }
-            
-            it("returns true for date in the middle of month") {
-                let september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")! // beginning of September
-                let middleOfSeptember_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")!
-                expect(TimeUnit().monthContainsDate(middleOfSeptember_2015, month: september_2015)).to(beTrue())
-                expect(TimeUnit.monthContainsDate(middleOfSeptember_2015, month: september_2015)).to(beTrue())
-            }
-            
-            it ("returns true when month date is not beginning of month") {
-                let september_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")! // middle of September
-                let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
-                expect(TimeUnit().monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
-                expect(TimeUnit.monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
-            }
-            
-            it("returns false for date in next month") {
-                let september_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")! // middle of September
-                let beginningOfOctober_2015 = dateFormatter.dateFromString("2015-10-01 00:00:00")!
-                expect(TimeUnit().monthContainsDate(beginningOfOctober_2015, month: september_2015)).to(beFalse())
-                expect(TimeUnit.monthContainsDate(beginningOfOctober_2015, month: september_2015)).to(beFalse())
-            }
-            
-            it("returns false for date in previous month") {
-                let september_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")! // middle of September
-                let endOfAugust_2015 = dateFormatter.dateFromString("2015-08-31 23:59:59")!
-                expect(TimeUnit().monthContainsDate(endOfAugust_2015, month: september_2015)).to(beFalse())
-                expect(TimeUnit.monthContainsDate(endOfAugust_2015, month: september_2015)).to(beFalse())
+            describe("determining if a date falls within a month") {
+                var september_2015 : NSDate!
+                beforeEach {
+                    september_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
+                }
                 
+                it("returns true for first second of month") {
+                    expect(TimeUnit().monthContainsDate(september_2015, month:september_2015)).to(beTrue())
+                    expect(TimeUnit.monthContainsDate(september_2015, month:september_2015)).to(beTrue())
+                }
+                
+                it("returns true for last second of month") {
+                    let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                    expect(TimeUnit().monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
+                    expect(TimeUnit.monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
+                }
+                
+                it("returns true for date in the middle of month") {
+                    let middleOfSeptember_2015 = dateFormatter.dateFromString("2015-09-15 00:00:00")!
+                    expect(TimeUnit().monthContainsDate(middleOfSeptember_2015, month: september_2015)).to(beTrue())
+                    expect(TimeUnit.monthContainsDate(middleOfSeptember_2015, month: september_2015)).to(beTrue())
+                }
+                
+                it ("returns true when month date is not beginning of month") {
+                    let endOfSeptember_2015 = dateFormatter.dateFromString("2015-09-30 23:59:59")!
+                    expect(TimeUnit().monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
+                    expect(TimeUnit.monthContainsDate(endOfSeptember_2015, month: september_2015)).to(beTrue())
+                }
+                
+                it("returns false for date in next month") {
+                    let beginningOfOctober_2015 = dateFormatter.dateFromString("2015-10-01 00:00:00")!
+                    expect(TimeUnit().monthContainsDate(beginningOfOctober_2015, month: september_2015)).to(beFalse())
+                    expect(TimeUnit.monthContainsDate(beginningOfOctober_2015, month: september_2015)).to(beFalse())
+                }
+                
+                it("returns false for date in previous month") {
+                    let endOfAugust_2015 = dateFormatter.dateFromString("2015-08-31 23:59:59")!
+                    expect(TimeUnit().monthContainsDate(endOfAugust_2015, month: september_2015)).to(beFalse())
+                    expect(TimeUnit.monthContainsDate(endOfAugust_2015, month: september_2015)).to(beFalse())
+                    
+                }
             }
-            
+
 // MARK: yearContainsDate
-            it("returns true for first second of year") {
-                let _2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")! // beginning of 2015
-                expect(TimeUnit().yearContainsDate(_2015, year:_2015)).to(beTrue())
-                expect(TimeUnit.yearContainsDate(_2015, year:_2015)).to(beTrue())
-            }
-            
-            it("returns true for last second of year") {
-                let _2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")! // beginning of 2015
-                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
-                expect(TimeUnit().yearContainsDate(endOf2015, year: _2015)).to(beTrue())
-                expect(TimeUnit.yearContainsDate(endOf2015, year: _2015)).to(beTrue())
-            }
-            
-            it("returns true for date in the middle of year") {
-                let _2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")! // beginning of 2015
-                let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
-                expect(TimeUnit().yearContainsDate(middleOf2015, year: _2015)).to(beTrue())
-                expect(TimeUnit.yearContainsDate(middleOf2015, year: _2015)).to(beTrue())
-            }
-            
-            it ("returns true when month date is not beginning of year") {
-                let middle_2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")! // middle of 2015
-                let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
-                expect(TimeUnit().yearContainsDate(endOf2015, year: middle_2015)).to(beTrue())
-                expect(TimeUnit.yearContainsDate(endOf2015, year: middle_2015)).to(beTrue())
-            }
-            
-            it("returns false for date in next year") {
-                let middle_2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")! // middle of 2015
-                let beginningOf2016 = dateFormatter.dateFromString("2016-01-01 00:00:00")!
-                expect(TimeUnit().yearContainsDate(beginningOf2016, year: middle_2015)).to(beFalse())
-                expect(TimeUnit.yearContainsDate(beginningOf2016, year: middle_2015)).to(beFalse())
-            }
-            
-            it("returns false for date in previous year") {
-                let middle_2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")! // middle of 2015
-                let endOf2014 = dateFormatter.dateFromString("2014-12-31 23:59:59")!
-                expect(TimeUnit().yearContainsDate(endOf2014, year: middle_2015)).to(beFalse())
-                expect(TimeUnit.yearContainsDate(endOf2014, year: middle_2015)).to(beFalse())
+            describe("determining if a date falls within a year") {
+                var _2015 : NSDate!
+                var middle_2015 : NSDate!
+                beforeEach {
+                    _2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
+                    middle_2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
+                }
+                
+                it("returns true for first second of year") {
+                    expect(TimeUnit().yearContainsDate(_2015, year:_2015)).to(beTrue())
+                    expect(TimeUnit.yearContainsDate(_2015, year:_2015)).to(beTrue())
+                }
+                
+                it("returns true for last second of year") {
+                    let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
+                    expect(TimeUnit().yearContainsDate(endOf2015, year: _2015)).to(beTrue())
+                    expect(TimeUnit.yearContainsDate(endOf2015, year: _2015)).to(beTrue())
+                }
+                
+                it("returns true for date in the middle of year") {
+                    let middleOf2015 = dateFormatter.dateFromString("2015-07-01 00:00:00")!
+                    expect(TimeUnit().yearContainsDate(middleOf2015, year: _2015)).to(beTrue())
+                    expect(TimeUnit.yearContainsDate(middleOf2015, year: _2015)).to(beTrue())
+                }
+                
+                it ("returns true when month date is not beginning of year") {
+                    let endOf2015 = dateFormatter.dateFromString("2015-12-31 23:59:59")!
+                    expect(TimeUnit().yearContainsDate(endOf2015, year: middle_2015)).to(beTrue())
+                    expect(TimeUnit.yearContainsDate(endOf2015, year: middle_2015)).to(beTrue())
+                }
+                
+                it("returns false for date in next year") {
+                    let beginningOf2016 = dateFormatter.dateFromString("2016-01-01 00:00:00")!
+                    expect(TimeUnit().yearContainsDate(beginningOf2016, year: middle_2015)).to(beFalse())
+                    expect(TimeUnit.yearContainsDate(beginningOf2016, year: middle_2015)).to(beFalse())
+                }
+                
+                it("returns false for date in previous year") {
+                    let endOf2014 = dateFormatter.dateFromString("2014-12-31 23:59:59")!
+                    expect(TimeUnit().yearContainsDate(endOf2014, year: middle_2015)).to(beFalse())
+                    expect(TimeUnit.yearContainsDate(endOf2014, year: middle_2015)).to(beFalse())
+                }
             }
         }
     }
