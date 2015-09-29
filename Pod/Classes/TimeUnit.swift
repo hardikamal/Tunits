@@ -659,6 +659,29 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the hour following the given date.
+    
+        - parameter date: The date for which to find the next hour
+    
+        - returns: The newly created date.
+    */
+    public func hourAfter(date:NSDate) -> NSDate {
+        let nextHour = self.calendar.dateByAddingUnit(.Hour, value: 1, toDate: date, options: [])!
+        return self.beginningOfHour(nextHour)
+    }
+    
+    /**
+        Creates a new date at the first second of the hour following the given date.
+    
+        - parameter date: The date for which to find the next hour
+    
+        - returns: The newly created date.
+    */
+    static public func hourAfter(date:NSDate) -> NSDate {
+        return sharedInstance.hourAfter(date)
+    }
+    
+    /**
         Creates a new date at the first second of the day prior to the given date.
     
         - parameter date: The date for which to find the previous day.
@@ -728,6 +751,29 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the week following the given date.
+    
+        - parameter date: The date for which to find the next week
+    
+        - returns: The newly created date.
+    */
+    public func weekAfter(date:NSDate) -> NSDate {
+        let nextWeek = self.calendar.dateByAddingUnit(.WeekOfYear, value: 1, toDate: date, options: [])!
+        return self.beginningOfWeek(nextWeek)
+    }
+    
+    /**
+        Creates a new date at the first second of the week following the given date.
+    
+        - parameter date: The date for which to find the next week
+    
+        - returns: The newly created date.
+    */
+    static public func weekAfter(date:NSDate) -> NSDate {
+        return sharedInstance.weekAfter(date)
+    }
+    
+    /**
         Creates a new date at the first second of the month prior to the given date.
     
         - parameter date: The date for which to find the previous month.
@@ -748,6 +794,52 @@ public class TimeUnit : NSObject {
     */
     static public func monthBefore(date:NSDate) -> NSDate {
         return sharedInstance.monthBefore(date)
+    }
+    
+    /**
+        Creates a new date at the first second of the month following the given date.
+    
+        - parameter date: The date for which to find the next month.
+    
+        - returns: The newly created date.
+    */
+    public func monthAfter(date:NSDate) -> NSDate {
+        let nextMonth = self.calendar.dateByAddingUnit(.Month, value: 1, toDate: date, options: [])!
+        return self.beginningOfMonth(nextMonth)
+    }
+    
+    /**
+        Creates a new date at the first second of the month following the given date.
+    
+        - parameter date: The date for which to find the next month.
+    
+        - returns: The newly created date.
+    */
+    static public func monthAfter(date:NSDate) -> NSDate {
+        return sharedInstance.monthAfter(date)
+    }
+    
+    /**
+        Creates a new date at the first second of the year prior to the given date.
+    
+        - parameter date: The date for which to find the previous year.
+    
+        - returns: The newly created date.
+    */
+    public func yearBefore(date:NSDate) -> NSDate {
+        let previousYear = self.calendar.dateByAddingUnit(.Year, value: -1, toDate: date, options: [])!
+        return self.beginningOfYear(previousYear)
+    }
+    
+    /**
+        Creates a new date at the first second of the year prior to the given date.
+    
+        - parameter date: The date for which to find the previous year.
+    
+        - returns: The newly created date.
+    */
+    static public func yearBefore(date:NSDate) -> NSDate {
+        return sharedInstance.yearBefore(date)
     }
     
     /**
