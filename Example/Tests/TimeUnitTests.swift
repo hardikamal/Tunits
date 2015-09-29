@@ -649,6 +649,41 @@ class TimeUnitTests: QuickSpec {
             }
             
 // MARK: weekContainsDate
+            describe("determining if a date falls within a week") {
+                var september27_2015 : NSDate!
+                beforeEach {
+                    september27_2015 = dateFormatter.dateFromString("2015-09-27 00:00:00")!
+                }
+
+                it("returns true for first second of week") {
+                    expect(TimeUnit().weekContainsDate(september27_2015, week:september27_2015)).to(beTrue())
+                    expect(TimeUnit.weekContainsDate(september27_2015, week:september27_2015)).to(beTrue())
+                }
+                
+                it("returns true for last second of week") {
+                    let endOfOctober3_2015 = dateFormatter.dateFromString("2015-10-03 23:59:59")!
+                    expect(TimeUnit().weekContainsDate(endOfOctober3_2015, week: september27_2015)).to(beTrue())
+                    expect(TimeUnit.weekContainsDate(endOfOctober3_2015, week: september27_2015)).to(beTrue())
+                }
+                
+                it("returns true for date in the middle of week") {
+                    let middleOfSeptember30_2015 = dateFormatter.dateFromString("2015-09-30 12:00:00")!
+                    expect(TimeUnit().weekContainsDate(middleOfSeptember30_2015, week: september27_2015)).to(beTrue())
+                    expect(TimeUnit.weekContainsDate(middleOfSeptember30_2015, week: september27_2015)).to(beTrue())
+                }
+                
+                it("returns false for date in next week") {
+                    let beginningOfOctober4_2015 = dateFormatter.dateFromString("2015-10-04 00:00:00")!
+                    expect(TimeUnit().weekContainsDate(beginningOfOctober4_2015, week: september27_2015)).to(beFalse())
+                    expect(TimeUnit.weekContainsDate(beginningOfOctober4_2015, week: september27_2015)).to(beFalse())
+                }
+                
+                it("returns false for date in previous week") {
+                    let endOfSeptember26_2015 = dateFormatter.dateFromString("2015-09-26 23:59:59")!
+                    expect(TimeUnit().weekContainsDate(endOfSeptember26_2015, week: september27_2015)).to(beFalse())
+                    expect(TimeUnit.weekContainsDate(endOfSeptember26_2015, week: september27_2015)).to(beFalse())
+                }
+            }
             
 // MARK: monthContainsDate
             describe("determining if a date falls within a month") {
