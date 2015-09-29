@@ -774,5 +774,114 @@ class TimeUnitTests: QuickSpec {
                 }
             }
         }
+        
+// MARK: - Calculating Units Before and After Date
+        describe("Calculating the date before and after a given date") {
+            var dateFormatter : NSDateFormatter!
+            beforeEach {
+                dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            }
+// MARK: Calculating Hour Before And After
+            describe("calculating the hour before and after a given date") {
+                var september29_11_2015 : NSDate!
+                beforeEach {
+                    september29_11_2015 = dateFormatter.dateFromString("2015-09-29 11:00:00")!
+                }
+                
+                it("can calculate the hour before a given date") {
+                    let september29_10_2015 = dateFormatter.dateFromString("2015-09-29 10:00:00")!
+                    expect(TimeUnit().hourBefore(september29_11_2015)).to(equal(september29_10_2015))
+                    expect(TimeUnit.hourBefore(september29_11_2015)).to(equal(september29_10_2015))
+                }
+                
+                it("can calculate the hour after a given date") {
+                    let september29_12_2015 = dateFormatter.dateFromString("2015-09-29 12:00:00")!
+                    expect(TimeUnit().hourAfter(september29_11_2015)).to(equal(september29_12_2015))
+                    expect(TimeUnit.hourAfter(september29_11_2015)).to(equal(september29_12_2015))
+                }
+            }
+            
+            
+ // MARK: Calculating Day Before and After
+            describe("calculating the day before and after a given date") {
+                var september29_2015 : NSDate!
+                beforeEach {
+                    september29_2015 = dateFormatter.dateFromString("2015-09-29 00:00:00")!
+                }
+                
+                it("can calculate the day before a given date") {
+                    let september28_2015 = dateFormatter.dateFromString("2015-09-28 00:00:00")!
+                    expect(TimeUnit().dayBefore(september29_2015)).to(equal(september28_2015))
+                    expect(TimeUnit.dayBefore(september29_2015)).to(equal(september28_2015))
+                }
+                
+                it("can calculate the day after a given date") {
+                    let september30_2015 = dateFormatter.dateFromString("2015-09-30 00:00:00")!
+                    expect(TimeUnit().dayAfter(september29_2015)).to(equal(september30_2015))
+                    expect(TimeUnit.dayAfter(september29_2015)).to(equal(september30_2015))
+                }
+            }
+            
+// MARK: Calculating Week Before and After
+            describe("calculating the week before and after a given date") {
+                var september27_2015 : NSDate!
+                beforeEach {
+                    september27_2015 = dateFormatter.dateFromString("2015-09-27 00:00:00")!
+                }
+            
+                it("can calculate the week before a given date") {
+                    let september20_2015 = dateFormatter.dateFromString("2015-09-20 00:00:00")!
+                    expect(TimeUnit().weekBefore(september27_2015)).to(equal(september20_2015))
+                    expect(TimeUnit.weekBefore(september27_2015)).to(equal(september20_2015))
+                }
+                
+                it("can calculate the week after a given date") {
+                    let october4_2015 = dateFormatter.dateFromString("2015-10-04 00:00:00")!
+                    expect(TimeUnit().weekAfter(september27_2015)).to(equal(october4_2015))
+                    expect(TimeUnit.weekAfter(september27_2015)).to(equal(october4_2015))
+                }
+            }
+            
+// MARK: Calculating Month Before and After
+            describe("calculating the month before and after a given date") {
+                var september1_2015 : NSDate!
+                beforeEach {
+                    september1_2015 = dateFormatter.dateFromString("2015-09-01 00:00:00")!
+                }
+                
+                it("can calculate the month before a given date") {
+                    let august1_2015 = dateFormatter.dateFromString("2015-08-01 00:00:00")!
+                    expect(TimeUnit().monthBefore(september1_2015)).to(equal(august1_2015))
+                    expect(TimeUnit.monthBefore(september1_2015)).to(equal(august1_2015))
+                }
+                
+                it("can calculate the month after a given date") {
+                    let october1_2015 = dateFormatter.dateFromString("2015-10-01 00:00:00")!
+                    expect(TimeUnit().monthAfter(september1_2015)).to(equal(october1_2015))
+                    expect(TimeUnit.monthAfter(september1_2015)).to(equal(october1_2015))
+                }
+            }
+            
+// MARK: Calculating Year Before and After
+            describe("calculating the year before and after a given date") {
+                var _2015 : NSDate!
+                beforeEach {
+                    _2015 = dateFormatter.dateFromString("2015-01-01 00:00:00")!
+                }
+                
+                it("can calculate the year before a given date") {
+                    let _2014 = dateFormatter.dateFromString("2014-01-01 00:00:00")!
+                    expect(TimeUnit().yearBefore(_2015)).to(equal(_2014))
+                    expect(TimeUnit.yearBefore(_2015)).to(equal(_2014))
+                }
+                
+                it("can calculate the year after a given date") {
+                    let _2016 = dateFormatter.dateFromString("2016-01-01 00:00:00")!
+                    expect(TimeUnit().yearAfter(_2015)).to(equal(_2016))
+                    expect(TimeUnit.yearAfter(_2015)).to(equal(_2016))
+                }
+            }
+        }
     }
 }
