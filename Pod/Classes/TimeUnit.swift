@@ -772,4 +772,5 @@ public class TimeUnit : NSObject {
     static public func yearAfter(date:NSDate) -> NSDate {
         return sharedInstance.yearAfter(date)
     }
+    
 }
