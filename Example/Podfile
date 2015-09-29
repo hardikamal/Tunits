@@ -8,6 +8,6 @@ end
 target 'Tunits_Tests', :exclusive => true do
   pod "Tunits", :path => "../"
 
-  pod 'Quick', :git => 'https://github.com/Quick/Quick.git', :branch => 'swift-2.0'
-  pod 'Nimble', :git => 'https://github.com/Quick/Nimble.git', :branch => 'swift-2.0'
+  pod 'Quick' 
+  pod 'Nimble', '2.0.0-rc.3'
 end

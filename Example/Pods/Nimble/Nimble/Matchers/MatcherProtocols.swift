@@ -21,7 +21,7 @@ extension NSArray : NMBContainer {}
 extension NSSet : NMBContainer {}
 extension NSHashTable : NMBContainer {}
 
-/// Protocol for types that support only beEmpty(), haveCount() matchers
+/// Protocol for types that support only beEmpty()
 @objc public protocol NMBCollection {
     var count: Int { get }
 }

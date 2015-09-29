@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6A8063FE9E5DE4B53E3C0734"
+               BlueprintIdentifier = "B2849DC2BD54E6FC13CB7BC6"
                BuildableName = "Tunits.framework"
                BlueprintName = "Tunits"
                ReferencedContainer = "container:Pods.xcodeproj">

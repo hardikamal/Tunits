@@ -1,34 +1,20 @@
 PODS:
   - Nimble (2.0.0-rc.3)
   - Quick (0.6.0)
-  - Tunits (0.3.0)
+  - Tunits (0.4.0)
 
 DEPENDENCIES:
-  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `swift-2.0`)
-  - Quick (from `https://github.com/Quick/Quick.git`, branch `swift-2.0`)
+  - Nimble (= 2.0.0-rc.3)
+  - Quick
   - Tunits (from `../`)
 
 EXTERNAL SOURCES:
-  Nimble:
-    :branch: swift-2.0
-    :git: https://github.com/Quick/Nimble.git
-  Quick:
-    :branch: swift-2.0
-    :git: https://github.com/Quick/Quick.git
   Tunits:
     :path: ../
 
-CHECKOUT OPTIONS:
-  Nimble:
-    :commit: a87c41424b2b8bc7821cf9e0352f87f53daf5263
-    :git: https://github.com/Quick/Nimble.git
-  Quick:
-    :commit: 93408cc119d5b8a65a26ef0382f5790dd5d7dc01
-    :git: https://github.com/Quick/Quick.git
-
 SPEC CHECKSUMS:
-  Nimble: 2f64d173ad23dc39f10110840a1ed15f29ef75e8
-  Quick: aaa961333f0bec39bfefa4b759128e4eb39f0d0e
-  Tunits: 7f281d059a80d350b14c23d46c7706d447cf1ca9
+  Nimble: 9dff98ee195ffe7351d3b2fb01d3a1420fd97948
+  Quick: 563686dbcf0ae0f9f7401ac9cd2d786ee1b7f3d7
+  Tunits: f0c423bf31e52a83c17622458f3797075268e45f
 
 COCOAPODS: 0.38.2
