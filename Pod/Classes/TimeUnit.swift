@@ -58,6 +58,17 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the same minute as the given date.
+    
+        - parameter date: The date for which to calculate the beginning of the minute.
+    
+        - returns: The newly created date representing the first second of the minute.
+    */
+    static public func beginningOfMinute(date:NSDate) -> NSDate {
+        return sharedInstance.beginningOfMinute(date)
+    }
+    
+    /**
         Creates a new date at the first second of the same hour as the given date
     
         - parameter date: The new date for which to calculate the beginning of the hour
@@ -196,11 +207,22 @@ public class TimeUnit : NSObject {
         - returns: The newly created date representing the last second of the minute.
     */
     public func endOfMinute(date:NSDate) -> NSDate {
-        let firstSecondOfNextMinute = self.beginningOfHour(
+        let firstSecondOfNextMinute = self.beginningOfMinute(
             self.calendar.dateByAddingUnit(.Minute, value: 1, toDate: date, options: [])!
         )
         
         return firstSecondOfNextMinute.dateByAddingTimeInterval(-1)
+    }
+    
+    /**
+        Creates a new date at the last second of the same minute as the given date.
+    
+        - parameter date: The date for which to calculate the end of the minute.
+    
+        - returns: The newly created date representing the last second of the minute.
+    */
+    static public func endOfMinute(date:NSDate) -> NSDate {
+        return sharedInstance.endOfMinute(date)
     }
     
     /**
@@ -532,6 +554,19 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Returns true if the given date falls within the minute of the given minute
+        or false otherwise.
+    
+        - parameter date:   The date being tested.
+        - parameter minute: Any date within the minute of the test range.
+    
+        - returns: True if the given date falls within the hour or false otherwise.
+    */
+    static public func minuteContainsDate(date:NSDate, minute:NSDate) -> Bool {
+        return sharedInstance.minuteContainsDate(date, minute: minute)
+    }
+    
+    /**
         Returns true if the given date falls within the hour of the given hour
         or false otherwise.
     
@@ -694,6 +729,17 @@ public class TimeUnit : NSObject {
     }
     
     /**
+        Creates a new date at the first second of the hour prior to the given date.
+    
+        - parameter date: The date for which to find the previous minute.
+    
+        - returns: The newly created date.
+    */
+    static public func minuteBefore(date:NSDate) -> NSDate {
+        return sharedInstance.minuteBefore(date)
+    }
+    
+    /**
         Creates a new date at the first second of the minute following the given date.
     
         - parameter date: The date for which to calculate the next minute.
@@ -703,6 +749,17 @@ public class TimeUnit : NSObject {
     public func minuteAfter(date:NSDate) -> NSDate {
         let nextMinute = self.calendar.dateByAddingUnit(.Minute, value: 1, toDate: date, options: [])!
         return self.beginningOfMinute(nextMinute)
+    }
+    
+    /**
+        Creates a new date at the first second of the minute following the given date.
+    
+        - parameter date: The date for which to calculate the next minute.
+    
+        - returns: The newly created date.
+    */
+    static public func minuteAfter(date:NSDate) -> NSDate {
+        return sharedInstance.minuteAfter(date)
     }
     
     /**
@@ -949,7 +1006,7 @@ extension NSDate {
             minute as the receiver.
     */
     public func beginningOfMinute() -> NSDate {
-        return TimeUnit().beginningOfMinute(self)
+        return TimeUnit.beginningOfMinute(self)
     }
     
     /**
@@ -959,7 +1016,7 @@ extension NSDate {
             same hour as the receiver.
     */
     public func beginningOfHour() -> NSDate {
-        return TimeUnit().beginningOfHour(self)
+        return TimeUnit.beginningOfHour(self)
     }
     
     /**
@@ -969,7 +1026,7 @@ extension NSDate {
             same day as the receiver.
     */
     public func beginningOfDay() -> NSDate {
-        return TimeUnit().beginningOfDay(self)
+        return TimeUnit.beginningOfDay(self)
     }
     
     /**
@@ -979,7 +1036,7 @@ extension NSDate {
             same week as the receiver.
     */
     public func beginningOfWeek() -> NSDate {
-        return TimeUnit().beginningOfWeek(self)
+        return TimeUnit.beginningOfWeek(self)
     }
     
     /**
@@ -989,7 +1046,7 @@ extension NSDate {
             same month as the receiver.
     */
     public func beginningOfMonth() -> NSDate {
-        return TimeUnit().beginningOfMonth(self)
+        return TimeUnit.beginningOfMonth(self)
     }
     
     /**
@@ -999,7 +1056,7 @@ extension NSDate {
             same year as the receiver.
     */
     public func beginningOfYear() -> NSDate {
-        return TimeUnit().beginningOfYear(self)
+        return TimeUnit.beginningOfYear(self)
     }
     
 // MARK: - End of time unit
@@ -1011,7 +1068,7 @@ extension NSDate {
             same minute as the receiver.
     */
     public func endOfMinute() -> NSDate {
-        return TimeUnit().endOfMinute(self)
+        return TimeUnit.endOfMinute(self)
     }
     
     /**
@@ -1021,7 +1078,7 @@ extension NSDate {
             same hour as the receiver.
     */
     public func endOfHour() -> NSDate {
-        return TimeUnit().endOfHour(self)
+        return TimeUnit.endOfHour(self)
     }
     
     /**
@@ -1031,7 +1088,7 @@ extension NSDate {
             same day as the receiver.
     */
     public func endOfDay() -> NSDate {
-        return TimeUnit().endOfDay(self)
+        return TimeUnit.endOfDay(self)
     }
     
     /**
@@ -1041,7 +1098,7 @@ extension NSDate {
             same week as the receiver.
     */
     public func endOfWeek() -> NSDate {
-        return TimeUnit().endOfWeek(self)
+        return TimeUnit.endOfWeek(self)
     }
     
     /**
@@ -1051,7 +1108,7 @@ extension NSDate {
             same month as the receiver.
     */
     public func endOfMonth() -> NSDate {
-        return TimeUnit().endOfMonth(self)
+        return TimeUnit.endOfMonth(self)
     }
     
     /**
@@ -1061,7 +1118,7 @@ extension NSDate {
             same year as the receiver.
     */
     public func endOfYear() -> NSDate {
-        return TimeUnit().endOfYear(self)
+        return TimeUnit.endOfYear(self)
     }
     
     
@@ -1074,7 +1131,7 @@ extension NSDate {
             minute prior to the receiver.
     */
     public func minuteBefore() -> NSDate {
-        return TimeUnit().minuteBefore(self)
+        return TimeUnit.minuteBefore(self)
     }
     
     /**
@@ -1084,7 +1141,7 @@ extension NSDate {
             minute following the receiver.
     */
     public func minuteAfter() -> NSDate {
-        return TimeUnit().minuteAfter(self)
+        return TimeUnit.minuteAfter(self)
     }
     
     /**
@@ -1094,7 +1151,7 @@ extension NSDate {
             hour prior to the receiver.
     */
     public func hourBefore() -> NSDate {
-        return TimeUnit().hourBefore(self)
+        return TimeUnit.hourBefore(self)
     }
     
     /**
@@ -1104,7 +1161,7 @@ extension NSDate {
             hour following the receiver.
     */
     public func hourAfter() -> NSDate {
-        return TimeUnit().hourAfter(self)
+        return TimeUnit.hourAfter(self)
     }
     
     /**
@@ -1114,7 +1171,7 @@ extension NSDate {
             day prior to the receiver.
     */
     public func dayBefore() -> NSDate {
-        return TimeUnit().dayBefore(self)
+        return TimeUnit.dayBefore(self)
     }
     
     /**
@@ -1124,7 +1181,7 @@ extension NSDate {
             day following the receiver.
     */
     public func dayAfter() -> NSDate {
-        return TimeUnit().dayAfter(self)
+        return TimeUnit.dayAfter(self)
     }
     
     /**
@@ -1134,7 +1191,7 @@ extension NSDate {
             week prior to the receiver.
     */
     public func weekBefore() -> NSDate {
-        return TimeUnit().weekBefore(self)
+        return TimeUnit.weekBefore(self)
     }
     
     /**
@@ -1144,7 +1201,7 @@ extension NSDate {
             week following the receiver.
     */
     public func weekAfter() -> NSDate {
-        return TimeUnit().weekAfter(self)
+        return TimeUnit.weekAfter(self)
     }
     
     /**
@@ -1154,7 +1211,7 @@ extension NSDate {
             month prior to the receiver.
     */
     public func monthBefore() -> NSDate {
-        return TimeUnit().monthBefore(self)
+        return TimeUnit.monthBefore(self)
     }
     
     /**
@@ -1164,7 +1221,7 @@ extension NSDate {
             month following the receiver.
     */
     public func monthAfter() -> NSDate {
-        return TimeUnit().monthAfter(self)
+        return TimeUnit.monthAfter(self)
     }
     
     /**
@@ -1174,7 +1231,7 @@ extension NSDate {
             year prior to the receiver.
     */
     public func yearBefore() -> NSDate {
-        return TimeUnit().yearBefore(self)
+        return TimeUnit.yearBefore(self)
     }
     
     /**
@@ -1184,6 +1241,6 @@ extension NSDate {
             year following the receiver.
     */
     public func yearAfter() -> NSDate {
-        return TimeUnit().yearAfter(self)
+        return TimeUnit.yearAfter(self)
     }
 }
