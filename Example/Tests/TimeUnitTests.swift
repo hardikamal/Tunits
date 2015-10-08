@@ -44,6 +44,30 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
+            
+// MARK: Beginning of Minute
+            describe("calculating the beginning of a minute") {
+                var beginningOf7AM : NSDate!
+                beforeEach {
+                    beginningOf7AM = dateFormatter.dateFromString("2015-09-08 7:00:00")!
+                }
+                it ("can calculate the beginning of a minute for date at the beginning of the minute") {
+                    expect(TimeUnit().beginningOfMinute(beginningOf7AM)).to(equal(beginningOf7AM))
+                    expect(TimeUnit.beginningOfMinute(beginningOf7AM)).to(equal(beginningOf7AM))
+                }
+                
+                it ("can calculate the beginning of a minute for date in the middle of the minute") {
+                    let middleOf7_00AM = dateFormatter.dateFromString("2015-09-08 7:00:30")!
+                    expect(TimeUnit().beginningOfMinute(middleOf7_00AM)).to(equal(beginningOf7AM))
+                    expect(TimeUnit.beginningOfMinute(middleOf7_00AM)).to(equal(beginningOf7AM))
+                }
+                
+                it ("can calculate the beginning of a minute for random date within the minute") {
+                    let randomTimeIn7_00AM = dateFormatter.dateFromString("2015-09-08 7:00:52")!
+                    expect(TimeUnit().beginningOfMinute(randomTimeIn7_00AM)).to(equal(beginningOf7AM))
+                    expect(TimeUnit.beginningOfMinute(randomTimeIn7_00AM)).to(equal(beginningOf7AM))
+                }
+            }
 
 // MARK: Beginning of hour
             describe("calculating the beginning of an hour") {
@@ -177,6 +201,32 @@ class TimeUnitTests: QuickSpec {
                 dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             }
+            
+// MARK: End of minute
+            describe("calculating the end of a minute") {
+                var endOf5_00PM : NSDate!
+                beforeEach {
+                    endOf5_00PM = dateFormatter.dateFromString("2015-09-08 17:00:59")!
+                }
+                
+                it ("can calculate the end of a minute for date at the end of the minute") {
+                    expect(TimeUnit().endOfMinute(endOf5_00PM)).to(equal(endOf5_00PM))
+                    expect(TimeUnit.endOfMinute(endOf5_00PM)).to(equal(endOf5_00PM))
+                }
+                
+                it ("can calculate the end of a minute for date in the middle of the minute") {
+                    let middleOf5_00PM = dateFormatter.dateFromString("2015-09-08 17:00:30")!
+                    expect(TimeUnit().endOfMinute(middleOf5_00PM)).to(equal(endOf5_00PM))
+                    expect(TimeUnit.endOfMinute(middleOf5_00PM)).to(equal(endOf5_00PM))
+                }
+                
+                it ("can calculate the end of a minute for date at random time within the minute") {
+                    let randomTimeIn5_00PM = dateFormatter.dateFromString("2015-09-08 17:00:12")!
+                    expect(TimeUnit().endOfMinute(randomTimeIn5_00PM)).to(equal(endOf5_00PM))
+                    expect(TimeUnit.endOfMinute(randomTimeIn5_00PM)).to(equal(endOf5_00PM))
+                }
+            }
+            
 // MARK: End of hour
             describe("calculating the end of an hour") {
                 var endOf5PM : NSDate!
@@ -449,6 +499,21 @@ class TimeUnitTests: QuickSpec {
             }
             
 // MARK: daysOfWeek
+            it ("can create days of week for October 7, 2015") {
+                let daysOfWeekOctober7_2015 = [
+                    dateFormatter.dateFromString("2015-10-04 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-05 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-06 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-07 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-08 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-09 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-10 00:00:00")!,
+                ]
+                
+                let dateInWeekOfOctober7_2015 = dateFormatter.dateFromString("2015-10-07 20:26:32")!
+                expect(TimeUnit().daysOfWeek(dateInWeekOfOctober7_2015)).to(equal(daysOfWeekOctober7_2015))
+                expect(TimeUnit.daysOfWeek(dateInWeekOfOctober7_2015)).to(equal(daysOfWeekOctober7_2015))
+            }
             
 // MARK: daysOfMonth
             it ("can create days of February 2015") {
