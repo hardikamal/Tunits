@@ -16,7 +16,7 @@
 
 ## Requirements
 
-Requires XCode 6 and iOS 7+ sdk.
+Requires XCode 6 and iOS 9+ sdk.
 
 ## Installation
 
