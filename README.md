@@ -66,7 +66,7 @@ been extended to use the `TimeUnit` methods that return dates. This
 means methods can be chained together for complex date selection.
 ```swift
 // Method chaining
-let endOfNextYear = NSDate().yearAfter().endOfYear()
+let endOfNextYear = NSDate().yearAfter().endOfYear() // Last second of next year
 ```
 
 ## Author
