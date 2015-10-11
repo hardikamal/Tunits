@@ -5,14 +5,14 @@
 [![License](https://img.shields.io/cocoapods/l/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
 [![Platform](https://img.shields.io/cocoapods/p/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
 
-* [Requirements](#Requirements)
-* [Installation](#Installation)
-* [Usage](#Usage)
-    * [Example Project](#Example-Project)
-    * [Instance Methods](#Instance-Methods)
-    * [Date Chaining](#Date-Chaining)
-* [Author](#Author)
-* [License](#License)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Example Project](#example-project)
+    * [Instance Methods](#instance-methods)
+    * [Date Chaining](#date-chaining)
+* [Author](#author)
+* [License](#license)
 
 ## Requirements
 
