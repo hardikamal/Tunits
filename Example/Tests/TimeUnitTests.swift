@@ -30,6 +30,14 @@ import Nimble
 import Tunits
 
 class TimeUnitTests: QuickSpec {
+    static private func timeUnitWithCalendarWithMondayAsFirstWeekday() -> TimeUnit {
+        let tunit = TimeUnit()
+        let calendar = NSCalendar.currentCalendar()
+        calendar.firstWeekday = 2 // Monday
+        tunit.calendar = calendar
+        return tunit
+    }
+    
     override func spec() {
         describe("Initialization") {
             it ("can be initialized") {
@@ -136,10 +144,18 @@ class TimeUnitTests: QuickSpec {
                     expect(TimeUnit.beginningOfWeek(middleOfSeptember23_2015)).to(equal(beginningOfSeptember20_2015))
                 }
                 
-                it ("can calculate the beginning of a day for a random date within the day") {
+                it ("can calculate the beginning of a week for a random date within the day") {
                     let randomTimeInSeptember25_2015 = dateFormatter.dateFromString("2015-09-25 10:43:27")!
                     expect(TimeUnit().beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
                     expect(TimeUnit.beginningOfWeek(randomTimeInSeptember25_2015)).to(equal(beginningOfSeptember20_2015))
+                }
+                
+                it ("can calculate the beginning of a week with a calendar that has Monday as the first weekday") {
+                    let beginningOfOctober5_2015 = dateFormatter.dateFromString("2015-10-05 00:00:00")!
+                    let beginningOfOctober6_2015 = dateFormatter.dateFromString("2015-10-06 00:00:00")!
+                    
+                    let tunit = TimeUnitTests.timeUnitWithCalendarWithMondayAsFirstWeekday()
+                    expect(tunit.beginningOfWeek(beginningOfOctober6_2015)).to(equal(beginningOfOctober5_2015))
                 }
             }
             
@@ -299,6 +315,13 @@ class TimeUnitTests: QuickSpec {
                     let randomTimeInSeptember26_week_2015 = dateFormatter.dateFromString("2015-09-22 17:49:32")!
                     expect(TimeUnit().endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
                     expect(TimeUnit.endOfWeek(randomTimeInSeptember26_week_2015)).to(equal(endOfSeptember26_2015))
+                }
+                
+                it ("can calculate the end of a week for calendar with Monday as the first weekday") {
+                    let endOfOctober11_2015 = dateFormatter.dateFromString("2015-10-11 23:59:59")!
+                    let beginningOfOctober10_2015 = dateFormatter.dateFromString("2015-10-10 00:00:00")!
+                    let tunit = TimeUnitTests.timeUnitWithCalendarWithMondayAsFirstWeekday()
+                    expect(tunit.endOfWeek(beginningOfOctober10_2015)).to(equal(endOfOctober11_2015))
                 }
             }
             
@@ -513,6 +536,22 @@ class TimeUnitTests: QuickSpec {
                 let dateInWeekOfOctober7_2015 = dateFormatter.dateFromString("2015-10-07 20:26:32")!
                 expect(TimeUnit().daysOfWeek(dateInWeekOfOctober7_2015)).to(equal(daysOfWeekOctober7_2015))
                 expect(TimeUnit.daysOfWeek(dateInWeekOfOctober7_2015)).to(equal(daysOfWeekOctober7_2015))
+            }
+            
+            it ("can create days of week for calendar with Monday as the first weekday") {
+                let daysOfWeekOctober10_2015 = [
+                    dateFormatter.dateFromString("2015-10-05 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-06 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-07 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-08 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-09 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-10 00:00:00")!,
+                    dateFormatter.dateFromString("2015-10-11 00:00:00")!,
+                ]
+                
+                let dateInWeekOfOctober10_2015 = dateFormatter.dateFromString("2015-10-10 17:16:12")!
+                let tunit = TimeUnitTests.timeUnitWithCalendarWithMondayAsFirstWeekday()
+                expect(tunit.daysOfWeek(dateInWeekOfOctober10_2015)).to(equal(daysOfWeekOctober10_2015))
             }
             
 // MARK: daysOfMonth
