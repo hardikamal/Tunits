@@ -12,13 +12,33 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ### Swift ###
-    let tunit = TimeUnit() // init new TimeUnit object
-    let daysOfCurrentMonth = tunit.daysOfMonth(NSDate()) // create array of days
-    var hoursOfCurrentMonth : [NSDate] = []
-    for day in daysOfCurrentMonth { // enumerate over days to create array of hours
-      hoursOfCurrentMonth += tunit.hoursOfDay(day)
-    }
+`TimeUnit` methods can be used statically or by creating instances.
+The `NSCalendar.currentCalendar()` is used by default. `TimeUnit`
+instances expose their calendar property so a custom calendar can be
+set.
+```swift
+// Static
+let daysOfCurrentMonth = TimeUnit.daysOfMonth(NSDate()) // create array of days
 
+// Instance
+let tunit = TimeUnit() // init new TimeUnit object
+let daysOfCurrentMonth = tunit.daysOfMonth(NSDate()) // create array of days
+
+// Custom Calendar
+let calendar = NSCalendar.currentCalendar()
+calendar.firstWeekday = 2 // set first weekday to Monday
+let tunit = TimeUnit()
+tunit.calendar = calendar
+let daysOfCurrentWeek = tunit.daysOfWeek(NSDate())
+```
+
+In addition to using `TimeUnit` methods directly, `NSDate` objects have
+been extended to use the `TimeUnit` methods that return dates. This
+means methods can be chained together for complex date selection.
+```swift
+// Method chaining
+let endOfNextYear = NSDate().yearAfter().endOfYear()
+```
 ## Requirements
 
 Requires XCode 6 and iOS 7+ sdk.
