@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Tunits"
-  s.version          = "0.6.0"
+  s.version          = "0.6.1"
   s.summary          = "A date modification library"
   s.description      = <<-DESC
 		       Tunits is a simple library of convenience functions for creating groups of NSDates
