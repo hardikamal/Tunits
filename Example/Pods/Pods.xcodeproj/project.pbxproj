@@ -42,6 +42,7 @@
 		7DDE3A6E311ADDA3E3EF99B9C74FDADF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0DA688B65BDB5155E6E3D81EBB80B39 /* Foundation.framework */; };
 		7DE75E77515100B47495F3D004DFABCF /* Tunits-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D17379C5237CDC1279CD6495CFB9972 /* Tunits-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F83B9D2BC9A2E799DC1A3023C84A6C1 /* BeLessThanOrEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC258CB15A5862546D0257FD58C0E8 /* BeLessThanOrEqual.swift */; };
+		843243C11BD55C630057BE8E /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843243C01BD55C630057BE8E /* DateExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		874230BB8378360CB552804DE7D283D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0DA688B65BDB5155E6E3D81EBB80B39 /* Foundation.framework */; };
 		891D6F905A6119E2922A2E06E18F3194 /* DSL+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A99B9068FC1DB85CDE2527D63A15CF /* DSL+Wait.swift */; };
 		899F7FB5A44080698E5EA75FD14E5D1D /* BeAKindOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36FE923FF12CD4CF3CAB39152E830D /* BeAKindOf.swift */; };
@@ -192,6 +193,7 @@
 		7E8A3BECC87E9DB806D343B4FD46A602 /* Example.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Example.swift; path = Quick/Example.swift; sourceTree = "<group>"; };
 		803AB32FB75B0CA2E55E777A35FDA338 /* MatcherProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherProtocols.swift; path = Nimble/Matchers/MatcherProtocols.swift; sourceTree = "<group>"; };
 		825037EA67C0D284A9A6158319CDAA51 /* Quick.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Quick.h; path = Quick/Quick.h; sourceTree = "<group>"; };
+		843243C01BD55C630057BE8E /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		84C8B91F0238C14D193BC7FD00BAAC98 /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Quick/QuickSpec.h; sourceTree = "<group>"; };
 		8533AAB52CBFF3C3D7CE2C2BB775C451 /* BeEmpty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeEmpty.swift; path = Nimble/Matchers/BeEmpty.swift; sourceTree = "<group>"; };
 		85BAC0A72E68FFBEC382A88A42446374 /* AssertionRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionRecorder.swift; path = Nimble/Adapters/AssertionRecorder.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				6DE00670DEA417967CB7D12C153011B0 /* TimeUnit.swift */,
+				843243C01BD55C630057BE8E /* DateExtensions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				CA0B460212174BB0A8CBBC9DA39F7C3A /* EndWith.swift in Sources */,
 				E09BBEA635CEF864B8D7EF2BDDA7C848 /* Equal.swift in Sources */,
 				F25F236CE33B02F8793010669DD40D04 /* Expectation.swift in Sources */,
+				843243C11BD55C630057BE8E /* DateExtensions.swift in Sources */,
 				529DBAEB1160F04A247B82E4D1411C51 /* Expression.swift in Sources */,
 				5B16C6938CE60CC4DAD08761FFA61FD4 /* FailureMessage.swift in Sources */,
 				03710A8D751223C5616A7159B3D6EEA6 /* Functional.swift in Sources */,
