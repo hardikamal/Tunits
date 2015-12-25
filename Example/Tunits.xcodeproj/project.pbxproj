@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51E525D872A4F98AEAF46F64 /* Pods_Tunits_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0BB43A19AF4B2B304C33F6 /* Pods_Tunits_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		51E525D872A4F98AEAF46F64 /* Pods_Tunits_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0BB43A19AF4B2B304C33F6 /* Pods_Tunits_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -15,7 +15,7 @@
 		84676A501B9A984600DFC65C /* TimeUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */; };
 		84676A521B9B6E5F00DFC65C /* TunitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84676A511B9B6E5F00DFC65C /* TunitsViewController.swift */; };
 		84676A541B9B747400DFC65C /* TunitsDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84676A531B9B747400DFC65C /* TunitsDatePickerCell.swift */; };
-		900FA18D9C6446285D785EF4 /* Pods_Tunits_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DA2E2398F180DB081CDE5C /* Pods_Tunits_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		900FA18D9C6446285D785EF4 /* Pods_Tunits_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DA2E2398F180DB081CDE5C /* Pods_Tunits_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

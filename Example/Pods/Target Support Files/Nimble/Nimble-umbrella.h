@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-//#import "Nimble.h"
+#import "Nimble.h"
 #import "DSL.h"
 #import "NMBExceptionCapture.h"
 
