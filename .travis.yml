@@ -2,3 +2,4 @@ language: objective-c
 xcode_workspace: Example/Tunits.xcworkspace
 xcode_scheme: Tunits-Example
 podfile: Example/Podfile
+xcode_sdk: iphonesimulator
