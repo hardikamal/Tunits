@@ -4,6 +4,14 @@
 [![Version](https://img.shields.io/cocoapods/v/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
 [![License](https://img.shields.io/cocoapods/l/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
 [![Platform](https://img.shields.io/cocoapods/p/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
+[![Twitter](https://img.shields.io/badge/twitter-@spitzgoby-blue.svg?style=flat)](http://twitter.com/spitzgoby)
+
+Tunis is an easy to use library for performing date and time calculations in 
+iOS. Tunits allows you to quickly create an array of all the days in a given 
+month or find the first day of the next month.
+
+Have comments or suggestsions? Feel free to submit a pull request or find me 
+on [Twitter (@spitzgoby)](http://twitter.com/spitzgoby)
 
 * [Requirements](#requirements)
 * [Installation](#installation)
