@@ -256,4 +256,56 @@ extension NSDate {
     public func yearAfter() -> NSDate {
         return TimeUnit.yearAfter(self)
     }
+    
+    // MARK: - Building Subunits
+    
+    /**
+    Creates an array of dates at the first second of each minute of the hour
+    of the receiving date.
+    
+    - returns: The newly created array of dates.
+    */
+    public func minutesOfHour() -> NSArray {
+        return TimeUnit.minutesOfHour(self)
+    }
+    
+    /**
+    Creates an array of dates at the first second of each hour of the day
+    of the receiving date.
+    
+    - returns: The newly created array of dates.
+    */
+    public func hoursOfDay() -> NSArray {
+        return TimeUnit.hoursOfDay(self)
+    }
+    
+    /**
+    Creates an array of dates at the first second of each day of the week
+    of the receiving date.
+    
+    - returns: The newly created array of dates.
+    */
+    public func daysOfWeek() -> NSArray {
+        return TimeUnit.daysOfWeek(self)
+    }
+    
+    /**
+    Creates an array of dates at the first second of each day of the month
+    of the receiving date.
+    
+    - returns: The newly created array of dates.
+    */
+    public func daysOfMonth() -> NSArray {
+        return TimeUnit.daysOfMonth(self)
+    }
+    
+    /**
+    Creates an array of dates at the first second of each month of the year
+    of the receiving date.
+    
+    - returns: The newly created array of dates.
+    */
+    public func monthsOfYear() -> NSArray {
+        return TimeUnit.monthsOfYear(self)
+    }
 }
