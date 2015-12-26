@@ -1,11 +1,7 @@
 PODS:
-  - Nimble (2.0.0-rc.3)
-  - Quick (0.8.0)
   - Tunits (0.6.2)
 
 DEPENDENCIES:
-  - Nimble (= 2.0.0-rc.3)
-  - Quick
   - Tunits (from `../`)
 
 EXTERNAL SOURCES:
@@ -13,8 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Nimble: 9dff98ee195ffe7351d3b2fb01d3a1420fd97948
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   Tunits: 21db9cc4fb8c424cf8f30f9a9b2f5dab873fc325
 
 COCOAPODS: 0.39.0
