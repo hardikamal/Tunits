@@ -1,4 +1,4 @@
 language: objective-c
-xcode_project: Example/Tunits.xcworkspace
+xcode_workspace: Example/Tunits.xcworkspace
 xcode_scheme: Tunits-Example
 podfile: Example/Podfile
