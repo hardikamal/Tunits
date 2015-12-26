@@ -1,6 +1,6 @@
 # Tunits
 
-[![CI Status](http://img.shields.io/travis/Thomas Leu/Tunits.svg?style=flat)](https://travis-ci.org/Thomas Leu/Tunits)
+[![Build Status](https://travis-ci.org/spitzgoby/Tunits.svg?branch=master)](https://travis-ci.org/spitzgoby/Tunits)
 [![Version](https://img.shields.io/cocoapods/v/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
 [![License](https://img.shields.io/cocoapods/l/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
 [![Platform](https://img.shields.io/cocoapods/p/Tunits.svg?style=flat)](http://cocoapods.org/pods/Tunits)
