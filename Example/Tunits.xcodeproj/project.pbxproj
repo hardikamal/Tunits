@@ -141,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
 				84074D8A1C2EEFE60018CB3A /* DateExtensionTests.swift */,
+				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
