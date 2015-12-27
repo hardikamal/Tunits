@@ -108,12 +108,6 @@ class TimeUnitTests: XCTestCase {
     
     
 // MARK: Beginning of week
-    func testCalculatingBeginningOfWeekFromBeginningOfWeek() {
-        let beginningOfSeptember20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
-        
-        XCTAssertEqual(beginningOfSeptember20_2015, TimeUnit().beginningOfWeek(beginningOfSeptember20_2015))
-        XCTAssertEqual(beginningOfSeptember20_2015, TimeUnit.beginningOfWeek(beginningOfSeptember20_2015))
-    }
     
     func testCalculatingBeginningOfWeekFromBeginningOfWeekWithSundayAsFirstWeekday() {
         let beginningOfSeptember20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
@@ -127,12 +121,18 @@ class TimeUnitTests: XCTestCase {
         XCTAssertEqual(beginningOfSeptember21_2015, self.timeUnitWithCalendarWithMondayAsFirstWeekday().beginningOfWeek(beginningOfSeptember21_2015))
     }
     
-    func testCalculatingBeginningOfWeekFromMiddleOfWeek() {
+    func testCalculatingBeginningOfWeekFromMiddleOfWeekWithSundayAsFirstWeekday() {
         let beginningOfSeptember20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
         let middleOfSeptember23_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
         
-        XCTAssertEqual(beginningOfSeptember20_2015, TimeUnit().beginningOfWeek(middleOfSeptember23_2015))
-        XCTAssertEqual(beginningOfSeptember20_2015, TimeUnit.beginningOfWeek(middleOfSeptember23_2015))
+        XCTAssertEqual(beginningOfSeptember20_2015, self.timeUnitWithCalendarWithSundayAsFirstWeekday().beginningOfWeek(middleOfSeptember23_2015))
+    }
+    
+    func testCalculatingBeginningOfWeekFromMiddleOfWeekWithMondayAsFirstWeekday() {
+        let beginningOfSeptember20_2015 = self.dateFormatter.dateFromString("2015-09-21 00:00:00")!
+        let middleOfSeptember23_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
+        
+        XCTAssertEqual(beginningOfSeptember20_2015, self.timeUnitWithCalendarWithMondayAsFirstWeekday().beginningOfWeek(middleOfSeptember23_2015))
     }
     
 // MARK: Beginning of month
@@ -220,27 +220,30 @@ class TimeUnitTests: XCTestCase {
     
 // MARK: End of week
     
-    func testCalculatingEndOfWeekFromEndOfWeek() {
+    func testCalculatingEndOfWeekFromEndOfWeekWithSundayAsFirstWeekday() {
         let endOfSeptember26_2015 = self.dateFormatter.dateFromString("2015-09-26 23:59:59")!
         
-        XCTAssertEqual(endOfSeptember26_2015, TimeUnit().endOfWeek(endOfSeptember26_2015))
-        XCTAssertEqual(endOfSeptember26_2015, TimeUnit.endOfWeek(endOfSeptember26_2015))
+        XCTAssertEqual(endOfSeptember26_2015, self.timeUnitWithCalendarWithSundayAsFirstWeekday().endOfWeek(endOfSeptember26_2015))
     }
     
-    func testCalculatingEndOfWeekFromMiddleOfWeek() {
+    func testCalculatingEndOfWeekFromEndOfWeekWithMondayAsFirstWeekday() {
+        let endOfSeptember27_2015 = self.dateFormatter.dateFromString("2015-09-27 23:59:59")!
+        
+        XCTAssertEqual(endOfSeptember27_2015, self.timeUnitWithCalendarWithMondayAsFirstWeekday().endOfWeek(endOfSeptember27_2015))
+    }
+    
+    func testCalculatingEndOfWeekFromMiddleOfWeekWithSundayAsFirstWeekday() {
         let endOfSeptember26_2015 = self.dateFormatter.dateFromString("2015-09-26 23:59:59")!
         let middleOfSeptember26_week_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
         
-        XCTAssertEqual(endOfSeptember26_2015, TimeUnit().endOfWeek(middleOfSeptember26_week_2015))
-        XCTAssertEqual(endOfSeptember26_2015, TimeUnit.endOfWeek(middleOfSeptember26_week_2015))
+        XCTAssertEqual(endOfSeptember26_2015, self.timeUnitWithCalendarWithSundayAsFirstWeekday().endOfWeek(middleOfSeptember26_week_2015))
     }
 
     func testCalculatingEndOfWeekWithCalendarWithMondayAsFirstWeekday() {
         let endOfOctober11_2015 = self.dateFormatter.dateFromString("2015-10-11 23:59:59")!
         let beginningOfOctober10_2015 = self.dateFormatter.dateFromString("2015-10-10 00:00:00")!
-        let tunit = self.timeUnitWithCalendarWithMondayAsFirstWeekday()
         
-        XCTAssertEqual(endOfOctober11_2015, tunit.endOfWeek(beginningOfOctober10_2015))
+        XCTAssertEqual(endOfOctober11_2015, self.timeUnitWithCalendarWithMondayAsFirstWeekday().endOfWeek(beginningOfOctober10_2015))
     }
     
 // MARK: End of month
@@ -614,35 +617,58 @@ class TimeUnitTests: XCTestCase {
     }
     
 // MARK: weekContainsDate
-    func testDeterminingWhetherBeginningOfWeekFallsInWeek() {
+    func testDeterminingWhetherBeginningOfWeekFallsInWeekWithSundayAsFirstWeekday() {
         let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
         
-        XCTAssertTrue(TimeUnit().weekContainsDate(september27_2015, week: september27_2015))
-        XCTAssertTrue(TimeUnit.weekContainsDate(september27_2015, week: september27_2015))
+        XCTAssertTrue(self.timeUnitWithCalendarWithSundayAsFirstWeekday().weekContainsDate(september27_2015, week: september27_2015))
     }
 
-    func testDeterminingWhetherMiddleOfWeekFallsInWeek() {
+    func testDeterminingWhetherBeginningOfWeekFallsInWeekWithMondayAsFirstWeekday() {
+        let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        
+        XCTAssertTrue(self.timeUnitWithCalendarWithMondayAsFirstWeekday().weekContainsDate(september28_2015, week: september28_2015))
+    }
+
+    func testDeterminingWhetherMiddleOfWeekFallsInWeekWithSundayAsFirstWeekday() {
         let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
         let middleOfSeptember30_2015 = self.dateFormatter.dateFromString("2015-09-30 12:00:00")!
         
-        XCTAssertTrue(TimeUnit().weekContainsDate(middleOfSeptember30_2015, week: september27_2015))
-        XCTAssertTrue(TimeUnit.weekContainsDate(middleOfSeptember30_2015, week: september27_2015))
+        XCTAssertTrue(self.timeUnitWithCalendarWithSundayAsFirstWeekday().weekContainsDate(middleOfSeptember30_2015, week: september27_2015))
     }
     
-    func testDeterminingWhetherNextWeekFallsInWeek() {
+    func testDeterminingWhetherMiddleOfWeekFallsInWeekWithMondayAsFirstWeekday() {
+        let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        let middleOfSeptember30_2015 = self.dateFormatter.dateFromString("2015-09-30 12:00:00")!
+        
+        XCTAssertTrue(self.timeUnitWithCalendarWithMondayAsFirstWeekday().weekContainsDate(middleOfSeptember30_2015, week: september28_2015))
+    }
+    
+    func testDeterminingWhetherNextWeekFallsInWeekWithSundayAsFirstWeekday() {
         let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
         let beginningOfOctober4_2015 = self.dateFormatter.dateFromString("2015-10-04 00:00:00")!
         
-        XCTAssertFalse(TimeUnit().weekContainsDate(beginningOfOctober4_2015, week: september27_2015))
-        XCTAssertFalse(TimeUnit.weekContainsDate(beginningOfOctober4_2015, week: september27_2015))
+        XCTAssertFalse(self.timeUnitWithCalendarWithSundayAsFirstWeekday().weekContainsDate(beginningOfOctober4_2015, week: september27_2015))
     }
     
-    func testDeterminingWhetherPreviousWeekFallsInWeek() {
+    func testDeterminingWhetherNextWeekFallsInWeekWithMondayAsFirstWeekday() {
+        let september27_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        let beginningOfOctober4_2015 = self.dateFormatter.dateFromString("2015-10-05 00:00:00")!
+        
+        XCTAssertFalse(self.timeUnitWithCalendarWithMondayAsFirstWeekday().weekContainsDate(beginningOfOctober4_2015, week: september27_2015))
+    }
+    
+    func testDeterminingWhetherPreviousWeekFallsInWeekWithSundayAsFirstWeekday() {
         let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
         let endOfSeptember26_2015 = self.dateFormatter.dateFromString("2015-09-26 23:59:59")!
         
-        XCTAssertFalse(TimeUnit().weekContainsDate(endOfSeptember26_2015, week: september27_2015))
-        XCTAssertFalse(TimeUnit.weekContainsDate(endOfSeptember26_2015, week: september27_2015))
+        XCTAssertFalse(self.timeUnitWithCalendarWithSundayAsFirstWeekday().weekContainsDate(endOfSeptember26_2015, week: september27_2015))
+    }
+    
+    func testDeterminingWhetherPreviousWeekFallsInWeekWithMondayAsFirstWeekday() {
+        let september27_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        let endOfSeptember26_2015 = self.dateFormatter.dateFromString("2015-09-27 23:59:59")!
+        
+        XCTAssertFalse(self.timeUnitWithCalendarWithMondayAsFirstWeekday().weekContainsDate(endOfSeptember26_2015, week: september27_2015))
     }
     
 // MARK: monthContainsDate

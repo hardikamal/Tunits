@@ -126,8 +126,10 @@ public class TimeUnit : NSObject {
     */
     public func beginningOfWeek(date:NSDate) -> NSDate {
         let components = self.calendar.components([.Year, .Month, .Day, .Weekday], fromDate: date)
-        
-        let weekdayOffset = components.weekday - self.calendar.firstWeekday
+        let weekdayOffset = (components.weekday < self.calendar.firstWeekday)
+            ? (components.weekday + 7) - self.calendar.firstWeekday
+            : components.weekday - self.calendar.firstWeekday
+            
         components.day -= weekdayOffset;
         
         return self.calendar.dateFromComponents(components)!
