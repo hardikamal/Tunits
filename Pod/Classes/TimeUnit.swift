@@ -30,13 +30,28 @@ import Foundation
 public class TimeUnit : NSObject {
     
 // MARK: - Properties and Lifecycle
-    /// Private static instance for static methods
-    private static let sharedInstance = TimeUnit()
+    /// Static instance for static methods
+    public static let sharedInstance = TimeUnit()
     
     /// The calendar to be used for date calculations
     public lazy var calendar : NSCalendar = {
        return NSCalendar.autoupdatingCurrentCalendar()
     }()
+    
+    /**
+     Sets the calendar used when performing operations statically. The default
+     value is NSCalendar.autoupdatingCurrentCalendar().
+     
+     - parameter calendar: The calendar to use when performing operations 
+        statically.
+     
+     - returns: The static instance of TimeUnit.
+     */
+    public static func setStaticCalendar(calendar: NSCalendar) -> TimeUnit {
+        sharedInstance.calendar = calendar
+        
+        return sharedInstance
+    }
     
 // MARK: - Calculate beginning of time unit
     /**
