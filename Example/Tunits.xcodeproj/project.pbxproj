@@ -14,6 +14,10 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		84074D8B1C2EEFE60018CB3A /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8A1C2EEFE60018CB3A /* DateExtensionTests.swift */; };
 		84074D8E1C3095C00018CB3A /* TimeUnitTestsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */; };
+		84074D901C30ADB70018CB3A /* TimeUnitBoundariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */; };
+		84074D921C30AE580018CB3A /* TimeUnitSubunitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */; };
+		84074D941C30AEF10018CB3A /* TimeUnitContainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D931C30AEF10018CB3A /* TimeUnitContainsTests.swift */; };
+		84074D961C30AF550018CB3A /* TimeUnitTraversalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D951C30AF550018CB3A /* TimeUnitTraversalTests.swift */; };
 		84676A501B9A984600DFC65C /* TimeUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */; };
 		84676A521B9B6E5F00DFC65C /* TunitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84676A511B9B6E5F00DFC65C /* TunitsViewController.swift */; };
 		84676A541B9B747400DFC65C /* TunitsDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84676A531B9B747400DFC65C /* TunitsDatePickerCell.swift */; };
@@ -44,6 +48,10 @@
 		689F53B6F5054CCC462E550F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		84074D8A1C2EEFE60018CB3A /* DateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitTestsUtilities.swift; sourceTree = "<group>"; };
+		84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitBoundariesTests.swift; sourceTree = "<group>"; };
+		84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitSubunitsTests.swift; sourceTree = "<group>"; };
+		84074D931C30AEF10018CB3A /* TimeUnitContainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitContainsTests.swift; sourceTree = "<group>"; };
+		84074D951C30AF550018CB3A /* TimeUnitTraversalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitTraversalTests.swift; sourceTree = "<group>"; };
 		84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitTests.swift; sourceTree = "<group>"; };
 		84676A511B9B6E5F00DFC65C /* TunitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunitsViewController.swift; sourceTree = "<group>"; };
 		84676A531B9B747400DFC65C /* TunitsDatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunitsDatePickerCell.swift; sourceTree = "<group>"; };
@@ -145,6 +153,10 @@
 				84405DA41B9A7BC800784C9A /* TimeUnitTests.swift */,
 				84074D8A1C2EEFE60018CB3A /* DateExtensionTests.swift */,
 				84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */,
+				84074D931C30AEF10018CB3A /* TimeUnitContainsTests.swift */,
+				84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */,
+				84074D951C30AF550018CB3A /* TimeUnitTraversalTests.swift */,
+				84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -379,8 +391,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84074D961C30AF550018CB3A /* TimeUnitTraversalTests.swift in Sources */,
+				84074D921C30AE580018CB3A /* TimeUnitSubunitsTests.swift in Sources */,
 				84074D8E1C3095C00018CB3A /* TimeUnitTestsUtilities.swift in Sources */,
 				84676A501B9A984600DFC65C /* TimeUnitTests.swift in Sources */,
+				84074D941C30AEF10018CB3A /* TimeUnitContainsTests.swift in Sources */,
+				84074D901C30ADB70018CB3A /* TimeUnitBoundariesTests.swift in Sources */,
 				84074D8B1C2EEFE60018CB3A /* DateExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
