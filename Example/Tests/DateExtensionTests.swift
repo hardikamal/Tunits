@@ -12,6 +12,8 @@ import XCTest
 class DateExtensionTests: XCTestCase {
     private var dateFormatter : NSDateFormatter = NSDateFormatter();
     
+    private let utilities : TimeUnitTestsUtilities = TimeUnitTestsUtilities()
+    
     override func setUp() {
         self.dateFormatter = NSDateFormatter();
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -63,17 +65,34 @@ class DateExtensionTests: XCTestCase {
     
     
 // MARK: Beginning of week
-    func testCalculatingBeginningOfWeekFromBeginningOfWeek() {
+    func testCalculatingBeginningOfWeekFromBeginningOfWeekWithSundayAsFirstWeekday() {
         let beginningOfSeptember20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
         
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
         XCTAssertEqual(beginningOfSeptember20_2015, beginningOfSeptember20_2015.beginningOfWeek())
     }
     
-    func testCalculatingBeginningOfWeekFromMiddleOfWeek() {
+    func testCalculatingBeginningOfWeekFromBeginningOfWeekWithMondayAsFirstWeekday() {
+        let beginningOfSeptember21_2015 = self.dateFormatter.dateFromString("2015-09-21 00:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(beginningOfSeptember21_2015, beginningOfSeptember21_2015.beginningOfWeek())
+    }
+    
+    func testCalculatingBeginningOfWeekFromMiddleOfWeekWithSundayAsFirstWeekday() {
         let beginningOfSeptember20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
         let middleOfSeptember23_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
         
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
         XCTAssertEqual(beginningOfSeptember20_2015, middleOfSeptember23_2015.beginningOfWeek())
+    }
+    
+    func testCalculatingBeginningOfWeekFromMiddleOfWeekWithMondayAsFirstWeekday() {
+        let beginningOfSeptember21_2015 = self.dateFormatter.dateFromString("2015-09-21 00:00:00")!
+        let middleOfSeptember23_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(beginningOfSeptember21_2015, middleOfSeptember23_2015.beginningOfWeek())
     }
     
 // MARK: Beginning of month
@@ -151,17 +170,34 @@ class DateExtensionTests: XCTestCase {
     
 // MARK: End of week
     
-    func testCalculatingEndOfWeekFromEndOfWeek() {
+    func testCalculatingEndOfWeekFromEndOfWeekWithSundayAsFirstWeekday() {
         let endOfSeptember26_2015 = self.dateFormatter.dateFromString("2015-09-26 23:59:59")!
         
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
         XCTAssertEqual(endOfSeptember26_2015, endOfSeptember26_2015.endOfWeek())
     }
     
-    func testCalculatingEndOfWeekFromMiddleOfWeek() {
+    func testCalculatingEndOfWeekFromEndOfWeekWithMondayAsFirstWeekday() {
+        let endOfSeptember27_2015 = self.dateFormatter.dateFromString("2015-09-27 23:59:59")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(endOfSeptember27_2015, endOfSeptember27_2015.endOfWeek())
+    }
+    
+    func testCalculatingEndOfWeekFromMiddleOfWeekWithSundayAsFirstWeekday() {
         let endOfSeptember26_2015 = self.dateFormatter.dateFromString("2015-09-26 23:59:59")!
         let middleOfSeptember26_week_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
         
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
         XCTAssertEqual(endOfSeptember26_2015, middleOfSeptember26_week_2015.endOfWeek())
+    }
+    
+    func testCalculatingEndOfWeekFromMiddleOfWeekWithMondayAsFirstWeekday() {
+        let endOfSeptember27_2015 = self.dateFormatter.dateFromString("2015-09-27 23:59:59")!
+        let middleOfSeptember27_week_2015 = self.dateFormatter.dateFromString("2015-09-23 12:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(endOfSeptember27_2015, middleOfSeptember27_week_2015.endOfWeek())
     }
     
 // MARK: End of month
@@ -298,7 +334,37 @@ class DateExtensionTests: XCTestCase {
     }
     
 // MARK: daysOfWeek
-    // Revisit
+    func testCalculatingDaysOfWeekWithSundayAsFirstDayOfWeek() {
+        let daysOfWeekOctober7_2015 = [
+            self.dateFormatter.dateFromString("2015-10-04 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-05 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-06 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-07 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-08 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-09 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-10 00:00:00")!,
+        ]
+        
+        let dateInWeekOfOctober7_2015 = self.dateFormatter.dateFromString("2015-10-07 20:26:32")!
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+        XCTAssertEqual(daysOfWeekOctober7_2015, dateInWeekOfOctober7_2015.daysOfWeek())
+    }
+    
+    func testCalculatingDaysOfWeekWithMondayAsFirstDayOfWeek() {
+        let daysOfWeekOctober10_2015 = [
+            self.dateFormatter.dateFromString("2015-10-05 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-06 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-07 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-08 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-09 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-10 00:00:00")!,
+            self.dateFormatter.dateFromString("2015-10-11 00:00:00")!,
+        ]
+        
+        let dateInWeekOfOctober10_2015 = self.dateFormatter.dateFromString("2015-10-10 17:16:12")!
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(daysOfWeekOctober10_2015, dateInWeekOfOctober10_2015.daysOfWeek())
+    }
     
 // MARK: daysOfMonth
     func testCalculatingDaysOfMonth() {
@@ -559,89 +625,102 @@ class DateExtensionTests: XCTestCase {
 //        XCTAssertFalse(TimeUnit.yearContainsDate(_2014, year: _2015))
 //    }
 //    
-//// MARK: - Calculating Units Before and After Date
-//// MARK: Calculating Hour Before And After
-//    func testCalculatingPreviousHour() {
-//        let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
-//        let september29_10_2015 = self.dateFormatter.dateFromString("2015-09-29 10:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().hourBefore(september29_11_2015), september29_10_2015)
-//        XCTAssertEqual(TimeUnit.hourBefore(september29_11_2015), september29_10_2015)
-//    }
-//    
-//    func testCalculatingNextHour() {
-//        let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
-//        let september29_12_2015 = self.dateFormatter.dateFromString("2015-09-29 12:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().hourAfter(september29_11_2015), september29_12_2015)
-//        XCTAssertEqual(TimeUnit.hourAfter(september29_11_2015), september29_12_2015)
-//    }
-//    
-// // MARK: Calculating Day Before and After
-//    func testCalculatingNextDay() {
-//        let september29_2015 = self.dateFormatter.dateFromString("2015-09-29 00:00:00")!
-//        let september30_2015 = self.dateFormatter.dateFromString("2015-09-30 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().dayAfter(september29_2015), september30_2015)
-//        XCTAssertEqual(TimeUnit.dayAfter(september29_2015), september30_2015)
-//    }
-//    
-//    func testCalculatingPreviousDay() {
-//        let september29_2015 = self.dateFormatter.dateFromString("2015-09-29 00:00:00")!
-//        let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().dayBefore(september29_2015), september28_2015)
-//        XCTAssertEqual(TimeUnit.dayBefore(september29_2015), september28_2015)
-//    }
-//    
-//// MARK: Calculating Week Before and After
-//    func testCalculatingNextWeek() {
-//        let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
-//        let october4_2015 = self.dateFormatter.dateFromString("2015-10-04 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().weekAfter(september27_2015), october4_2015)
-//        XCTAssertEqual(TimeUnit.weekAfter(september27_2015), october4_2015)
-//    }
-//    
-//    func testCalculatingPreviousWeek() {
-//        let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
-//        let september20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().weekBefore(september27_2015), september20_2015)
-//        XCTAssertEqual(TimeUnit.weekBefore(september27_2015), september20_2015)
-//    }
-//    
-//// MARK: Calculating Month Before and After
-//    func testCalculatingNextMonth() {
-//        let september1_2015 = self.dateFormatter.dateFromString("2015-09-01 00:00:00")!
-//        let october1_2015 = self.dateFormatter.dateFromString("2015-10-01 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().monthAfter(september1_2015), october1_2015)
-//        XCTAssertEqual(TimeUnit.monthAfter(september1_2015), october1_2015)
-//    }
-//    
-//    func testCalculatingPreviousMonth() {
-//        let september1_2015 = self.dateFormatter.dateFromString("2015-09-01 00:00:00")!
-//        let august1_2015 = self.dateFormatter.dateFromString("2015-08-01 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().monthBefore(september1_2015), august1_2015)
-//        XCTAssertEqual(TimeUnit.monthBefore(september1_2015), august1_2015)
-//    }
-//    
-//// MARK: Calculating Year Before and After
-//    func testCalculatingNextYear() {
-//        let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
-//        let _2016 = self.dateFormatter.dateFromString("2016-01-01 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().yearAfter(_2015), _2016)
-//        XCTAssertEqual(TimeUnit.yearAfter(_2015), _2016)
-//    }
-//    
-//    func testCalculatingPreviousYear() {
-//        let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
-//        let _2014 = self.dateFormatter.dateFromString("2014-01-01 00:00:00")!
-//        
-//        XCTAssertEqual(TimeUnit().yearBefore(_2015), _2014)
-//        XCTAssertEqual(TimeUnit.yearBefore(_2015), _2014)
-//    }
+    
+// MARK: - Calculating Units Before and After Date
+// MARK: Calculating Hour Before And After
+    func testCalculatingPreviousHour() {
+        let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
+        let september29_10_2015 = self.dateFormatter.dateFromString("2015-09-29 10:00:00")!
+        
+        XCTAssertEqual(september29_11_2015.hourBefore(), september29_10_2015)
+    }
+    
+    func testCalculatingNextHour() {
+        let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
+        let september29_12_2015 = self.dateFormatter.dateFromString("2015-09-29 12:00:00")!
+        
+        XCTAssertEqual(september29_11_2015.hourAfter(), september29_12_2015)
+    }
+    
+ // MARK: Calculating Day Before and After
+    func testCalculatingNextDay() {
+        let september29_2015 = self.dateFormatter.dateFromString("2015-09-29 00:00:00")!
+        let september30_2015 = self.dateFormatter.dateFromString("2015-09-30 00:00:00")!
+        
+        XCTAssertEqual(september29_2015.dayAfter(), september30_2015)
+    }
+    
+    func testCalculatingPreviousDay() {
+        let september29_2015 = self.dateFormatter.dateFromString("2015-09-29 00:00:00")!
+        let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        
+        XCTAssertEqual(september29_2015.dayBefore(), september28_2015)
+    }
+    
+// MARK: Calculating Week Before and After
+    func testCalculatingNextWeekWithSundayAsFirstWeekday() {
+        let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
+        let october4_2015 = self.dateFormatter.dateFromString("2015-10-04 00:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+        XCTAssertEqual(september27_2015.weekAfter(), october4_2015)
+    }
+    
+    func testCalculatingNextWeekWithMondayAsFirstWeekday() {
+        let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        let october5_2015 = self.dateFormatter.dateFromString("2015-10-05 00:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(september28_2015.weekAfter(), october5_2015)
+    }
+    
+    func testCalculatingPreviousWeekWithSundayAsFirstWeekday() {
+        let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
+        let september20_2015 = self.dateFormatter.dateFromString("2015-09-20 00:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+        XCTAssertEqual(TimeUnit.weekBefore(september27_2015), september20_2015)
+    }
+    
+    func testCalculatingPreviousWeekWithMondayAsFirstWeekday() {
+        let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
+        let september21_2015 = self.dateFormatter.dateFromString("2015-09-21 00:00:00")!
+        
+        TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+        XCTAssertEqual(september28_2015.weekBefore(), september21_2015)
+    }
+    
+// MARK: Calculating Month Before and After
+    func testCalculatingNextMonth() {
+        let september1_2015 = self.dateFormatter.dateFromString("2015-09-01 00:00:00")!
+        let october1_2015 = self.dateFormatter.dateFromString("2015-10-01 00:00:00")!
+        
+        XCTAssertEqual(TimeUnit().monthAfter(september1_2015), october1_2015)
+        XCTAssertEqual(TimeUnit.monthAfter(september1_2015), october1_2015)
+    }
+    
+    func testCalculatingPreviousMonth() {
+        let september1_2015 = self.dateFormatter.dateFromString("2015-09-01 00:00:00")!
+        let august1_2015 = self.dateFormatter.dateFromString("2015-08-01 00:00:00")!
+        
+        XCTAssertEqual(TimeUnit().monthBefore(september1_2015), august1_2015)
+        XCTAssertEqual(TimeUnit.monthBefore(september1_2015), august1_2015)
+    }
+    
+// MARK: Calculating Year Before and After
+    func testCalculatingNextYear() {
+        let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
+        let _2016 = self.dateFormatter.dateFromString("2016-01-01 00:00:00")!
+        
+        XCTAssertEqual(TimeUnit().yearAfter(_2015), _2016)
+        XCTAssertEqual(TimeUnit.yearAfter(_2015), _2016)
+    }
+    
+    func testCalculatingPreviousYear() {
+        let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
+        let _2014 = self.dateFormatter.dateFromString("2014-01-01 00:00:00")!
+        
+        XCTAssertEqual(TimeUnit().yearBefore(_2015), _2014)
+        XCTAssertEqual(TimeUnit.yearBefore(_2015), _2014)
+    }
 }
