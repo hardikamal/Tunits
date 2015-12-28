@@ -39,6 +39,57 @@ class TimeUnitSubunitTests: XCTestCase {
     }
     
     // MARK: - Creating Time Units
+    // MARK: arbitrary subunits
+    func testCalculatingHourBetweenSingleDateIncludesDate() {
+        let hoursBetween6PM = [
+            self.dateFormatter.dateFromString("2015-12-27 18:00:00")!,
+        ]
+        
+        let _6PM = self.dateFormatter.dateFromString("2015-12-27 18:00:00")!
+        
+        XCTAssertEqual(hoursBetween6PM, TimeUnit().timeUnits(.Hour, fromDate: _6PM, toDate: _6PM))
+        XCTAssertEqual(hoursBetween6PM, TimeUnit.timeUnits(.Hour, fromDate: _6PM, toDate: _6PM))
+    }
+    
+    func testCalculatingHoursBetweenDatesIsNotInclusiveOfToDate() {
+        let hoursBetween6PM_And_8PM = [
+            self.dateFormatter.dateFromString("2015-12-27 18:00:00")!,
+            self.dateFormatter.dateFromString("2015-12-27 19:00:00")!,
+        ]
+        
+        let _6PM = self.dateFormatter.dateFromString("2015-12-27 18:00:00")!
+        let _8PM = self.dateFormatter.dateFromString("2015-12-27 20:00:00")!
+        
+        XCTAssertEqual(hoursBetween6PM_And_8PM, TimeUnit().timeUnits(.Hour, fromDate: _6PM, toDate: _8PM))
+        XCTAssertEqual(hoursBetween6PM_And_8PM, TimeUnit.timeUnits(.Hour, fromDate: _6PM, toDate: _8PM))
+    }
+    
+    func testCalculatingHoursBetweenAscendingDates() {
+        let hoursBetween5_30PM_And_8_30PM = [
+            self.dateFormatter.dateFromString("2015-12-27 17:30:00")!,
+            self.dateFormatter.dateFromString("2015-12-27 18:30:00")!,
+            self.dateFormatter.dateFromString("2015-12-27 19:30:00")!,
+        ]
+        
+        let _5_30PM = self.dateFormatter.dateFromString("2015-12-27 17:30:00")!
+        let _8_30PM = self.dateFormatter.dateFromString("2015-12-27 20:30:00")!
+        XCTAssertEqual(hoursBetween5_30PM_And_8_30PM, TimeUnit().timeUnits(.Hour, fromDate: _5_30PM, toDate: _8_30PM))
+        XCTAssertEqual(hoursBetween5_30PM_And_8_30PM, TimeUnit.timeUnits(.Hour, fromDate: _5_30PM, toDate: _8_30PM))
+    }
+    
+    func testCalculatingHoursBetweenDescendingDates() {
+        let hoursBetween8_30PM_And_5_30PM = [
+            self.dateFormatter.dateFromString("2015-12-27 20:30:00")!,
+            self.dateFormatter.dateFromString("2015-12-27 19:30:00")!,
+            self.dateFormatter.dateFromString("2015-12-27 18:30:00")!,
+        ]
+        
+        let _5_30PM = self.dateFormatter.dateFromString("2015-12-27 17:30:00")!
+        let _8_30PM = self.dateFormatter.dateFromString("2015-12-27 20:30:00")!
+        XCTAssertEqual(hoursBetween8_30PM_And_5_30PM, TimeUnit().timeUnits(.Hour, fromDate: _8_30PM, toDate: _5_30PM))
+        XCTAssertEqual(hoursBetween8_30PM_And_5_30PM, TimeUnit.timeUnits(.Hour, fromDate: _8_30PM, toDate: _5_30PM))
+    }
+    
     // MARK: minutesOfHours
     
     func testCalculatingMinutesOfAnHour() {

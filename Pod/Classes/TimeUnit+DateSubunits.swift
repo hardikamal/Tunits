@@ -41,17 +41,35 @@ extension TimeUnit {
     
     - returns: The newly created array of dates.
     */
-    private func timeUnits(timeUnit:NSCalendarUnit, fromDate:NSDate, toDate:NSDate) -> [NSDate] {
+    public func timeUnits(timeUnit:NSCalendarUnit, fromDate:NSDate, toDate:NSDate) -> [NSDate] {
         var currentDate = fromDate
         var timeUnits : [NSDate] = []
         
-        while currentDate.compare(toDate) == .OrderedAscending {
+        let (delta, comparison) = (fromDate.compare(toDate) == .OrderedAscending)
+            ? (1, NSComparisonResult.OrderedAscending)
+            : (-1, NSComparisonResult.OrderedDescending)
+        
+        repeat {
             timeUnits.append(currentDate.copy() as! NSDate)
             
-            currentDate = self.calendar.dateByAddingUnit(timeUnit, value: 1, toDate: currentDate, options: [])!
-        }
+            currentDate = self.calendar.dateByAddingUnit(timeUnit, value: delta, toDate: currentDate, options: [])!
+        } while currentDate.compare(toDate) == comparison
         
         return timeUnits
+    }
+    
+    /**
+    Creates an array of all dates between the 'from' and 'to' dates with the 
+    given offset.
+    
+    - parameter timeUnit: The unit used to iterate through the dates.
+    - parameter fromDate: The date from which to begin iteration.
+    - parameter toDate:   The date at which to finish iteration.
+    
+    - returns: The newly created array of dates.
+    */
+    static public func timeUnits(timeUnit:NSCalendarUnit, fromDate:NSDate, toDate:NSDate) -> [NSDate] {
+        return sharedInstance.timeUnits(timeUnit, fromDate: fromDate, toDate: toDate)
     }
     
     /**

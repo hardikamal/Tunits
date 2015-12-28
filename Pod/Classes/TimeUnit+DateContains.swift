@@ -41,11 +41,30 @@ extension TimeUnit {
     - returns: true if the date falls on or within the given start and end date,
     false otherwise
     */
-    private func dateIsBetween(date:NSDate, startDate:NSDate, endDate:NSDate) -> Bool {
-        let beforeStartDate = startDate.compare(date) == .OrderedDescending
-        let afterEndDate = endDate.compare(date) == .OrderedAscending
+    public func dateIsBetween(date:NSDate, startDate:NSDate, endDate:NSDate) -> Bool {
+        let (earlyDate, laterDate) = startDate.compare(endDate) == .OrderedAscending
+            ? (startDate, endDate)
+            : (endDate, startDate)
         
-        return !beforeStartDate && !afterEndDate
+        let beforeEarlyDate = earlyDate.compare(date) == .OrderedDescending
+        let afterLaterDate = laterDate.compare(date) == .OrderedAscending
+        
+        return !beforeEarlyDate && !afterLaterDate
+    }
+    
+    /**
+     Returns true if the given date falls on or before the start date and on
+     or before the end date and false otherwise.
+     
+     - parameter date:      The date to be tested
+     - parameter startDate: The beginning of the time range
+     - parameter endDate:   The end of the time range
+     
+     - returns: true if the date falls on or within the given start and end date,
+     false otherwise
+     */
+    static public func dateIsBetween(date:NSDate, startDate:NSDate, endDate:NSDate) -> Bool {
+        return sharedInstance.dateIsBetween(date, startDate: startDate, endDate: endDate)
     }
     
     /**

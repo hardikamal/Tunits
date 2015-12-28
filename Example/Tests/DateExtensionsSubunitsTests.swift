@@ -37,9 +37,8 @@ class DateExtensionSubunitsTests: XCTestCase {
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
-    // MARK: - Creating Time Units
+    // MARK: - Creating Subunits
     // MARK: minutesOfHours
-    
     func testCalculatingMinutesOfAnHour() {
         let minutesIn7AM_September5_2015 = [
             self.dateFormatter.dateFromString("2015-09-05 7:00:00")!,

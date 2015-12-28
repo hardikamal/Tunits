@@ -39,6 +39,32 @@ class TimeUnitContainsTests: XCTestCase {
     }
     
     // MARK: - Time Unit Contains Date
+    // MARK: Date is between dates
+    func testDeterminingWhetherDateIsBetweenItself() {
+        let _6PM = self.dateFormatter.dateFromString("2015-12-27 18:00:00")!
+        
+        XCTAssertTrue(TimeUnit().dateIsBetween(_6PM, startDate: _6PM, endDate: _6PM))
+        XCTAssertTrue(TimeUnit.dateIsBetween(_6PM, startDate: _6PM, endDate: _6PM))
+    }
+    
+    func testDeterminingWhetherDateIsBetweenAscendingDates() {
+        let _5_30PM = self.dateFormatter.dateFromString("2015-12-27 17:30:00")!
+        let _6PM = self.dateFormatter.dateFromString("2015-12-27 18:00:00")!
+        let _6_30PM = self.dateFormatter.dateFromString("2015-12-27 18:30:00")!
+        
+        XCTAssertTrue(TimeUnit().dateIsBetween(_6PM, startDate: _5_30PM, endDate: _6_30PM))
+        XCTAssertTrue(TimeUnit.dateIsBetween(_6PM, startDate: _5_30PM, endDate: _6_30PM))
+    }
+    
+    func testDeterminingWhetherDateIsBetweenDescendingDates() {
+        let _5_30PM = self.dateFormatter.dateFromString("2015-12-27 17:30:00")!
+        let _6PM = self.dateFormatter.dateFromString("2015-12-27 18:00:00")!
+        let _6_30PM = self.dateFormatter.dateFromString("2015-12-27 18:30:00")!
+        
+        XCTAssertTrue(TimeUnit().dateIsBetween(_6PM, startDate: _6_30PM, endDate: _5_30PM))
+        XCTAssertTrue(TimeUnit.dateIsBetween(_6PM, startDate: _6_30PM, endDate: _5_30PM))
+    }
+    
     // MARK: hourContainsDate
     func testDeterminingWhetherBeginningOfHourFallsInHour() {
         let september13_11AM_2015 = self.dateFormatter.dateFromString("2015-09-13 11:00:00")!
