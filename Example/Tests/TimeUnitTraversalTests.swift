@@ -39,6 +39,23 @@ class TimeUnitTraversalTests: XCTestCase {
     }
     
     // MARK: - Calculating Units Before and After Date
+    // MARK: Minutes Before And After
+    func testCalculatingPreviousMinute() {
+        let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
+        let _9_59PM = self.dateFormatter.dateFromString("2015-12-27 21:59:00")!
+        
+        XCTAssertEqual(_9_59PM, TimeUnit().minuteBefore(_10PM))
+        XCTAssertEqual(_9_59PM, TimeUnit.minuteBefore(_10PM))
+    }
+    
+    func testCalculatingNextMinute() {
+        let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
+        let _10_01PM = self.dateFormatter.dateFromString("2015-12-27 22:01:00")!
+        
+        XCTAssertEqual(_10_01PM, TimeUnit().minuteAfter(_10PM))
+        XCTAssertEqual(_10_01PM, TimeUnit.minuteAfter(_10PM))
+    }
+    
     // MARK: Calculating Hour Before And After
     func testCalculatingPreviousHour() {
         let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
