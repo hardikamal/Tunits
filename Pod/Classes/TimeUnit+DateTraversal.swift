@@ -30,8 +30,36 @@ import Foundation
 
 extension TimeUnit {
 // MARK: - Previous and Next Time Units
+    
+// MARK: minutes
     /**
-    Creates a new date at the first second of the hour prior to the given date.
+    Creates a new date by subtracting the given number of minutes from the given
+    date and truncating to the first second of the date's minute.
+    
+    - parameter date:  The date from which to subtract minutes.
+    - parameter delta: The number of minutes to be subtracted.
+    
+    - returns: The newly created date.
+    */
+    public func minutesBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return self.minutesAfter(date, delta: -delta)
+    }
+    
+    /**
+    Creates a new date by subtracting the given number of minutes from the given
+    date and truncating to the first second of the date's minute.
+    
+    - parameter date:  The date from which to subtract minutes.
+    - parameter delta: The number of minutes to be subtracted.
+    
+    - returns: The newly created date.
+    */
+    static public func minutesBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.minutesBefore(date, delta: delta)
+    }
+    
+    /**
+    Creates a new date at the first second of the minute prior to the given date.
     
     - parameter date: The date for which to find the previous minute.
     
@@ -43,7 +71,7 @@ extension TimeUnit {
     }
     
     /**
-     Creates a new date at the first second of the hour prior to the given date.
+     Creates a new date at the first second of the minute prior to the given date.
      
      - parameter date: The date for which to find the previous minute.
      
@@ -51,6 +79,33 @@ extension TimeUnit {
      */
     static public func minuteBefore(date:NSDate) -> NSDate {
         return sharedInstance.minuteBefore(date)
+    }
+    
+    /**
+    Creates a new date by adding the given number of minutes from the given date 
+    and truncating to the first second of the date's minute.
+    
+    - parameter date:  The date from which to subtract minutes.
+    - parameter delta: The number of minutes to be subtracted.
+    
+    - returns: The newly created date.
+    */
+    public func minutesAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        let minute = self.calendar.dateByAddingUnit(.Minute, value: delta, toDate: date, options: [])!
+        return self.beginningOfMinute(minute)
+    }
+    
+    /**
+    Creates a new date by adding the given number of minutes from the given date 
+    and truncating to the first second of the date's minute.
+    
+    - parameter date:  The date from which to subtract minutes.
+    - parameter delta: The number of minutes to be subtracted.
+    
+    - returns: The newly created date.
+    */
+    static public func minutesAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.minutesAfter(date, delta: delta)
     }
     
     /**
@@ -76,6 +131,7 @@ extension TimeUnit {
         return sharedInstance.minuteAfter(date)
     }
     
+// MARK: hours
     /**
      Creates a new date at the first second of the hour prior to the given date.
      
@@ -122,6 +178,7 @@ extension TimeUnit {
         return sharedInstance.hourAfter(date)
     }
     
+// MARK: days
     /**
      Creates a new date at the first second of the day prior to the given date.
      
@@ -168,6 +225,7 @@ extension TimeUnit {
         return sharedInstance.dayAfter(date)
     }
     
+// MARK: weeks
     /**
      Creates a new date at the first second of the week prior to the given date.
      
@@ -214,6 +272,7 @@ extension TimeUnit {
         return sharedInstance.weekAfter(date)
     }
     
+// MARK: months
     /**
      Creates a new date at the first second of the month prior to the given date.
      
@@ -260,6 +319,7 @@ extension TimeUnit {
         return sharedInstance.monthAfter(date)
     }
     
+// MARK: years
     /**
      Creates a new date at the first second of the year prior to the given date.
      

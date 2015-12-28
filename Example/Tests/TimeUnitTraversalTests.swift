@@ -56,6 +56,38 @@ class TimeUnitTraversalTests: XCTestCase {
         XCTAssertEqual(_10_01PM, TimeUnit.minuteAfter(_10PM))
     }
     
+    func testCalculatingMinutesBeforeHasDefaultDeltaOf1() {
+        let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
+        let _9_59PM = self.dateFormatter.dateFromString("2015-12-27 21:59:00")!
+        
+        XCTAssertEqual(_9_59PM, TimeUnit().minutesBefore(_10PM))
+        XCTAssertEqual(_9_59PM, TimeUnit.minutesBefore(_10PM))
+    }
+    
+    func testCalculatingMinutesAfterHasDefaultDeltaOf1() {
+        let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
+        let _10_01PM = self.dateFormatter.dateFromString("2015-12-27 22:01:00")!
+        
+        XCTAssertEqual(_10_01PM, TimeUnit().minutesAfter(_10PM))
+        XCTAssertEqual(_10_01PM, TimeUnit.minutesAfter(_10PM))
+    }
+    
+    func testCalculatingMinutesBefore() {
+        let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
+        let _9_45PM = self.dateFormatter.dateFromString("2015-12-27 21:45:00")!
+        
+        XCTAssertEqual(_9_45PM, TimeUnit().minutesBefore(_10PM, delta: 15))
+        XCTAssertEqual(_9_45PM, TimeUnit.minutesBefore(_10PM, delta: 15))
+    }
+    
+    func testCaluclatingMinutesAfter() {
+        let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
+        let _10_15PM = self.dateFormatter.dateFromString("2015-12-27 22:15:00")!
+        
+        XCTAssertEqual(_10_15PM, TimeUnit().minutesAfter(_10PM, delta: 15))
+        XCTAssertEqual(_10_15PM, TimeUnit.minutesAfter(_10PM, delta: 15))
+    }
+    
     // MARK: Calculating Hour Before And After
     func testCalculatingPreviousHour() {
         let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
