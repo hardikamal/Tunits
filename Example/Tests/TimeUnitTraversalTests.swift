@@ -38,8 +38,9 @@ class TimeUnitTraversalTests: XCTestCase {
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
-    // MARK: - Calculating Units Before and After Date
-    // MARK: Minutes Before And After
+    
+// MARK: - Calculating Units Before and After Date
+// MARK: Minutes Before And After
     func testCalculatingPreviousMinute() {
         let _10PM = self.dateFormatter.dateFromString("2015-12-27 22:00:00")!
         let _9_59PM = self.dateFormatter.dateFromString("2015-12-27 21:59:00")!
@@ -88,7 +89,8 @@ class TimeUnitTraversalTests: XCTestCase {
         XCTAssertEqual(_10_15PM, TimeUnit.minutesAfter(_10PM, delta: 15))
     }
     
-    // MARK: Calculating Hour Before And After
+    
+// MARK: Calculating Hour Before And After
     func testCalculatingPreviousHour() {
         let september29_11_2015 = self.dateFormatter.dateFromString("2015-09-29 11:00:00")!
         let september29_10_2015 = self.dateFormatter.dateFromString("2015-09-29 10:00:00")!
@@ -105,7 +107,40 @@ class TimeUnitTraversalTests: XCTestCase {
         XCTAssertEqual(TimeUnit.hourAfter(september29_11_2015), september29_12_2015)
     }
     
-    // MARK: Calculating Day Before and After
+    func testCalculatingHoursBeforeHasDefaultDeltaOf1() {
+        let _11AM = self.dateFormatter.dateFromString("2015-12-28 11:00:00")!
+        let _10AM = self.dateFormatter.dateFromString("2015-12-28 10:00:00")!
+        
+        XCTAssertEqual(_10AM, TimeUnit().hoursBefore(_11AM))
+        XCTAssertEqual(_10AM, TimeUnit.hoursBefore(_11AM))
+    }
+    
+    func testCalculatingHoursAfterHasDefaultDeltaOf1() {
+        let _11AM = self.dateFormatter.dateFromString("2015-12-28 11:00:00")!
+        let _12AM = self.dateFormatter.dateFromString("2015-12-28 12:00:00")!
+        
+        XCTAssertEqual(_12AM, TimeUnit().hoursAfter(_11AM))
+        XCTAssertEqual(_12AM, TimeUnit.hoursAfter(_11AM))
+    }
+    
+    func testCalculatingHoursBefore() {
+        let _11AM = self.dateFormatter.dateFromString("2015-12-28 11:00:00")!
+        let _9AM = self.dateFormatter.dateFromString("2015-12-28 09:00:00")!
+        
+        XCTAssertEqual(_9AM, TimeUnit().hoursBefore(_11AM, delta: 2))
+        XCTAssertEqual(_9AM, TimeUnit.hoursBefore(_11AM, delta: 2))
+    }
+    
+    func testCalculatingHoursAfter() {
+        let _11AM = self.dateFormatter.dateFromString("2015-12-28 11:00:00")!
+        let _1PM = self.dateFormatter.dateFromString("2015-12-28 13:00:00")!
+        
+        XCTAssertEqual(_1PM, TimeUnit().hoursAfter(_11AM, delta:2))
+        XCTAssertEqual(_1PM, TimeUnit.hoursAfter(_11AM, delta:2))
+    }
+    
+    
+// MARK: Calculating Day Before and After
     func testCalculatingNextDay() {
         let september29_2015 = self.dateFormatter.dateFromString("2015-09-29 00:00:00")!
         let september30_2015 = self.dateFormatter.dateFromString("2015-09-30 00:00:00")!
@@ -122,11 +157,44 @@ class TimeUnitTraversalTests: XCTestCase {
         XCTAssertEqual(TimeUnit.dayBefore(september29_2015), september28_2015)
     }
     
-    // MARK: Calculating Week Before and After
+    func testDaysBeforeHasDefaultDeltaOf1() {
+        let december28_2015 = self.dateFormatter.dateFromString("2015-12-28 00:00:00")!
+        let december27_2015 = self.dateFormatter.dateFromString("2015-12-27 00:00:00")!
+        
+        XCTAssertEqual(december27_2015, TimeUnit().daysBefore(december28_2015))
+        XCTAssertEqual(december27_2015, TimeUnit.daysBefore(december28_2015))
+    }
+    
+    func testDaysAfterHasDefaultDeltaOf1() {
+        let december28_2015 = self.dateFormatter.dateFromString("2015-12-28 00:00:00")!
+        let december29_2015 = self.dateFormatter.dateFromString("2015-12-29 00:00:00")!
+        
+        XCTAssertEqual(december29_2015, TimeUnit().daysAfter(december28_2015))
+        XCTAssertEqual(december29_2015, TimeUnit.daysAfter(december28_2015))
+    }
+    
+    func testCalculatingDaysBefore() {
+        let december28_2015 = self.dateFormatter.dateFromString("2015-12-28 00:00:00")!
+        let december26_2015 = self.dateFormatter.dateFromString("2015-12-26 00:00:00")!
+        
+        XCTAssertEqual(december26_2015, TimeUnit().daysBefore(december28_2015, delta: 2))
+        XCTAssertEqual(december26_2015, TimeUnit.daysBefore(december28_2015, delta: 2))
+    }
+    
+    func testCalculatingDaysAfter() {
+        let december28_2015 = self.dateFormatter.dateFromString("2015-12-28 00:00:00")!
+        let december30_2015 = self.dateFormatter.dateFromString("2015-12-30 00:00:00")!
+        
+        XCTAssertEqual(december30_2015, TimeUnit().daysAfter(december28_2015, delta: 2))
+        XCTAssertEqual(december30_2015, TimeUnit.daysAfter(december28_2015, delta: 2))
+    }
+    
+    
+// MARK: Calculating Week Before and After
     func testCalculatingNextWeekWithSundayAsFirstWeekday() {
         let september27_2015 = self.dateFormatter.dateFromString("2015-09-27 00:00:00")!
         let october4_2015 = self.dateFormatter.dateFromString("2015-10-04 00:00:00")!
-        
+    
         XCTAssertEqual(self.utilities.timeUnitWithCalendarWithSundayAsFirstWeekday().weekAfter(september27_2015), october4_2015)
         XCTAssertEqual(TimeUnit.setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday()).weekAfter(september27_2015), october4_2015)
     }
@@ -151,11 +219,59 @@ class TimeUnitTraversalTests: XCTestCase {
         let september28_2015 = self.dateFormatter.dateFromString("2015-09-28 00:00:00")!
         let september21_2015 = self.dateFormatter.dateFromString("2015-09-21 00:00:00")!
         
-        XCTAssertEqual(self.utilities.timeUnitWithCalendarWithMondayAsFirstWeekday().weekBefore(september28_2015), september21_2015)
-        XCTAssertEqual(TimeUnit.setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday()).weekBefore(september28_2015), september21_2015)
+        XCTAssertEqual(self.utilities.timeUnitWithCalendarWithMondayAsFirstWeekday()
+            .weekBefore(september28_2015), september21_2015)
+        XCTAssertEqual(TimeUnit
+            .setStaticCalendar(self.utilities.calendarWithMondayAsFirstWeekday())
+            .weekBefore(september28_2015), september21_2015)
     }
     
-    // MARK: Calculating Month Before and After
+    func testWeeksBeforeHasDefaultDeltaOf1() {
+        let december20_2015 = self.dateFormatter.dateFromString("2015-12-20 00:00:00")!
+        let december13_2015 = self.dateFormatter.dateFromString("2015-12-13 00:00:00")!
+        
+        let tunit = self.utilities.timeUnitWithCalendarWithSundayAsFirstWeekday()
+        XCTAssertEqual(december13_2015, tunit.weeksBefore(december20_2015))
+        XCTAssertEqual(december13_2015, TimeUnit
+            .setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+            .weeksBefore(december20_2015))
+    }
+    
+    func testWeeksAfterHasDefaultDeltaOf1() {
+        let december20_2015 = self.dateFormatter.dateFromString("2015-12-20 00:00:00")!
+        let december27_2015 = self.dateFormatter.dateFromString("2015-12-27 00:00:00")!
+        
+        let tunit = self.utilities.timeUnitWithCalendarWithSundayAsFirstWeekday()
+        XCTAssertEqual(december27_2015, tunit.weeksAfter(december20_2015))
+        XCTAssertEqual(december27_2015, TimeUnit
+            .setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+            .weeksAfter(december20_2015))
+    }
+    
+    func testCalculatingWeeksBefore() {
+        let december13_2015 = self.dateFormatter.dateFromString("2015-12-13 00:00:00")!
+        let december27_2015 = self.dateFormatter.dateFromString("2015-12-27 00:00:00")!
+        
+        let tunit = self.utilities.timeUnitWithCalendarWithSundayAsFirstWeekday()
+        XCTAssertEqual(december13_2015, tunit.weeksBefore(december27_2015, delta: 2))
+        XCTAssertEqual(december13_2015, TimeUnit
+            .setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+            .weeksBefore(december27_2015, delta: 2))
+    }
+    
+    func testCalculatingWeeksAfter() {
+        let december13_2015 = self.dateFormatter.dateFromString("2015-12-13 00:00:00")!
+        let december27_2015 = self.dateFormatter.dateFromString("2015-12-27 00:00:00")!
+        
+        let tunit = self.utilities.timeUnitWithCalendarWithSundayAsFirstWeekday()
+        XCTAssertEqual(december27_2015, tunit.weeksAfter(december13_2015, delta:2))
+        XCTAssertEqual(december27_2015, TimeUnit
+            .setStaticCalendar(self.utilities.calendarWithSundayAsFirstWeekday())
+            .weeksAfter(december13_2015, delta: 2))
+    }
+    
+    
+// MARK: Calculating Month Before and After
     func testCalculatingNextMonth() {
         let september1_2015 = self.dateFormatter.dateFromString("2015-09-01 00:00:00")!
         let october1_2015 = self.dateFormatter.dateFromString("2015-10-01 00:00:00")!
@@ -172,7 +288,40 @@ class TimeUnitTraversalTests: XCTestCase {
         XCTAssertEqual(TimeUnit.monthBefore(september1_2015), august1_2015)
     }
     
-    // MARK: Calculating Year Before and After
+    func testMonthsBeforeHasDefaultDeltaOf1() {
+        let december1_2015 = self.dateFormatter.dateFromString("2015-12-01 00:00:00")!
+        let november1_2015 = self.dateFormatter.dateFromString("2015-11-01 00:00:00")!
+        
+        XCTAssertEqual(november1_2015, TimeUnit().monthsBefore(december1_2015))
+        XCTAssertEqual(november1_2015, TimeUnit.monthsBefore(december1_2015))
+    }
+    
+    func testMonthsAfterHasDefaultDeltaOf1() {
+        let december1_2015 = self.dateFormatter.dateFromString("2015-12-01 00:00:00")!
+        let november1_2015 = self.dateFormatter.dateFromString("2015-11-01 00:00:00")!
+        
+        XCTAssertEqual(december1_2015, TimeUnit().monthsAfter(november1_2015))
+        XCTAssertEqual(december1_2015, TimeUnit.monthsAfter(november1_2015))
+    }
+    
+    func testCalculatingMonthsBefore() {
+        let december1_2015 = self.dateFormatter.dateFromString("2015-12-01 00:00:00")!
+        let october1_2015 = self.dateFormatter.dateFromString("2015-10-01 00:00:00")!
+        
+        XCTAssertEqual(october1_2015, TimeUnit().monthsBefore(december1_2015, delta: 2))
+        XCTAssertEqual(october1_2015, TimeUnit.monthsBefore(december1_2015, delta: 2))
+    }
+    
+    func testCalculatingMonthsAfter() {
+        let december1_2015 = self.dateFormatter.dateFromString("2015-12-01 00:00:00")!
+        let october1_2015 = self.dateFormatter.dateFromString("2015-10-01 00:00:00")!
+        
+        XCTAssertEqual(december1_2015, TimeUnit().monthsAfter(october1_2015, delta: 2))
+        XCTAssertEqual(december1_2015, TimeUnit.monthsAfter(october1_2015, delta: 2))
+    }
+    
+    
+// MARK: Calculating Year Before and After
     func testCalculatingNextYear() {
         let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
         let _2016 = self.dateFormatter.dateFromString("2016-01-01 00:00:00")!
@@ -187,5 +336,37 @@ class TimeUnitTraversalTests: XCTestCase {
         
         XCTAssertEqual(TimeUnit().yearBefore(_2015), _2014)
         XCTAssertEqual(TimeUnit.yearBefore(_2015), _2014)
+    }
+    
+    func testYearsBeforeHasDefaultDeltaOf1() {
+        let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
+        let _2014 = self.dateFormatter.dateFromString("2014-01-01 00:00:00")!
+        
+        XCTAssertEqual(_2014, TimeUnit().yearsBefore(_2015))
+        XCTAssertEqual(_2014, TimeUnit.yearsBefore(_2015))
+    }
+    
+    func testYearsAfterHasDefaultDeltaOf1() {
+        let _2015 = self.dateFormatter.dateFromString("2015-01-01 00:00:00")!
+        let _2016 = self.dateFormatter.dateFromString("2016-01-01 00:00:00")!
+        
+        XCTAssertEqual(_2016, TimeUnit().yearsAfter(_2015))
+        XCTAssertEqual(_2016, TimeUnit.yearsAfter(_2015))
+    }
+    
+    func testCalculatingYearsBefore() {
+        let _2014 = self.dateFormatter.dateFromString("2014-01-01 00:00:00")!
+        let _2016 = self.dateFormatter.dateFromString("2016-01-01 00:00:00")!
+        
+        XCTAssertEqual(_2014, TimeUnit().yearsBefore(_2016, delta:2))
+        XCTAssertEqual(_2014, TimeUnit.yearsBefore(_2016, delta:2))
+    }
+    
+    func testCalculatingYearsAfter() {
+        let _2014 = self.dateFormatter.dateFromString("2014-01-01 00:00:00")!
+        let _2016 = self.dateFormatter.dateFromString("2016-01-01 00:00:00")!
+        
+        XCTAssertEqual(_2016, TimeUnit().yearsAfter(_2014, delta: 2))
+        XCTAssertEqual(_2016, TimeUnit.yearsAfter(_2014, delta: 2))
     }
 }
