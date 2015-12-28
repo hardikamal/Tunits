@@ -32,6 +32,11 @@ extension TimeUnit {
 // MARK: - Previous and Next Time Units
     
 // MARK: minutes
+    
+    /**************
+     *** PLURAL ***
+     **************/
+    
     /**
     Creates a new date by subtracting the given number of minutes from the given
     date and truncating to the first second of the date's minute.
@@ -59,26 +64,16 @@ extension TimeUnit {
     }
     
     /**
-    Creates a new date at the first second of the minute prior to the given date.
+    Creates a new date by adding the given number of minutes from the given date 
+    and truncating to the first second of the date's minute.
     
-    - parameter date: The date for which to find the previous minute.
+    - parameter date:  The date from which to subtract minutes.
+    - parameter delta: The number of minutes to be subtracted.
     
     - returns: The newly created date.
     */
-    public func minuteBefore(date:NSDate) -> NSDate {
-        let previousMinute = self.calendar.dateByAddingUnit(.Minute, value: -1, toDate: date, options: [])!
-        return self.beginningOfMinute(previousMinute)
-    }
-    
-    /**
-     Creates a new date at the first second of the minute prior to the given date.
-     
-     - parameter date: The date for which to find the previous minute.
-     
-     - returns: The newly created date.
-     */
-    static public func minuteBefore(date:NSDate) -> NSDate {
-        return sharedInstance.minuteBefore(date)
+    static public func minutesAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.minutesAfter(date, delta: delta)
     }
     
     /**
@@ -95,18 +90,32 @@ extension TimeUnit {
         return self.beginningOfMinute(minute)
     }
     
-    /**
-    Creates a new date by adding the given number of minutes from the given date 
-    and truncating to the first second of the date's minute.
+    /**************
+     *** SINGLE ***
+     **************/
     
-    - parameter date:  The date from which to subtract minutes.
-    - parameter delta: The number of minutes to be subtracted.
+    /**
+    Creates a new date at the first second of the minute prior to the given date.
+    
+    - parameter date: The date for which to find the previous minute.
     
     - returns: The newly created date.
     */
-    static public func minutesAfter(date:NSDate, delta:Int = 1) -> NSDate {
-        return sharedInstance.minutesAfter(date, delta: delta)
+    public func minuteBefore(date:NSDate) -> NSDate {
+        return self.minutesBefore(date)
     }
+    
+    /**
+     Creates a new date at the first second of the minute prior to the given date.
+     
+     - parameter date: The date for which to find the previous minute.
+     
+     - returns: The newly created date.
+     */
+    static public func minuteBefore(date:NSDate) -> NSDate {
+        return sharedInstance.minuteBefore(date)
+    }
+
     
     /**
      Creates a new date at the first second of the minute following the given date.
@@ -116,8 +125,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func minuteAfter(date:NSDate) -> NSDate {
-        let nextMinute = self.calendar.dateByAddingUnit(.Minute, value: 1, toDate: date, options: [])!
-        return self.beginningOfMinute(nextMinute)
+        return self.minutesAfter(date)
     }
     
     /**
@@ -132,6 +140,68 @@ extension TimeUnit {
     }
     
 // MARK: hours
+    
+    /**************
+    *** PLURAL ***
+    **************/
+    
+    /**
+    Creates a new date by adding the given number of hours to the given date and
+    truncating to the first second of the date's hour.
+    
+    - parameter date:  The date to which to add hours.
+    - parameter delta: The number of hours to be added
+    
+    - returns: The newly created date.
+    */
+    public func hoursAfter(date:NSDate, delta: Int = 1) -> NSDate {
+        let hour = self.calendar.dateByAddingUnit(.Hour, value: delta, toDate: date, options: [])!
+        return self.beginningOfHour(hour)
+    }
+    
+    /**
+    Creates a new date by adding the given number of hours to the given date and
+    truncating to the first second of the date's hour.
+    
+    - parameter date:  The date to which to add hours.
+    - parameter delta: The number of hours to be added
+    
+    - returns: The newly created date.
+    */
+    static public func hoursAfter(date:NSDate, delta: Int = 1) -> NSDate {
+        return sharedInstance.hoursAfter(date, delta: delta)
+    }
+    
+    /**
+    Creates a new date by subtracting the given number of hours from the given
+    date and truncating to the first second of the date's hour.
+    
+    - parameter date:  The date from which to subtract hours.
+    - parameter delta: The number of hours to be subtracted
+    
+    - returns: The newly created date.
+    */
+    public func hoursBefore(date:NSDate, delta: Int = 1) -> NSDate {
+        return self.hoursAfter(date, delta: -delta)
+    }
+    
+    /**
+    Creates a new date by subtracting the given number of hours from the given
+    date and truncating to the first second of the date's hour.
+    
+    - parameter date:  The date from which to subtract hours.
+    - parameter delta: The number of hours to be subtracted
+    
+    - returns: The newly created date.
+    */
+    static public func hoursBefore(date:NSDate, delta: Int = 1) -> NSDate {
+        return sharedInstance.hoursBefore(date, delta: delta)
+    }
+    
+    /**************
+    *** SINGLE ***
+    **************/
+    
     /**
      Creates a new date at the first second of the hour prior to the given date.
      
@@ -140,8 +210,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func hourBefore(date:NSDate) -> NSDate {
-        let previousHour = self.calendar.dateByAddingUnit(.Hour, value: -1, toDate: date, options: [])!
-        return self.beginningOfHour(previousHour)
+        return self.hoursBefore(date)
     }
     
     /**
@@ -163,8 +232,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func hourAfter(date:NSDate) -> NSDate {
-        let nextHour = self.calendar.dateByAddingUnit(.Hour, value: 1, toDate: date, options: [])!
-        return self.beginningOfHour(nextHour)
+        return self.hoursAfter(date)
     }
     
     /**
@@ -179,6 +247,68 @@ extension TimeUnit {
     }
     
 // MARK: days
+    /**************
+    *** PLURAL ***
+    **************/
+   
+    /**
+    Creates a new date by adding the given number of days to the given
+    date and truncating to the first second of the date's day.
+    
+    - parameter date:  The date to which to add days.
+    - parameter delta: The number of days to be added
+    
+    - returns: The newly created date.
+    */
+    public func daysAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        let day = self.calendar.dateByAddingUnit(.Day, value: delta, toDate: date, options: [])!
+        return self.beginningOfDay(day)
+    }
+    
+    /**
+    Creates a new date by adding the given number of days to the given
+    date and truncating to the first second of the date's day.
+    
+    - parameter date:  The date to which to add days.
+    - parameter delta: The number of days to be added
+    
+    - returns: The newly created date.
+    */
+    static public func daysAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.daysAfter(date, delta:delta)
+    }
+    
+    /**
+    Creates a new date by subtracting the given number of days from the given
+    date and truncating to the first second of the date's day.
+    
+    - parameter date:  The date from which to subtract days.
+    - parameter delta: The number of days to be subtracted
+    
+    - returns: The newly created date.
+    */
+    public func daysBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return self.daysAfter(date, delta:-delta)
+    }
+    
+    /**
+    Creates a new date by subtracting the given number of days from the given
+    date and truncating to the first second of the date's day.
+    
+    - parameter date:  The date from which to subtract days.
+    - parameter delta: The number of days to be subtracted
+    
+    - returns: The newly created date.
+    */
+    static public func daysBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.daysBefore(date, delta:delta)
+    }
+    
+    
+    /**************
+    *** SINGLE ***
+    **************/
+     
     /**
      Creates a new date at the first second of the day prior to the given date.
      
@@ -187,8 +317,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func dayBefore(date:NSDate) -> NSDate {
-        let previousDay = self.calendar.dateByAddingUnit(.Day, value: -1, toDate: date, options: [])!
-        return self.beginningOfDay(previousDay)
+        return self.daysBefore(date)
     }
     
     /**
@@ -210,8 +339,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func dayAfter(date:NSDate) -> NSDate {
-        let nextDay = self.calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: [])!
-        return self.beginningOfDay(nextDay)
+        return self.daysAfter(date)
     }
     
     /**
@@ -226,6 +354,68 @@ extension TimeUnit {
     }
     
 // MARK: weeks
+    
+    /**************
+     *** PLURAL ***
+     **************/
+    
+    /**
+     Creates a new date by adding the given number of weeks to the given
+     date and truncating to the first second of the date's week.
+    
+     - parameter date:  The date to which to add weeks.
+     - parameter delta: The number of weeks to be added
+    
+     - returns: The newly created date.
+    */
+    public func weeksAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        let week = self.calendar.dateByAddingUnit(.WeekOfYear, value: delta, toDate: date, options: [])!
+        return self.beginningOfWeek(week)
+    }
+    
+    /**
+     Creates a new date by adding the given number of weeks to the given
+     date and truncating to the first second of the date's week.
+    
+     - parameter date:  The date to which to add weeks.
+     - parameter delta: The number of weeks to be added
+    
+     - returns: The newly created date.
+    */
+    static public func weeksAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.weeksAfter(date, delta:delta)
+    }
+    
+    /**
+     Creates a new date by subtracting the given number of weeks from the given
+     date and truncating to the first second of the date's week.
+     
+     - parameter date:  The date from which to subtract weeks.
+     - parameter delta: The number of weeks to be subtracted
+     
+     - returns: The newly created date.
+     */
+    public func weeksBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return self.weeksAfter(date, delta:-delta)
+    }
+    
+    /**
+     Creates a new date by subtracting the given number of weeks from the given
+     date and truncating to the first second of the date's week.
+     
+     - parameter date:  The date from which to subtract weeks.
+     - parameter delta: The number of weeks to be subtracted
+     
+     - returns: The newly created date.
+     */
+    static public func weeksBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.weeksBefore(date, delta:delta)
+    }
+    
+    /**************
+     *** SINGLE ***
+     **************/
+    
     /**
      Creates a new date at the first second of the week prior to the given date.
      
@@ -234,8 +424,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func weekBefore(date:NSDate) -> NSDate {
-        let previousWeek = self.calendar.dateByAddingUnit(.WeekOfYear, value: -1, toDate: date, options: [])!
-        return self.beginningOfWeek(previousWeek)
+        return self.weeksBefore(date)
     }
     
     /**
@@ -257,8 +446,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func weekAfter(date:NSDate) -> NSDate {
-        let nextWeek = self.calendar.dateByAddingUnit(.WeekOfYear, value: 1, toDate: date, options: [])!
-        return self.beginningOfWeek(nextWeek)
+        return self.weeksAfter(date)
     }
     
     /**
@@ -273,6 +461,67 @@ extension TimeUnit {
     }
     
 // MARK: months
+    
+    /**************
+     *** PLURAL ***
+     **************/
+    
+    /**
+    Creates a new date by adding the given number of months to the given
+    date and truncating to the first second of the date's month.
+    
+    - parameter date:  The date to which to add months.
+    - parameter delta: The number of months to be added
+    
+    - returns: The newly created date.
+    */
+    public func monthsAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        let month = self.calendar.dateByAddingUnit(.Month, value: delta, toDate: date, options: [])!
+        return self.beginningOfMonth(month)
+    }
+    
+    /**
+     Creates a new date by adding the given number of months to the given
+     date and truncating to the first second of the date's month.
+     
+     - parameter date:  The date to which to add months.
+     - parameter delta: The number of months to be added
+     
+     - returns: The newly created date.
+     */
+    static public func monthsAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.monthsAfter(date, delta:delta)
+    }
+    
+    /**
+     Creates a new date by subtracting the given number of months from the given
+     date and truncating to the first second of the date's months.
+     
+     - parameter date:  The date from which to subtract months.
+     - parameter delta: The number of months to be subtracted
+     
+     - returns: The newly created date.
+     */
+    public func monthsBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return self.monthsAfter(date, delta:-delta)
+    }
+    
+    /**
+     Creates a new date by subtracting the given number of months from the given
+     date and truncating to the first second of the date's month.
+     
+     - parameter date:  The date from which to add months.
+     - parameter delta: The number of months to be subtracted.
+     
+     - returns: The newly created date.
+     */
+    static public func monthsBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.monthsBefore(date, delta:delta)
+    }
+    
+    /**************
+     *** SINGLE ***
+     **************/
     /**
      Creates a new date at the first second of the month prior to the given date.
      
@@ -320,6 +569,68 @@ extension TimeUnit {
     }
     
 // MARK: years
+    
+    /**************
+     *** SINGLE ***
+     **************/
+    
+    /**
+    Creates a new date by adding the given number of years to the given
+    date and truncating to the first second of the date's year.
+    
+    - parameter date:  The date to which to add years.
+    - parameter delta: The number of years to be added.
+    
+    - returns: The newly created date.
+    */
+    public func yearsAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        let year = self.calendar.dateByAddingUnit(.Year, value: delta, toDate: date, options: [])!
+        return self.beginningOfYear(year)
+    }
+    
+    /**
+     Creates a new date by adding the given number of years to the given
+     date and truncating to the first second of the date's year.
+     
+     - parameter date:  The date to which to add year.
+     - parameter delta: The number of years to be added.
+     
+     - returns: The newly created date.
+     */
+    static public func yearsAfter(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.yearsAfter(date, delta:delta)
+    }
+    
+    /**
+     Creates a new date by subtracting the given number of years from the given
+     date and truncating to the first second of the date's year.
+     
+     - parameter date:  The date from which to add years.
+     - parameter delta: The number of years to be subtracted.
+     
+     - returns: The newly created date.
+     */
+    public func yearsBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return self.yearsAfter(date, delta:-delta)
+    }
+    
+    /**
+     Creates a new date by subtracting the given number of years from the given
+     date and truncating to the first second of the date's year.
+     
+     - parameter date:  The date from which to add year.
+     - parameter delta: The number of years to be subtracted.
+     
+     - returns: The newly created date.
+     */
+    static public func yearsBefore(date:NSDate, delta:Int = 1) -> NSDate {
+        return sharedInstance.yearsBefore(date, delta:delta)
+    }
+    
+    
+    /**************
+     *** SINGLE ***
+     **************/
     /**
      Creates a new date at the first second of the year prior to the given date.
      
@@ -328,8 +639,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func yearBefore(date:NSDate) -> NSDate {
-        let previousYear = self.calendar.dateByAddingUnit(.Year, value: -1, toDate: date, options: [])!
-        return self.beginningOfYear(previousYear)
+        return self.yearsBefore(date)
     }
     
     /**
@@ -351,8 +661,7 @@ extension TimeUnit {
      - returns: The newly created date.
      */
     public func yearAfter(date:NSDate) -> NSDate {
-        let nextYear = self.calendar.dateByAddingUnit(.Year, value: 1, toDate: date, options: [])!
-        return self.beginningOfYear(nextYear)
+        return self.yearsAfter(date)
     }
     
     /**
