@@ -53,6 +53,22 @@ public class TimeUnit : NSObject {
         return sharedInstance
     }
     
+    /**
+     Convenience initializer for injecting a calendar into a new TimeUnit
+     
+     - parameter calendar: The calendar to be used by the TimeUnit
+     
+     - returns: The newly initialized TimeUnit
+     */
+    public init(calendar:NSCalendar) {
+        super.init()
+        self.calendar = calendar
+    }
+    
+    public convenience override init() {
+        self.init(calendar: NSCalendar.autoupdatingCurrentCalendar())
+    }
+    
 // MARK: - Calculate beginning of time unit
     /**
         Creates a new date at the first second of the same minute as the given date.

@@ -47,6 +47,11 @@ class TimeUnitTests: XCTestCase {
         XCTAssertNotNil(TimeUnit.sharedInstance)
     }
     
+    func testCalendarIsSetWithConvenienceInitializer() {
+        let calendar : NSCalendar = self.utilities.calendarWithSundayAsFirstWeekday()
+        XCTAssertEqual(calendar, TimeUnit(calendar:calendar).calendar)
+    }
+    
     func testTimeUnitHasAutoUpdatingCurrentCalendarByDefault() {
         XCTAssertEqual(TimeUnit().calendar, NSCalendar.autoupdatingCurrentCalendar())
     }

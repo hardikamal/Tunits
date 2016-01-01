@@ -31,7 +31,7 @@ import Foundation
 /// Adds TimeUnit functionality to date objects, allowing method chaining.
 extension NSDate {
     
-    // MARK: - Beginning of time unit
+// MARK: - Beginning of time unit
     /**
     Creates a new date at the first second of the same minute as the recevier.
     
@@ -92,7 +92,7 @@ extension NSDate {
         return TimeUnit.beginningOfYear(self)
     }
     
-    // MARK: - End of time unit
+// MARK: - End of time unit
     
     /**
     Creates a new date at the last second of the same minute as the receiver.
@@ -155,7 +155,31 @@ extension NSDate {
     }
     
     
-    // MARK: - Next and previous time unit
+// MARK: - Next and previous time unit
+// MARK: Minutes
+    /**
+    Creates a new date at the beginning of the minute found by subtracting the
+    given number of minutes from the receiver.
+    
+    - parameter delta: The number of minutes to subtract from the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func minutesBefore(delta: Int = 1) -> NSDate {
+        return TimeUnit.minutesBefore(self, delta: delta);
+    }
+    
+    /**
+    Creates a new date at the beginning of the minute found by adding the
+    given number of minutes to the receiver.
+    
+    - parameter delta: The number of minutes to add to the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func minutesAfter(delta: Int = 1) -> NSDate {
+        return TimeUnit.minutesAfter(self, delta: delta);
+    }
     
     /**
     Creates a new date at the first second of the minute prior to the receiver.
@@ -175,6 +199,32 @@ extension NSDate {
     */
     public func minuteAfter() -> NSDate {
         return TimeUnit.minuteAfter(self)
+    }
+    
+// MARK: Hours
+    
+    /**
+    Creates a new date at the beginning of the hour found by subtracting the
+    given number of hours from the receiver.
+    
+    - parameter delta: The number of hours to subtract from the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func hoursBefore(delta: Int = 1) -> NSDate {
+        return TimeUnit.hoursBefore(self, delta: delta);
+    }
+    
+    /**
+     Creates a new date at the beginning of the hour found by adding the
+     given number of hours to the receiver.
+     
+     - parameter delta: The number of hours to add to the receiver.
+     
+     - returns: The newly created date.
+     */
+    public func hoursAfter(delta: Int = 1) -> NSDate {
+        return TimeUnit.hoursAfter(self, delta: delta);
     }
     
     /**
@@ -197,6 +247,32 @@ extension NSDate {
         return TimeUnit.hourAfter(self)
     }
     
+// MARK: Days
+    
+    /**
+    Creates a new date at the beginning of the day found by subtracting the
+    given number of days from the receiver.
+    
+    - parameter delta: The number of days to subtract from the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func daysBefore(delta: Int = 1) -> NSDate {
+        return TimeUnit.daysBefore(self, delta: delta);
+    }
+    
+    /**
+     Creates a new date at the beginning of the day found by adding the
+     given number of days to the receiver.
+     
+     - parameter delta: The number of days to add to the receiver.
+     
+     - returns: The newly created date.
+     */
+    public func daysAfter(delta: Int = 1) -> NSDate {
+        return TimeUnit.daysAfter(self, delta: delta);
+    }
+    
     /**
     Creates a new date at the first second of the day prior to the receiver.
     
@@ -215,6 +291,32 @@ extension NSDate {
     */
     public func dayAfter() -> NSDate {
         return TimeUnit.dayAfter(self)
+    }
+    
+// MARK: Weeks
+    
+    /**
+    Creates a new date at the beginning of the week found by subtracting the
+    given number of weeks from the receiver.
+    
+    - parameter delta: The number of weeks to subtract from the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func weeksBefore(delta: Int = 1) -> NSDate {
+        return TimeUnit.weeksBefore(self, delta: delta);
+    }
+    
+    /**
+     Creates a new date at the beginning of the week found by adding the
+     given number of weeks to the receiver.
+     
+     - parameter delta: The number of weeks to add to the receiver.
+     
+     - returns: The newly created date.
+     */
+    public func weeksAfter(delta: Int = 1) -> NSDate {
+        return TimeUnit.weeksAfter(self, delta: delta);
     }
     
     /**
@@ -237,6 +339,32 @@ extension NSDate {
         return TimeUnit.weekAfter(self)
     }
     
+// MARK: Months
+    
+    /**
+    Creates a new date at the beginning of the month found by subtracting the
+    given number of months from the receiver.
+    
+    - parameter delta: The number of months to subtract from the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func monthsBefore(delta: Int = 1) -> NSDate {
+        return  TimeUnit.monthsBefore(self, delta: delta);
+    }
+    
+    /**
+     Creates a new date at the beginning of the month found by adding the
+     given number of months to the receiver.
+     
+     - parameter delta: The number of months to add to the receiver.
+     
+     - returns: The newly created date.
+     */
+    public func monthsAfter(delta: Int = 1) -> NSDate {
+        return TimeUnit.monthsAfter(self, delta: delta);
+    }
+    
     /**
     Creates a new date at the first second of the month prior to the receiver.
     
@@ -255,6 +383,32 @@ extension NSDate {
     */
     public func monthAfter() -> NSDate {
         return TimeUnit.monthAfter(self)
+    }
+    
+// MARK: Years
+    
+    /**
+    Creates a new date at the beginning of the year found by subtracting the
+    given number of years from the receiver.
+    
+    - parameter delta: The number of years to subtract from the receiver.
+    
+    - returns: The newly created date.
+    */
+    public func yearsBefore(delta: Int = 1) -> NSDate {
+        return TimeUnit.yearsBefore(self, delta: delta);
+    }
+    
+    /**
+     Creates a new date at the beginning of the year found by adding the
+     given number of hours to the receiver.
+     
+     - parameter delta: The number of years to add to the receiver.
+     
+     - returns: The newly created date.
+     */
+    public func yearsAfter(delta: Int = 1) -> NSDate {
+        return TimeUnit.yearsAfter(self, delta: delta);
     }
     
     /**
@@ -277,7 +431,7 @@ extension NSDate {
         return TimeUnit.yearAfter(self)
     }
     
-    // MARK: - Building Subunits
+// MARK: - Building Subunits
     
     /**
     Creates an array of dates at the first second of each minute of the hour
