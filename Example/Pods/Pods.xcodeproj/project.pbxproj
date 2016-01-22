@@ -11,13 +11,17 @@
 		12A15A5090EB93E2639A6C56E44FBEE2 /* Pods-Tunits_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4F20B40BC20D3C1B9C91B2564BC2AF /* Pods-Tunits_Tests-dummy.m */; };
 		5D212AC22B89C84CC3C341960B8C44B8 /* Tunits-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 37850CE1ED1CEBB464176F5514E8A227 /* Tunits-dummy.m */; };
 		8158768669A32B8A47E8DF5E3333B2C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		840667601C52CCCA005B3FB1 /* Date+Boundaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406675F1C52CCCA005B3FB1 /* Date+Boundaries.swift */; };
+		840667611C52CDC2005B3FB1 /* Date+Subunits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406675B1C52CBC6005B3FB1 /* Date+Subunits.swift */; };
+		840667631C52DDD5005B3FB1 /* DateArray+Subunits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667621C52DDD5005B3FB1 /* DateArray+Subunits.swift */; };
+		840667651C52DF3A005B3FB1 /* DateArray+Traversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667641C52DF3A005B3FB1 /* DateArray+Traversal.swift */; };
 		84074DA01C30CBB60018CB3A /* TimeUnit+DateTraversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D9F1C30CBB60018CB3A /* TimeUnit+DateTraversal.swift */; };
 		84074DA21C30CC5A0018CB3A /* TimeUnit+DateContains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074DA11C30CC5A0018CB3A /* TimeUnit+DateContains.swift */; };
 		84074DA41C30CD240018CB3A /* TimeUnit+DateSubunits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074DA31C30CD240018CB3A /* TimeUnit+DateSubunits.swift */; };
 		A3EF22915145DAE133881D6C8C899E3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		AAFB0D2817F8C3EB0440FA5337ECB1D6 /* Tunits.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3712AEB2B649A029D3DDA614743DA0CF /* Tunits.bundle */; };
 		AB7A96DA4F035DBF4C208D98D3C7CBAA /* Pods-Tunits_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB05DB643522DD5960484B85A6FF487 /* Pods-Tunits_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE155D8C9E825935AF6F0A5BF06358DD /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE291E6DA6C3D6F9B5C6D90CC86E49BB /* DateExtensions.swift */; };
+		AE155D8C9E825935AF6F0A5BF06358DD /* Date+Traversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE291E6DA6C3D6F9B5C6D90CC86E49BB /* Date+Traversal.swift */; };
 		BE60570BCB556704B7BA0BB4B8CFBAF0 /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82EE24E144A1D0C9E8E051C038935A5 /* TimeUnit.swift */; };
 		D724E51C6FC3D6EB612AC7F31AF384C6 /* Pods-Tunits_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8C21C21F5D53AD9C430686BB5CBE32 /* Pods-Tunits_Example-dummy.m */; };
 		F116B5591A9C9A877CE906EBE4CE8375 /* Tunits-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DCFAAFAEB1BC3632D141E21AC3A3CA /* Tunits-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +67,10 @@
 		5F366FA892E923669A05481D72E9BBE0 /* Tunits-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Tunits-prefix.pch"; sourceTree = "<group>"; };
 		612FEB98926F2D55D428415061118D60 /* Pods-Tunits_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tunits_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		64833650145B8E22A38755A40E5189D9 /* Pods-Tunits_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tunits_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		8406675B1C52CBC6005B3FB1 /* Date+Subunits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Subunits.swift"; sourceTree = "<group>"; };
+		8406675F1C52CCCA005B3FB1 /* Date+Boundaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Boundaries.swift"; sourceTree = "<group>"; };
+		840667621C52DDD5005B3FB1 /* DateArray+Subunits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateArray+Subunits.swift"; sourceTree = "<group>"; };
+		840667641C52DF3A005B3FB1 /* DateArray+Traversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateArray+Traversal.swift"; sourceTree = "<group>"; };
 		84074D9F1C30CBB60018CB3A /* TimeUnit+DateTraversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeUnit+DateTraversal.swift"; sourceTree = "<group>"; };
 		84074DA11C30CC5A0018CB3A /* TimeUnit+DateContains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeUnit+DateContains.swift"; sourceTree = "<group>"; };
 		84074DA31C30CD240018CB3A /* TimeUnit+DateSubunits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeUnit+DateSubunits.swift"; sourceTree = "<group>"; };
@@ -70,7 +78,7 @@
 		A70869DEABB72C902D0DA2B7963926E8 /* Pods-Tunits_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tunits_Tests-umbrella.h"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BC1DB0CB8F514FF55B98E3A4DCB9A012 /* Pods-Tunits_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tunits_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BE291E6DA6C3D6F9B5C6D90CC86E49BB /* DateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		BE291E6DA6C3D6F9B5C6D90CC86E49BB /* Date+Traversal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Date+Traversal.swift"; sourceTree = "<group>"; };
 		BF1690C53A30C3ED9951E50B55508324 /* Pods-Tunits_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tunits_Tests-resources.sh"; sourceTree = "<group>"; };
 		BFB05DB643522DD5960484B85A6FF487 /* Pods-Tunits_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tunits_Example-umbrella.h"; sourceTree = "<group>"; };
 		C698B2717F0E71398721C6E78E91A2EB /* Tunits.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Tunits.modulemap; sourceTree = "<group>"; };
@@ -229,11 +237,15 @@
 		CE570C5F25216CBD91663101CE9995F5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BE291E6DA6C3D6F9B5C6D90CC86E49BB /* DateExtensions.swift */,
 				E82EE24E144A1D0C9E8E051C038935A5 /* TimeUnit.swift */,
 				84074D9F1C30CBB60018CB3A /* TimeUnit+DateTraversal.swift */,
 				84074DA11C30CC5A0018CB3A /* TimeUnit+DateContains.swift */,
 				84074DA31C30CD240018CB3A /* TimeUnit+DateSubunits.swift */,
+				8406675F1C52CCCA005B3FB1 /* Date+Boundaries.swift */,
+				8406675B1C52CBC6005B3FB1 /* Date+Subunits.swift */,
+				BE291E6DA6C3D6F9B5C6D90CC86E49BB /* Date+Traversal.swift */,
+				840667621C52DDD5005B3FB1 /* DateArray+Subunits.swift */,
+				840667641C52DF3A005B3FB1 /* DateArray+Traversal.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -366,7 +378,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -412,11 +424,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE155D8C9E825935AF6F0A5BF06358DD /* DateExtensions.swift in Sources */,
+				840667651C52DF3A005B3FB1 /* DateArray+Traversal.swift in Sources */,
+				AE155D8C9E825935AF6F0A5BF06358DD /* Date+Traversal.swift in Sources */,
 				BE60570BCB556704B7BA0BB4B8CFBAF0 /* TimeUnit.swift in Sources */,
 				5D212AC22B89C84CC3C341960B8C44B8 /* Tunits-dummy.m in Sources */,
+				840667611C52CDC2005B3FB1 /* Date+Subunits.swift in Sources */,
+				840667601C52CCCA005B3FB1 /* Date+Boundaries.swift in Sources */,
 				84074DA21C30CC5A0018CB3A /* TimeUnit+DateContains.swift in Sources */,
 				84074DA01C30CBB60018CB3A /* TimeUnit+DateTraversal.swift in Sources */,
+				840667631C52DDD5005B3FB1 /* DateArray+Subunits.swift in Sources */,
 				84074DA41C30CD240018CB3A /* TimeUnit+DateSubunits.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +646,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8ED555790974BDA903B076367829F9C9 /* Pods-Tunits_Example.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -693,6 +710,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECAFD062E493470C24F85B805153899F /* Pods-Tunits_Example.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

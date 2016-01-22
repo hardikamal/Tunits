@@ -12,6 +12,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		840667591C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667581C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift */; };
 		84074D8E1C3095C00018CB3A /* TimeUnitTestsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */; };
 		84074D901C30ADB70018CB3A /* TimeUnitBoundariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */; };
 		84074D921C30AE580018CB3A /* TimeUnitSubunitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */; };
@@ -48,6 +49,7 @@
 		607FACE51AFB9204008FA782 /* Tunits_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tunits_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		689F53B6F5054CCC462E550F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		840667581C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensionSubunitsTests.swift; sourceTree = "<group>"; };
 		84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitTestsUtilities.swift; sourceTree = "<group>"; };
 		84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitBoundariesTests.swift; sourceTree = "<group>"; };
 		84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitSubunitsTests.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				840667571C52C990005B3FB1 /* Array Extension Tests */,
 				84074D9A1C30B3E40018CB3A /* TimeUnit Tests */,
 				84074D991C30B3D50018CB3A /* Date Extension Tests */,
 			);
@@ -177,6 +180,14 @@
 				E743C86DA2C60F6ED2D13805 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		840667571C52C990005B3FB1 /* Array Extension Tests */ = {
+			isa = PBXGroup;
+			children = (
+				840667581C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift */,
+			);
+			name = "Array Extension Tests";
 			sourceTree = "<group>";
 		};
 		84074D991C30B3D50018CB3A /* Date Extension Tests */ = {
@@ -413,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840667591C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift in Sources */,
 				84074D961C30AF550018CB3A /* TimeUnitTraversalTests.swift in Sources */,
 				84074D9C1C30C5390018CB3A /* DateExtensionsSubunitsTests.swift in Sources */,
 				84074D9E1C30C5C20018CB3A /* DateExtensionTraversalTests.swift in Sources */,

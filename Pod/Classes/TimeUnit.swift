@@ -54,28 +54,33 @@ public class TimeUnit : NSObject {
     }
     
     /**
-     Convenience initializer for injecting a calendar into a new TimeUnit
+     Convenience initializer for injecting a calendar into a new TimeUnit.
      
-     - parameter calendar: The calendar to be used by the TimeUnit
+     - parameter calendar: The calendar to be used by the TimeUnit.
      
-     - returns: The newly initialized TimeUnit
+     - returns: The newly created TimeUnit.
      */
     public init(calendar:NSCalendar) {
         super.init()
         self.calendar = calendar
     }
     
+    /**
+     Creates a new TimeUnit instance with its calendar set to the default value.
+     
+     - returns: The newly created TimeUnit.
+     */
     public convenience override init() {
         self.init(calendar: NSCalendar.autoupdatingCurrentCalendar())
     }
     
-// MARK: - Calculate beginning of time unit
+    // MARK: - Calculate beginning of time unit
     /**
-        Creates a new date at the first second of the same minute as the given date.
+    Creates a new date at the first second of the same minute as the given date.
     
-        - parameter date: The date for which to calculate the beginning of the minute.
+    - parameter date: The date for which to calculate the beginning of the minute.
     
-        - returns: The newly created date representing the first second of the minute.
+    - returns: The newly created date representing the first second of the minute.
     */
     public func beginningOfMinute(date:NSDate) -> NSDate {
         let components = self.calendar.components(
@@ -86,23 +91,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the first second of the same minute as the given date.
-    
-        - parameter date: The date for which to calculate the beginning of the minute.
-    
-        - returns: The newly created date representing the first second of the minute.
-    */
+     Creates a new date at the first second of the same minute as the given date.
+     
+     - parameter date: The date for which to calculate the beginning of the minute.
+     
+     - returns: The newly created date representing the first second of the minute.
+     */
     static public func beginningOfMinute(date:NSDate) -> NSDate {
         return sharedInstance.beginningOfMinute(date)
     }
     
     /**
-        Creates a new date at the first second of the same hour as the given date
-    
-        - parameter date: The new date for which to calculate the beginning of the hour
-    
-        - returns: The newly created date representing the first second of the hour
-    */
+     Creates a new date at the first second of the same hour as the given date
+     
+     - parameter date: The new date for which to calculate the beginning of the hour
+     
+     - returns: The newly created date representing the first second of the hour
+     */
     public func beginningOfHour(date:NSDate) -> NSDate {
         let components = self.calendar.components(
             ([.Year, .Month, .Day, .Hour]), fromDate: date
@@ -112,23 +117,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the first second of the same hour as the given date
-    
-        - parameter date: The new date for which to calculate the beginning of the hour
-    
-        - returns: The newly created date representing the first second of the hour
-    */
+     Creates a new date at the first second of the same hour as the given date
+     
+     - parameter date: The new date for which to calculate the beginning of the hour
+     
+     - returns: The newly created date representing the first second of the hour
+     */
     static public func beginningOfHour(date:NSDate) -> NSDate {
         return sharedInstance.beginningOfHour(date)
     }
     
     /**
-        Creates a new date at the first second of the same day as the given date
-    
-        - parameter date: The date for which to calculate the beginning of the day
-    
-        - returns: The newly created date representing the first second of the day
-    */
+     Creates a new date at the first second of the same day as the given date
+     
+     - parameter date: The date for which to calculate the beginning of the day
+     
+     - returns: The newly created date representing the first second of the day
+     */
     public func beginningOfDay(date:NSDate) -> NSDate {
         let components = self.calendar.components(
             ([.Year, .Month, .Day]), fromDate: date
@@ -138,53 +143,53 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the first second of the same day as the given date
-    
-        - parameter date: The date for which to calculate the beginning of the day
-    
-        - returns: The newly created date representing the first second of the day
-    */
+     Creates a new date at the first second of the same day as the given date
+     
+     - parameter date: The date for which to calculate the beginning of the day
+     
+     - returns: The newly created date representing the first second of the day
+     */
     static public func beginningOfDay(date:NSDate) -> NSDate {
         return sharedInstance.beginningOfDay(date)
     }
     
     /**
-        Creates a new date at the first second of the same week as the given date
-    
-        - parameter date: The date for which to calculate the beginning of the week
-    
-        - returns: The newly created date representing the first second of the week
-    */
+     Creates a new date at the first second of the same week as the given date
+     
+     - parameter date: The date for which to calculate the beginning of the week
+     
+     - returns: The newly created date representing the first second of the week
+     */
     public func beginningOfWeek(date:NSDate) -> NSDate {
         let components = self.calendar.components([.Year, .Month, .Day, .Weekday], fromDate: date)
         let weekdayOffset = (components.weekday < self.calendar.firstWeekday)
             ? (components.weekday + 7) - self.calendar.firstWeekday
             : components.weekday - self.calendar.firstWeekday
-            
+        
         components.day -= weekdayOffset;
         
         return self.calendar.dateFromComponents(components)!
     }
     
     /**
-        Creates a new date at the first second of the same week as the given date
-    
-        - parameter date: The date for which to calculate the beginning of the week
-    
-        - returns: The newly created date representing the first second of the week
-    */
+     Creates a new date at the first second of the same week as the given date
+     
+     - parameter date: The date for which to calculate the beginning of the week
+     
+     - returns: The newly created date representing the first second of the week
+     */
     static public func beginningOfWeek(date:NSDate) -> NSDate {
         return sharedInstance.beginningOfWeek(date)
     }
     
     /**
-        Creates a new date at the first second of the same month as the given 
-        date
-    
-        - parameter date: The date for which to calculate the beginning of the month
-    
-        - returns: The newly created date representing the first second of the month
-    */
+     Creates a new date at the first second of the same month as the given
+     date
+     
+     - parameter date: The date for which to calculate the beginning of the month
+     
+     - returns: The newly created date representing the first second of the month
+     */
     public func beginningOfMonth(date:NSDate) -> NSDate {
         let components = self.calendar.components(([.Year, .Month]), fromDate: date)
         
@@ -192,24 +197,24 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the first second of the same month as the given 
-        date
-    
-        - parameter date: The date for which to calculate the beginning of the month
-    
-        - returns: The newly created date representing the first second of the month
-    */
+     Creates a new date at the first second of the same month as the given
+     date
+     
+     - parameter date: The date for which to calculate the beginning of the month
+     
+     - returns: The newly created date representing the first second of the month
+     */
     static public func beginningOfMonth(date:NSDate) -> NSDate {
         return sharedInstance.beginningOfMonth(date)
     }
     
     /**
-        Creates a new date at the first second of the same year as the given date
-    
-        - parameter date: The date for which to calculate the beginning of the year
-    
-        - returns: The newly created date representing the first second of the year
-    */
+     Creates a new date at the first second of the same year as the given date
+     
+     - parameter date: The date for which to calculate the beginning of the year
+     
+     - returns: The newly created date representing the first second of the year
+     */
     public func beginningOfYear(date:NSDate) -> NSDate {
         let components = self.calendar.components(.Year, fromDate: date)
         
@@ -217,23 +222,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the first second of the same year as the given date
-    
-        - parameter date: The date for which to calculate the beginning of the year
-    
-        - returns: The newly created date representing the first second of the year
-    */
+     Creates a new date at the first second of the same year as the given date
+     
+     - parameter date: The date for which to calculate the beginning of the year
+     
+     - returns: The newly created date representing the first second of the year
+     */
     static public func beginningOfYear(date:NSDate) -> NSDate {
         return sharedInstance.beginningOfYear(date)
     }
     
-// MARK: - Calculate end of time unit
+    // MARK: - Calculate end of time unit
     /**
-        Creates a new date at the last second of the same minute as the given date.
+    Creates a new date at the last second of the same minute as the given date.
     
-        - parameter date: The date for which to calculate the end of the minute.
+    - parameter date: The date for which to calculate the end of the minute.
     
-        - returns: The newly created date representing the last second of the minute.
+    - returns: The newly created date representing the last second of the minute.
     */
     public func endOfMinute(date:NSDate) -> NSDate {
         let firstSecondOfNextMinute = self.beginningOfMinute(
@@ -244,23 +249,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the last second of the same minute as the given date.
-    
-        - parameter date: The date for which to calculate the end of the minute.
-    
-        - returns: The newly created date representing the last second of the minute.
-    */
+     Creates a new date at the last second of the same minute as the given date.
+     
+     - parameter date: The date for which to calculate the end of the minute.
+     
+     - returns: The newly created date representing the last second of the minute.
+     */
     static public func endOfMinute(date:NSDate) -> NSDate {
         return sharedInstance.endOfMinute(date)
     }
     
     /**
-        Creates a new date at the last second of the same hour as the given date.
-    
-        - parameter date: The date for which to calculate the end of the hour.
-    
-        - returns: The newly created date representing the last second of the hour.
-    */
+     Creates a new date at the last second of the same hour as the given date.
+     
+     - parameter date: The date for which to calculate the end of the hour.
+     
+     - returns: The newly created date representing the last second of the hour.
+     */
     public func endOfHour(date:NSDate) -> NSDate {
         let firstSecondOfNextHour = self.beginningOfHour(
             self.calendar.dateByAddingUnit(.Hour, value: 1, toDate: date, options: [])!
@@ -270,23 +275,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the last second of the same hour as the given date.
-    
-        - parameter date: The date for which to calculate the end of the month
-    
-        - returns: The newly created date representing the last second of the hour.
-    */
+     Creates a new date at the last second of the same hour as the given date.
+     
+     - parameter date: The date for which to calculate the end of the month
+     
+     - returns: The newly created date representing the last second of the hour.
+     */
     static public func endOfHour(date:NSDate) -> NSDate {
         return sharedInstance.endOfHour(date)
     }
     
     /**
-        Creates a new date at the last second of the same day as the given date.
-    
-        - parameter date: The date for which to calculate the end of the hour.
-    
-        - returns: The newly created date representing the last second of the day.
-    */
+     Creates a new date at the last second of the same day as the given date.
+     
+     - parameter date: The date for which to calculate the end of the hour.
+     
+     - returns: The newly created date representing the last second of the day.
+     */
     public func endOfDay(date:NSDate) -> NSDate {
         let firstSecondOfNextDay = self.beginningOfDay(
             self.calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: [])!
@@ -296,23 +301,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the last second of the same day as the given date.
-    
-        - parameter date: The date for which to calculate the end of the hour.
-    
-        - returns: The newly created date representing the last second of the day.
-    */
+     Creates a new date at the last second of the same day as the given date.
+     
+     - parameter date: The date for which to calculate the end of the hour.
+     
+     - returns: The newly created date representing the last second of the day.
+     */
     static public func endOfDay(date:NSDate) -> NSDate {
         return sharedInstance.endOfDay(date)
     }
     
     /**
-        Creates a new date at the last second of the same week as the given date.
-    
-        - parameter date: The date for which to calculate the end of the week.
-    
-        - returns: The newly created date representing the last second of the week.
-    */
+     Creates a new date at the last second of the same week as the given date.
+     
+     - parameter date: The date for which to calculate the end of the week.
+     
+     - returns: The newly created date representing the last second of the week.
+     */
     public func endOfWeek(date:NSDate) -> NSDate {
         let firstSecondOfNextWeek = self.beginningOfWeek(
             self.calendar.dateByAddingUnit(.WeekOfYear, value: 1, toDate: date, options: [])!
@@ -322,23 +327,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the last second of the same week as the given date.
-    
-        - parameter date: The date for which to calculate the end of the week.
-    
-        - returns: The newly created date representing the last second of the week.
-    */
+     Creates a new date at the last second of the same week as the given date.
+     
+     - parameter date: The date for which to calculate the end of the week.
+     
+     - returns: The newly created date representing the last second of the week.
+     */
     static public func endOfWeek(date:NSDate) -> NSDate {
         return sharedInstance.endOfWeek(date)
     }
     
     /**
-        Creates a new date at the last second of the same month as the given date
-    
-        - parameter date: The date for which to calculate the end of the month
-    
-        - returns: The newly created date representing the last second of the month
-    */
+     Creates a new date at the last second of the same month as the given date
+     
+     - parameter date: The date for which to calculate the end of the month
+     
+     - returns: The newly created date representing the last second of the month
+     */
     public func endOfMonth(date:NSDate) -> NSDate {
         let firstSecondOfNextMonth = self.beginningOfMonth(
             self.calendar.dateByAddingUnit(.Month, value: 1, toDate: date, options: [])!
@@ -348,23 +353,23 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the last second of the same month as the given date
-    
-        - parameter date: The date for which to calculate the end of the month
-    
-        - returns: The newly created date representing the last second of the month
-    */
+     Creates a new date at the last second of the same month as the given date
+     
+     - parameter date: The date for which to calculate the end of the month
+     
+     - returns: The newly created date representing the last second of the month
+     */
     static public func endOfMonth(date:NSDate) -> NSDate {
         return sharedInstance.endOfMonth(date)
     }
     
     /**
-        Creates a new date at the last second of the same year as the given date.
-    
-        - parameter date: The date for which to calculate the end of the year.
-    
-        - returns: The newly created date representing the last second of the year.
-    */
+     Creates a new date at the last second of the same year as the given date.
+     
+     - parameter date: The date for which to calculate the end of the year.
+     
+     - returns: The newly created date representing the last second of the year.
+     */
     public func endOfYear(date:NSDate) -> NSDate {
         let firstSecondOfNextYear = self.beginningOfYear(
             self.calendar.dateByAddingUnit(.Year, value: 1, toDate: date, options: [])!
@@ -374,12 +379,12 @@ public class TimeUnit : NSObject {
     }
     
     /**
-        Creates a new date at the last second of the same year as the given date.
-    
-        - parameter date: The date for which to calculate the end of the year.
-    
-        - returns: The newly created date representing the last second of the year.
-    */
+     Creates a new date at the last second of the same year as the given date.
+     
+     - parameter date: The date for which to calculate the end of the year.
+     
+     - returns: The newly created date representing the last second of the year.
+     */
     static public func endOfYear(date:NSDate) -> NSDate {
         return sharedInstance.endOfYear(date)
     }
