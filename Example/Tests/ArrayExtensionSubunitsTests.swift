@@ -29,7 +29,7 @@ import Tunits
 
 class ArrayExtensionSubunitsTests: XCTestCase {
     
-// MARK: Setup & Teardown
+// MARK: - Setup & Teardown
     
     private var dateFormatter : NSDateFormatter!
     

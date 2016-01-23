@@ -13,6 +13,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		840667591C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667581C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift */; };
+		840667671C533A1C005B3FB1 /* ArrayExtensionTraversalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667661C533A1C005B3FB1 /* ArrayExtensionTraversalTests.swift */; };
 		84074D8E1C3095C00018CB3A /* TimeUnitTestsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */; };
 		84074D901C30ADB70018CB3A /* TimeUnitBoundariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */; };
 		84074D921C30AE580018CB3A /* TimeUnitSubunitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */; };
@@ -50,6 +51,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		689F53B6F5054CCC462E550F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		840667581C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensionSubunitsTests.swift; sourceTree = "<group>"; };
+		840667661C533A1C005B3FB1 /* ArrayExtensionTraversalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTraversalTests.swift; sourceTree = "<group>"; };
 		84074D8C1C3094380018CB3A /* TimeUnitTestsUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitTestsUtilities.swift; sourceTree = "<group>"; };
 		84074D8F1C30ADB70018CB3A /* TimeUnitBoundariesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitBoundariesTests.swift; sourceTree = "<group>"; };
 		84074D911C30AE580018CB3A /* TimeUnitSubunitsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnitSubunitsTests.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		840667571C52C990005B3FB1 /* Array Extension Tests */ = {
 			isa = PBXGroup;
 			children = (
+				840667661C533A1C005B3FB1 /* ArrayExtensionTraversalTests.swift */,
 				840667581C52C9DB005B3FB1 /* ArrayExtensionSubunitsTests.swift */,
 			);
 			name = "Array Extension Tests";
@@ -433,6 +436,7 @@
 				84074D981C30B3B30018CB3A /* DateExtensionBoundariesTests.swift in Sources */,
 				84676A501B9A984600DFC65C /* TimeUnitTests.swift in Sources */,
 				84074D941C30AEF10018CB3A /* TimeUnitContainsTests.swift in Sources */,
+				840667671C533A1C005B3FB1 /* ArrayExtensionTraversalTests.swift in Sources */,
 				84074D901C30ADB70018CB3A /* TimeUnitBoundariesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
