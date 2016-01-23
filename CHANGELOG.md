@@ -2,9 +2,22 @@
 All notable changes to this project will be documented in this file
 `Tunits` adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.0](https://github.com/spitzgoby/Tunits/releases/tag/0.9.0)
+### Adds
++ Subunits creation and date traversal methods to date arrays
+
+## [0.8.1](https://github.com/spitzgoby/Tunits/releases/tag/0.8.1) (12-31-2015)
+### Adds
++ Multiple date traversal to date extensions, e.g. `date.hoursBefore(2)`
+
+## [0.8.0](https://github.com/spitzgoby/Tunits/releases/tag/0.8.0) (12-28-2015)
+### Adds
++ Instance and static plural methods for traversing across dates, e.g. 
+  `TimeUnit.hoursBefore(date, 2)` 
+
 ## [0.7.0](https://github.com/spitzgoby/Tunits/releases/tag/0.7.0) (12-27-2015)
 ### Adds
-+ TimeUnit now exposes `timeUnits(timeUnit:startDate:endDate:)` for arbitray 
++ TimeUnit now exposes `timeUnits(timeUnit:startDate:endDate:)` for arbitrary 
   date array creation
 + TimeUnit now exposes `dateIsBetween(date:startDate:endDate:)`
 
