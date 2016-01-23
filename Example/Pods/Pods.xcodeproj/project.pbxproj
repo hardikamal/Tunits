@@ -15,6 +15,7 @@
 		840667611C52CDC2005B3FB1 /* Date+Subunits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406675B1C52CBC6005B3FB1 /* Date+Subunits.swift */; };
 		840667631C52DDD5005B3FB1 /* DateArray+Subunits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667621C52DDD5005B3FB1 /* DateArray+Subunits.swift */; };
 		840667651C52DF3A005B3FB1 /* DateArray+Traversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667641C52DF3A005B3FB1 /* DateArray+Traversal.swift */; };
+		840667691C53DF00005B3FB1 /* DateArray+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840667681C53DF00005B3FB1 /* DateArray+Contains.swift */; };
 		84074DA01C30CBB60018CB3A /* TimeUnit+DateTraversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074D9F1C30CBB60018CB3A /* TimeUnit+DateTraversal.swift */; };
 		84074DA21C30CC5A0018CB3A /* TimeUnit+DateContains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074DA11C30CC5A0018CB3A /* TimeUnit+DateContains.swift */; };
 		84074DA41C30CD240018CB3A /* TimeUnit+DateSubunits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84074DA31C30CD240018CB3A /* TimeUnit+DateSubunits.swift */; };
@@ -71,6 +72,7 @@
 		8406675F1C52CCCA005B3FB1 /* Date+Boundaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Boundaries.swift"; sourceTree = "<group>"; };
 		840667621C52DDD5005B3FB1 /* DateArray+Subunits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateArray+Subunits.swift"; sourceTree = "<group>"; };
 		840667641C52DF3A005B3FB1 /* DateArray+Traversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateArray+Traversal.swift"; sourceTree = "<group>"; };
+		840667681C53DF00005B3FB1 /* DateArray+Contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateArray+Contains.swift"; sourceTree = "<group>"; };
 		84074D9F1C30CBB60018CB3A /* TimeUnit+DateTraversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeUnit+DateTraversal.swift"; sourceTree = "<group>"; };
 		84074DA11C30CC5A0018CB3A /* TimeUnit+DateContains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeUnit+DateContains.swift"; sourceTree = "<group>"; };
 		84074DA31C30CD240018CB3A /* TimeUnit+DateSubunits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeUnit+DateSubunits.swift"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				BE291E6DA6C3D6F9B5C6D90CC86E49BB /* Date+Traversal.swift */,
 				840667621C52DDD5005B3FB1 /* DateArray+Subunits.swift */,
 				840667641C52DF3A005B3FB1 /* DateArray+Traversal.swift */,
+				840667681C53DF00005B3FB1 /* DateArray+Contains.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				84074DA01C30CBB60018CB3A /* TimeUnit+DateTraversal.swift in Sources */,
 				840667631C52DDD5005B3FB1 /* DateArray+Subunits.swift in Sources */,
 				84074DA41C30CD240018CB3A /* TimeUnit+DateSubunits.swift in Sources */,
+				840667691C53DF00005B3FB1 /* DateArray+Contains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
